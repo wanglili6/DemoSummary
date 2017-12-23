@@ -88,9 +88,7 @@ public class MainActivity extends AppCompatActivity {
             public void onTabSelect(int position) {
                 viewpager.setCurrentItem(position);
                 if (position == 2) {
-//                    Intent intent = new Intent(MainActivity.this, UpdateService.class);
-//                    intent.putExtra("apkUrl", "http://51growup.com/app-debug.apk");
-//                    startService(intent);
+
                     tabLayout.hideMsg(2);
                 } else if (position == 1) {
                     tabLayout.hideMsg(1);

@@ -57,6 +57,7 @@ public class HomeFragment extends Fragment {
             }
         });
 
+
         btnDayin.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
