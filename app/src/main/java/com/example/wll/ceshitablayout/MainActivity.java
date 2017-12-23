@@ -1,8 +1,6 @@
 package com.example.wll.ceshitablayout;
 
 import android.Manifest;
-import android.annotation.SuppressLint;
-import android.content.Intent;
 import android.content.pm.PackageManager;
 import android.os.Build;
 import android.support.annotation.NonNull;
@@ -13,20 +11,18 @@ import android.support.v4.view.ViewPager;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.util.Log;
-import android.view.LayoutInflater;
-import android.view.View;
-import android.view.ViewGroup;
-import android.widget.TextView;
 import android.widget.Toast;
 
+import com.example.wll.ceshitablayout.constant.TabEntity;
+import com.example.wll.ceshitablayout.homePageFragment.HomeFragment;
+import com.example.wll.ceshitablayout.homePageFragment.MoreFragment;
+import com.example.wll.ceshitablayout.homePageFragment.NewsFragment;
+import com.example.wll.ceshitablayout.homePageFragment.PersonFragment;
 import com.flyco.tablayout.CommonTabLayout;
 import com.flyco.tablayout.listener.CustomTabEntity;
 import com.flyco.tablayout.listener.OnTabSelectListener;
 
 import java.util.ArrayList;
-import java.util.List;
-
-import static com.example.wll.ceshitablayout.R.attr.title;
 
 public class MainActivity extends AppCompatActivity {
 
@@ -97,8 +93,6 @@ public class MainActivity extends AppCompatActivity {
 //                    startService(intent);
                     tabLayout.hideMsg(2);
                 } else if (position == 1) {
-//                    Intent intent = new Intent(MainActivity.this, WordHtmlActivity.class);
-//                    startActivity(intent);
                     tabLayout.hideMsg(1);
                 }
             }

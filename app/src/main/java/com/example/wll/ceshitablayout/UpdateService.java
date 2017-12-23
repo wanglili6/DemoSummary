@@ -13,6 +13,8 @@ import android.support.v4.app.NotificationCompat;
 import android.support.v4.content.FileProvider;
 import android.widget.Toast;
 
+import com.example.wll.ceshitablayout.constant.Constants;
+import com.example.wll.ceshitablayout.utils.SdcardUtils;
 import com.zhy.http.okhttp.OkHttpUtils;
 import com.zhy.http.okhttp.callback.FileCallBack;
 
@@ -22,6 +24,7 @@ import okhttp3.Call;
 
 /**
  * Created by wll on 2017/12/9.
+ * 使用OKhttpUtils更新下载
  */
 
 public class UpdateService extends Service {

@@ -1,4 +1,4 @@
-package com.example.wll.ceshitablayout;
+package com.example.wll.ceshitablayout.constant;
 
 /**
  * Created by wll on 2017/12/9.

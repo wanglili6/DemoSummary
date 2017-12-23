@@ -1,4 +1,4 @@
-package com.example.wll.ceshitablayout;
+package com.example.wll.ceshitablayout.utils;
 
 import android.os.Environment;
 
@@ -10,6 +10,7 @@ import java.io.OutputStream;
 
 /**
  * Created by wll on 2017/12/9.
+ * 首页
  */
 
 public class SdcardUtils {

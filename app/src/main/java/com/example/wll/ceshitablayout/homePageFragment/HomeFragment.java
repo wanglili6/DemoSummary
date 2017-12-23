@@ -1,4 +1,4 @@
-package com.example.wll.ceshitablayout;
+package com.example.wll.ceshitablayout.homePageFragment;
 
 import android.content.Intent;
 import android.os.Bundle;
@@ -10,6 +10,9 @@ import android.view.ViewGroup;
 import android.widget.Button;
 import android.widget.Toast;
 
+import com.apkfuns.logutils.LogUtils;
+import com.example.wll.ceshitablayout.R;
+import com.example.wll.ceshitablayout.WordHtmlActivity;
 import com.uuzuche.lib_zxing.activity.CaptureActivity;
 import com.uuzuche.lib_zxing.activity.CodeUtils;
 
@@ -42,7 +45,6 @@ public class HomeFragment extends Fragment {
      * 初始化数据
      */
     private void initData() {
-        btnCeshi.setText("首页");
 
         /**
          * 打开默认二维码扫描界面
@@ -52,6 +54,14 @@ public class HomeFragment extends Fragment {
             public void onClick(View v) {
                 Intent intent = new Intent(getContext(), CaptureActivity.class);
                 startActivityForResult(intent, 1);
+            }
+        });
+
+        btnDayin.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                Intent intent = new Intent(getContext(), WordHtmlActivity.class);
+                startActivity(intent);
             }
         });
     }
@@ -72,7 +82,7 @@ public class HomeFragment extends Fragment {
                 if (bundle.getInt(CodeUtils.RESULT_TYPE) == CodeUtils.RESULT_SUCCESS) {
                     String result = bundle.getString(CodeUtils.RESULT_STRING);
                     Toast.makeText(getContext(), "解析结果:" + result, Toast.LENGTH_LONG).show();
-                    LogUtils.i(result);
+                    LogUtils.d(result);
                 } else if (bundle.getInt(CodeUtils.RESULT_TYPE) == CodeUtils.RESULT_FAILED) {
                     Toast.makeText(getContext(), "解析二维码失败", Toast.LENGTH_LONG).show();
                 }

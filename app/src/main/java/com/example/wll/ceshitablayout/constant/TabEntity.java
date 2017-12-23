@@ -1,12 +1,13 @@
-package com.example.wll.ceshitablayout;
+package com.example.wll.ceshitablayout.constant;
 
 import com.flyco.tablayout.listener.CustomTabEntity;
 
 /**
  * Created by wll on 2017/12/5.
+ * tablayout 的子类实现
  */
 
-class TabEntity implements CustomTabEntity {
+public class TabEntity implements CustomTabEntity {
     public String title;
     public int selectedIcon;
     public int unSelectedIcon;
