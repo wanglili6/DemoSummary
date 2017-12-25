@@ -1,8 +1,6 @@
 package com.example.wll.ceshitablayout;
 
-import android.content.Context;
 import android.os.Bundle;
-import android.os.Environment;
 import android.support.v4.app.FragmentActivity;
 import android.util.Log;
 import android.webkit.WebSettings;
@@ -10,6 +8,7 @@ import android.webkit.WebView;
 
 
 import com.example.wll.ceshitablayout.utils.FileUtils;
+import com.example.wll.ceshitablayout.utils.SdcardUtils;
 
 import org.apache.poi.hwpf.HWPFDocument;
 import org.apache.poi.hwpf.converter.PicturesManager;
@@ -41,6 +40,8 @@ import javax.xml.transform.stream.StreamResult;
 
 /**
  * Created by fuweiwei on 2015/11/28.
+ *
+ * 展示模板并进行填充数据打印
  */
 public class WordHtmlActivity extends FragmentActivity {
     SdcardUtils sdcardUtils = new SdcardUtils();

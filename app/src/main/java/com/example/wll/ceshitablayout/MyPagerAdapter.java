@@ -9,6 +9,7 @@ import java.util.ArrayList;
 
 /**
  * Created by wll on 2017/12/5.
+ * FragmentPagerAdapter---首页切换fragment用的适配器
  */
 
 class MyPagerAdapter extends FragmentPagerAdapter {

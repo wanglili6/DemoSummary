@@ -1,18 +1,27 @@
 <?xml version="1.0" encoding="utf-8"?>
 <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
-    android:layout_width="match_parent"
-    android:layout_height="match_parent"
-    android:orientation="vertical">
+              android:layout_width="match_parent"
+              android:layout_height="match_parent"
+
+              android:orientation="vertical">
 
     <Button
+        android:layout_margin="10dp"
+        android:background="@drawable/ripple_bg"
+        android:textColor="#fff"
         android:id="@+id/btn_ceshi"
         android:layout_width="match_parent"
         android:layout_height="50dp"
-        android:text="扫描二维码" />
+        android:text="扫描二维码"/>
 
     <Button
+        android:layout_margin="10dp"
+        android:textColor="#fff"
+        android:background="@drawable/ripple_bg"
         android:id="@+id/btn_dayin"
         android:layout_width="match_parent"
         android:layout_height="50dp"
-        android:text="打印" />
+        android:text="打印"/>
+
+
 </LinearLayout>
