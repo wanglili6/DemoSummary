@@ -34,6 +34,8 @@ public class LoginActivity extends BaseActivity {
     TextView tvLogin;
     @BindView(R.id.tv_register)
     TextView tvRegister;
+    @BindView(R.id.tv_uns)
+    TextView tvUns;
 
     /**
      * 点击事件
@@ -57,6 +59,11 @@ public class LoginActivity extends BaseActivity {
             case R.id.tv_register:
 
                 startActivity(RegistrationActivity.class);
+                finish();
+                break;
+
+            case R.id.tv_uns:
+                startActivity(SmsLoginActivity.class);
                 finish();
                 break;
         }
@@ -154,6 +161,7 @@ public class LoginActivity extends BaseActivity {
     public void setListener() {
         tvLogin.setOnClickListener(this);
         tvRegister.setOnClickListener(this);
+        tvUns.setOnClickListener(this);
     }
 
     @Override

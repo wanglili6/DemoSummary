@@ -17,7 +17,7 @@
         android:layout_height="wrap_content"/>
     <LinearLayout
         android:layout_marginTop="60dp"
-        android:background="@drawable/bg_shape_rantagle"
+        android:background="@drawable/bg_shape_register"
         android:focusableInTouchMode="true"
         android:fadeScrollbars="true"
         android:gravity="center_vertical"
@@ -44,7 +44,7 @@
 
     <LinearLayout
         android:layout_marginTop="10dp"
-        android:background="@drawable/bg_shape_rantagle"
+        android:background="@drawable/bg_shape_register"
         android:focusableInTouchMode="true"
         android:fadeScrollbars="true"
         android:gravity="center_vertical"

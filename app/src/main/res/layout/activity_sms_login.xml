@@ -30,7 +30,7 @@
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_marginLeft="15dp"
-            android:text="用户名: "
+            android:text="手机号: "
             android:textColor="#000000"
             android:textSize="16sp"/>
 
@@ -40,7 +40,8 @@
             android:layout_height="match_parent"
             android:layout_marginLeft="5dp"
             android:background="@null"
-            android:hint="请输入用户名"
+            android:hint="请输入手机号"
+            android:inputType="phone"
             android:textColor="#000000"
             android:textSize="16sp"/>
     </LinearLayout>
@@ -58,7 +59,7 @@
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_marginLeft="15dp"
-            android:text="密码: "
+            android:text="验证码: "
             android:textColor="#000000"
             android:textSize="16sp"/>
 
@@ -68,11 +69,34 @@
             android:layout_height="match_parent"
             android:layout_marginLeft="5dp"
             android:background="@null"
-            android:hint="请输入密码"
+            android:hint="请输入验证码"
             android:inputType="textPassword"
             android:maxEms="6"
             android:textColor="#000000"
             android:textSize="16sp"/>
+    </LinearLayout>
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="50dp"
+        android:layout_marginTop="10dp"
+        android:gravity="center_vertical"
+        android:orientation="horizontal">
+
+        <EditText
+            android:id="@+id/ed_code"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:layout_weight="1"
+            android:hint="请输入验证码"
+            android:padding="5dp"/>
+
+        <ImageView
+            android:id="@+id/iv_login"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:layout_marginLeft="10dp"
+            android:layout_weight="1"/>
     </LinearLayout>
 
     <TextView
@@ -91,13 +115,15 @@
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:layout_marginTop="10dp">
+
         <TextView
             android:id="@+id/tv_uns"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:text="短信登录"
+            android:text="其他登录"
             android:textColor="@color/color_pass"
             android:textSize="16sp"/>
+
         <TextView
             android:id="@+id/tv_register"
             android:layout_width="wrap_content"
@@ -105,7 +131,8 @@
             android:layout_alignParentRight="true"
             android:text="注册"
             android:textColor="@color/cc"
-            android:textSize="16sp"/>
+            android:textSize="16sp"
+            android:visibility="gone"/>
     </RelativeLayout>
 
 
