@@ -11,7 +11,7 @@ import android.widget.TextView;
 import com.apkfuns.logutils.LogUtils;
 import com.example.wll.ceshitablayout.base.BaseActivity;
 import com.example.wll.ceshitablayout.utils.CodeUtils;
-import com.example.wll.ceshitablayout.utils.PreferenceUtils;
+import com.example.wll.ceshitablayout.utils.PreferencesUtils;
 
 import butterknife.BindView;
 import butterknife.ButterKnife;
@@ -48,7 +48,7 @@ public class SmsLoginActivity extends BaseActivity
                 ivLogin.setImageBitmap(bitmap);
                 break;
             case R.id.tv_login:
-                String code = PreferenceUtils.getString(SmsLoginActivity.this, "code");
+                String code = PreferencesUtils.getString(SmsLoginActivity.this, "code");
                 LogUtils.d(code);
                 break;
             case R.id.tv_uns:
