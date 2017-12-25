@@ -1,4 +1,4 @@
-package com.example.wll.ceshitablayout;
+package com.example.wll.ceshitablayout.adapter;
 
 import android.content.Context;
 import android.support.v4.app.Fragment;
@@ -12,7 +12,7 @@ import java.util.ArrayList;
  * FragmentPagerAdapter---首页切换fragment用的适配器
  */
 
-class MyPagerAdapter extends FragmentPagerAdapter {
+public class MyPagerAdapter extends FragmentPagerAdapter {
     private Context context;
     private ArrayList<Fragment> mFragments;
     private  String[] mTitles;

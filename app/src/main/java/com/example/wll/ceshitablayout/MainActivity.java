@@ -13,6 +13,7 @@ import android.os.Bundle;
 import android.util.Log;
 import android.widget.Toast;
 
+import com.example.wll.ceshitablayout.adapter.MyPagerAdapter;
 import com.example.wll.ceshitablayout.constant.TabEntity;
 import com.example.wll.ceshitablayout.homePageFragment.HomeFragment;
 import com.example.wll.ceshitablayout.homePageFragment.MoreFragment;
@@ -81,14 +82,15 @@ public class MainActivity extends AppCompatActivity {
         myPagerAdapter.notifyDataSetChanged();
 
         tabLayout.setTabData(mTabEntities);
-        tabLayout.showMsg(1, 3);
         tabLayout.showDot(2);
         tabLayout.setOnTabSelectListener(new OnTabSelectListener() {
             @Override
             public void onTabSelect(int position) {
                 viewpager.setCurrentItem(position);
                 if (position == 2) {
-
+//                    Intent intent = new Intent(MainActivity.this, UpdateService.class);
+//                    intent.putExtra("apkUrl", "http://51growup.com/app-debug.apk");
+//                    startService(intent);
                     tabLayout.hideMsg(2);
                 } else if (position == 1) {
                     tabLayout.hideMsg(1);

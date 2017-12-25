@@ -1,4 +1,4 @@
-package com.example.wll.ceshitablayout;
+package com.example.wll.ceshitablayout.servser;
 
 import android.app.NotificationManager;
 import android.app.PendingIntent;
@@ -13,6 +13,7 @@ import android.support.v4.app.NotificationCompat;
 import android.support.v4.content.FileProvider;
 import android.widget.Toast;
 
+import com.example.wll.ceshitablayout.R;
 import com.example.wll.ceshitablayout.constant.Constants;
 import com.example.wll.ceshitablayout.utils.SdcardUtils;
 import com.zhy.http.okhttp.OkHttpUtils;
