@@ -62,7 +62,7 @@ public class CodeUtils {
 
         //生成的验证码
         String code = createCode();
-        PreferenceUtils.setString(context, "code", code);
+        PreferencesUtils.putString(context, "code", code);
         canvas.drawColor(Color.rgb(DEFAULT_COLOR, DEFAULT_COLOR, DEFAULT_COLOR));
         Paint paint = new Paint();
         paint.setTextSize(DEFAULT_FONT_SIZE);

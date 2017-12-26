@@ -11,9 +11,7 @@ import com.apkfuns.logutils.LogUtils;
 import com.example.wll.ceshitablayout.base.BaseActivity;
 import com.example.wll.ceshitablayout.constant.Constants;
 import com.example.wll.ceshitablayout.pojoBean.RegisterInfo;
-import com.example.wll.ceshitablayout.pojoBean.UserInfo;
-import com.example.wll.ceshitablayout.servser.LoginSevser;
-import com.example.wll.ceshitablayout.servser.RegisterSevser;
+import com.example.wll.ceshitablayout.myInterface.RegisterSevser;
 
 import butterknife.BindView;
 import butterknife.ButterKnife;
@@ -106,7 +104,7 @@ switch (v.getId()){
 
     @Override
     public void initParms(Bundle parms) {
-
+        setSteepStatusBar(false);
     }
 
     @Override

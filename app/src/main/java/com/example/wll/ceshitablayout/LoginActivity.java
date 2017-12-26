@@ -1,18 +1,18 @@
 package com.example.wll.ceshitablayout;
 
 import android.content.Context;
-import android.content.Intent;
 import android.os.Bundle;
 import android.text.TextUtils;
 import android.view.View;
 import android.widget.EditText;
+import android.widget.ImageView;
 import android.widget.TextView;
 
 import com.apkfuns.logutils.LogUtils;
 import com.example.wll.ceshitablayout.base.BaseActivity;
 import com.example.wll.ceshitablayout.constant.Constants;
 import com.example.wll.ceshitablayout.pojoBean.UserInfo;
-import com.example.wll.ceshitablayout.servser.LoginSevser;
+import com.example.wll.ceshitablayout.myInterface.LoginSevser;
 
 import butterknife.BindView;
 import butterknife.ButterKnife;
@@ -34,8 +34,8 @@ public class LoginActivity extends BaseActivity {
     TextView tvLogin;
     @BindView(R.id.tv_register)
     TextView tvRegister;
-    @BindView(R.id.tv_uns)
-    TextView tvUns;
+    @BindView(R.id.iv_user_login)
+    ImageView tvUns;
 
     /**
      * 点击事件
@@ -62,7 +62,7 @@ public class LoginActivity extends BaseActivity {
                 finish();
                 break;
 
-            case R.id.tv_uns:
+            case R.id.iv_user_login:
                 startActivity(SmsLoginActivity.class);
                 finish();
                 break;
@@ -125,6 +125,7 @@ public class LoginActivity extends BaseActivity {
      */
     @Override
     public void initParms(Bundle parms) {
+        setSteepStatusBar(false);
 
         if (parms != null) {
             String name = parms.getString("name");

@@ -1,4 +1,4 @@
-package com.example.wll.ceshitablayout.servser;
+package com.example.wll.ceshitablayout.myInterface;
 
 import com.example.wll.ceshitablayout.pojoBean.RegisterInfo;
 import com.example.wll.ceshitablayout.pojoBean.UserInfo;
