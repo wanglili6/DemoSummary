@@ -17,7 +17,7 @@ public abstract class BaseActivity extends Activity implements View.OnClickListe
     /**
      * 是否沉浸状态栏
      **/
-    private boolean isSetStatusBar = true;
+    private boolean isSetStatusBar = false;
     /**
      * 是否允许全屏
      **/
@@ -54,9 +54,7 @@ public abstract class BaseActivity extends Activity implements View.OnClickListe
         if (mAllowFullScreen) {
             requestWindowFeature(Window.FEATURE_NO_TITLE);
         }
-        if (isSetStatusBar) {
-            steepStatusBar();
-        }
+
         setContentView(mContextView);
         if (!isAllowScreenRoate) {
             setRequestedOrientation(ActivityInfo.SCREEN_ORIENTATION_PORTRAIT);
@@ -65,6 +63,9 @@ public abstract class BaseActivity extends Activity implements View.OnClickListe
         initParms(bundle);
         setListener();
         doBusiness(this);
+        if (isSetStatusBar) {
+            steepStatusBar();
+        }
     }
 
     /**
@@ -250,7 +251,6 @@ public abstract class BaseActivity extends Activity implements View.OnClickListe
     public void setScreenRoate(boolean isAllowScreenRoate) {
         this.isAllowScreenRoate = isAllowScreenRoate;
     }
-
 
 
 }

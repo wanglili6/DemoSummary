@@ -1,10 +1,11 @@
 package com.example.wll.ceshitablayout.constant;
 
-import android.app.Application;
+import android.support.multidex.MultiDexApplication;
 
 import com.apkfuns.log2file.LogFileEngineFactory;
 import com.apkfuns.logutils.LogLevel;
 import com.apkfuns.logutils.LogUtils;
+import com.baidu.mapapi.SDKInitializer;
 import com.uuzuche.lib_zxing.activity.ZXingLibrary;
 import com.zhy.http.okhttp.OkHttpUtils;
 
@@ -16,7 +17,7 @@ import okhttp3.OkHttpClient;
  * Created by wll on 2017/12/9.
  */
 
-public class MyApplication extends Application {
+public class MyApplication extends MultiDexApplication {
     @Override
     public void onCreate() {
         super.onCreate();
@@ -45,8 +46,7 @@ public class MyApplication extends Application {
                 .configLog2FileNameFormat("Hi-%d{yyyyMMdd}-1.txt")
                 .configLog2FileLevel(LogLevel.TYPE_VERBOSE)
                 .configLogFileEngine(new LogFileEngineFactory());
-
-
+        SDKInitializer.initialize(getApplicationContext());
 
 
     }

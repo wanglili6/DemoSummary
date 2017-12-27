@@ -13,8 +13,8 @@ import rx.Observable;
 public interface SmsLoginSevser {
     @GET("login")
     Observable<UserInfo> login(
-            @Query("phone") String phone,
-            @Query("code") String code
+            @Query("mobile") String phone,
+            @Query("encode") String code
     );
 
 

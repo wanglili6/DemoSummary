@@ -12,6 +12,7 @@ import android.widget.TextView;
 import com.apkfuns.logutils.LogUtils;
 import com.example.wll.ceshitablayout.base.BaseActivity;
 import com.example.wll.ceshitablayout.constant.Constants;
+import com.example.wll.ceshitablayout.constant.UserMsg;
 import com.example.wll.ceshitablayout.myInterface.SmsLoginSevser;
 import com.example.wll.ceshitablayout.myInterface.SmsgetCodeSevser;
 import com.example.wll.ceshitablayout.pojoBean.UserInfo;
@@ -146,6 +147,7 @@ public class SmsLoginActivity extends BaseActivity
                     @Override
                     public void onNext(UserInfo userInfo) {
                         LogUtils.i(userInfo.getMsg());
+                        showToast(userInfo.getMsg());
                     }
                 });
 
@@ -167,9 +169,9 @@ public class SmsLoginActivity extends BaseActivity
         smsLoginSercive.login(phone, vercode)//创建订阅者
                 .subscribeOn(Schedulers.newThread())//创建一个新的线程
 //                .observeOn(Schedulers.io())         //请求完成后在io线程中执行
-//                .doOnNext(new Action1<UserInfo>() {
+//                .doOnNext(new Action1<UserMsg>() {
 //                    @Override
-//                    public void call(UserInfo userInfo) {
+//                    public void call(UserMsg userInfo) {
 ////                        saveUserInfo(userInfo);//保存用户信息到本地
 //                    }
 //                })
@@ -191,6 +193,13 @@ public class SmsLoginActivity extends BaseActivity
                     public void onNext(UserInfo userInfo) {
                         //请求成功
                         LogUtils.i(userInfo.getMsg());
+                        if (userInfo.getMsg().equals("手机快捷登录成功")) {
+                            PreferencesUtils.putString(SmsLoginActivity.this, UserMsg.UserName, userInfo.getData().getName());
+                            PreferencesUtils.putString(SmsLoginActivity.this, UserMsg.UserId, userInfo.getData().getId());
+                            PreferencesUtils.putString(SmsLoginActivity.this, UserMsg.UserEmail, userInfo.getData().getName());
+                            startActivity(MainActivity.class);
+                            finish();
+                        }
                     }
                 });
 

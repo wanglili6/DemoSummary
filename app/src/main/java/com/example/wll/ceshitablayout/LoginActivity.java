@@ -11,8 +11,10 @@ import android.widget.TextView;
 import com.apkfuns.logutils.LogUtils;
 import com.example.wll.ceshitablayout.base.BaseActivity;
 import com.example.wll.ceshitablayout.constant.Constants;
+import com.example.wll.ceshitablayout.constant.UserMsg;
 import com.example.wll.ceshitablayout.pojoBean.UserInfo;
 import com.example.wll.ceshitablayout.myInterface.LoginSevser;
+import com.example.wll.ceshitablayout.utils.PreferencesUtils;
 
 import butterknife.BindView;
 import butterknife.ButterKnife;
@@ -72,7 +74,7 @@ public class LoginActivity extends BaseActivity {
     /**
      * 登录界面
      */
-    private void login(String name, String pwd) {
+    private void login(String name, final String pwd) {
         Retrofit retrofit = new Retrofit.Builder()
                 .addConverterFactory(GsonConverterFactory.create())
                 .addCallAdapterFactory(RxJavaCallAdapterFactory.create())//新的配置
@@ -108,6 +110,10 @@ public class LoginActivity extends BaseActivity {
                         if (userInfo != null) {
                             showToast(userInfo.getMsg());
                             if (userInfo.getMsg().equals("登录成功")) {
+                                PreferencesUtils.putString(LoginActivity.this, UserMsg.UserName, userInfo.getData().getName());
+                                PreferencesUtils.putString(LoginActivity.this, UserMsg.UserPassword, pwd);
+                                PreferencesUtils.putString(LoginActivity.this, UserMsg.UserId, userInfo.getData().getId());
+                                PreferencesUtils.putString(LoginActivity.this, UserMsg.UserEmail, userInfo.getData().getName());
                                 startActivity(MainActivity.class);
                                 finish();
                             }
@@ -131,11 +137,20 @@ public class LoginActivity extends BaseActivity {
             String name = parms.getString("name");
             String pwd = parms.getString("pwd");
             if (!TextUtils.isEmpty(pwd)) {
-                userPwd.setText(pwd+"");
+                userPwd.setText(pwd + "");
             }
             if (!TextUtils.isEmpty(name)) {
 
-                userName.setText(name+"");
+                userName.setText(name + "");
+            }
+
+            String preName = PreferencesUtils.getString(LoginActivity.this, UserMsg.UserName);
+            String prePwd = PreferencesUtils.getString(LoginActivity.this, UserMsg.UserPassword);
+            if (TextUtils.isEmpty(preName) && TextUtils.isEmpty(prePwd)) {
+
+            } else {
+                userName.setText(preName);
+                userPwd.setText(prePwd);
             }
         }
     }

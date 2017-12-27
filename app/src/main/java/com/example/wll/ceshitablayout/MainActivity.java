@@ -135,6 +135,8 @@ public class MainActivity extends AppCompatActivity {
                     Manifest.permission.WRITE_EXTERNAL_STORAGE,
                     Manifest.permission.CAMERA,
                     Manifest.permission.VIBRATE,
+                    Manifest.permission.ACCESS_COARSE_LOCATION,
+                    Manifest.permission.ACCESS_FINE_LOCATION,
                     Manifest.permission.READ_EXTERNAL_STORAGE}, 100);
         } else if (checkSelfPermission == PackageManager.PERMISSION_GRANTED) {
             //已经有了权限 ，不需要申请

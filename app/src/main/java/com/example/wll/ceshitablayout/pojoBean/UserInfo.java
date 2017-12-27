@@ -50,17 +50,17 @@ public class UserInfo {
          * updated_at : 2017-12-24 15:43:17
          */
 
-        private int id;
+        private String id;
         private String name;
         private String email;
         private String created_at;
         private String updated_at;
 
-        public int getId() {
+        public String getId() {
             return id;
         }
 
-        public void setId(int id) {
+        public void setId(String id) {
             this.id = id;
         }
 
