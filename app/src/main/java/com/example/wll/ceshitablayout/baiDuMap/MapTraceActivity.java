@@ -80,7 +80,11 @@ public class MapTraceActivity extends BaseActivity {
 
     @Override
     public void widgetClick(View v) {
-
+        switch (v.getId()) {
+            case R.id.rl_back:
+                finish();
+                break;
+        }
     }
 
 
@@ -93,11 +97,12 @@ public class MapTraceActivity extends BaseActivity {
         map = bmapView.getMap();
         mapUtil = MapUtil.getInstance();
         mapUtil.init(bmapView);
+        //设置中心点
         mapUtil.setCenter();
+        // 查询历史轨迹
         initDrawGuiji();
         getHistoryTrackRequest();
 
-        // 查询历史轨迹
     }
 
     @NonNull
@@ -131,25 +136,24 @@ public class MapTraceActivity extends BaseActivity {
         // 设置结束时间
         historyTrackRequest.setEndTime(endTime);
 
-
-//        // 设置需要纠偏
-//        historyTrackRequest.setProcessed(true);
-//        // 创建纠偏选项实例
-//        ProcessOption processOption = new ProcessOption();
-//        // 设置需要去噪
-//        processOption.setNeedDenoise(true);
-//        // 设置需要抽稀
-//        processOption.setNeedVacuate(true);
-//        // 设置需要绑路
-//        processOption.setNeedMapMatch(true);
-//        // 设置精度过滤值(定位精度大于100米的过滤掉)
-//        processOption.setRadiusThreshold(20);
-//        // 设置交通方式为驾车
-//        processOption.setTransportMode(TransportMode.driving);
-//        // 设置纠偏选项
-//        historyTrackRequest.setProcessOption(processOption);
-//        // 设置里程填充方式为驾车
-//        historyTrackRequest.setSupplementMode(SupplementMode.driving);
+        // 设置需要纠偏
+        historyTrackRequest.setProcessed(true);
+        // 创建纠偏选项实例
+        ProcessOption processOption = new ProcessOption();
+        // 设置需要去噪
+        processOption.setNeedDenoise(true);
+        // 设置需要抽稀
+        processOption.setNeedVacuate(true);
+        // 设置需要绑路
+        processOption.setNeedMapMatch(true);
+        // 设置精度过滤值(定位精度大于100米的过滤掉)
+        processOption.setRadiusThreshold(100);
+        // 设置交通方式为驾车
+        processOption.setTransportMode(TransportMode.driving);
+        // 设置纠偏选项
+        historyTrackRequest.setProcessOption(processOption);
+        // 设置里程填充方式为驾车
+        historyTrackRequest.setSupplementMode(SupplementMode.driving);
         mTraceClient.queryHistoryTrack(historyTrackRequest, mTrackListener);
 
     }
@@ -207,6 +211,7 @@ public class MapTraceActivity extends BaseActivity {
 
     @Override
     public void setListener() {
+        rlBack.setOnClickListener(this);
 
     }
 

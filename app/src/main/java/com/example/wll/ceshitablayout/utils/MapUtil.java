@@ -294,7 +294,7 @@ public class MapUtil {
         polylineOverlay = baiduMap.addOverlay(polylineOptions);
 
         OverlayOptions markerOptions =
-                new MarkerOptions().flat(true).anchor(0.5f, 0.5f).icon(BitmapUtil.bmArrowPoint)
+                new MarkerOptions().flat(true).anchor(0.5f, 0.5f).icon(BitmapDescriptorFactory.fromResource(R.mipmap.icon_point))
                         .position(points.get(points.size() - 1))
                         .rotate((float) CommonUtil.getAngle(points.get(0), points.get(1)));
         mMoveMarker = (Marker) baiduMap.addOverlay(markerOptions);
