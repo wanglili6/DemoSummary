@@ -28,6 +28,9 @@ import com.baidu.mapapi.map.TextureMapView;
 import com.baidu.mapapi.model.LatLng;
 import com.example.wll.ceshitablayout.R;
 import com.example.wll.ceshitablayout.base.BaseActivity;
+import com.example.wll.ceshitablayout.constant.MyApplication;
+import com.example.wll.ceshitablayout.utils.Constants;
+import com.example.wll.ceshitablayout.utils.PreferencesUtils;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -179,7 +182,8 @@ public class MapShowActivity extends BaseActivity {
             double latitude = location.getLatitude();    //获取纬度信息
             double longitude = location.getLongitude();    //获取经度信息
             float radius = location.getRadius();    //获取定位精度，默认值为0.0f
-            LogUtils.i(latitude + "===" + longitude);
+            String jwd = latitude + ";" + longitude;
+            LogUtils.i(jwd);
             String coorType = location.getCoorType();
             //获取经纬度坐标类型，以LocationClientOption中设置过的坐标类型为准
             getMyLocation(latitude, longitude);
@@ -199,7 +203,7 @@ public class MapShowActivity extends BaseActivity {
             List<Poi> poiList = location.getPoiList();
             //获取周边POI信息
             //POI信息包括POI ID、名称等，具体信息请参照类参考中POI类的相关说明
-
+            PreferencesUtils.putString(MyApplication.context(), Constants.LAST_LOCATION, jwd);
 
         }
     }

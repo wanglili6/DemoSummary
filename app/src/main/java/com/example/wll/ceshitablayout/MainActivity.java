@@ -14,12 +14,20 @@ import android.os.Bundle;
 import android.util.Log;
 import android.widget.Toast;
 
+import com.apkfuns.logutils.LogUtils;
+import com.baidu.trace.LBSTraceClient;
+import com.baidu.trace.Trace;
+import com.baidu.trace.model.OnTraceListener;
+import com.baidu.trace.model.PushMessage;
 import com.example.wll.ceshitablayout.adapter.MyPagerAdapter;
+import com.example.wll.ceshitablayout.baiDuMap.MapTraceActivity;
 import com.example.wll.ceshitablayout.constant.TabEntity;
+import com.example.wll.ceshitablayout.constant.UserMsg;
 import com.example.wll.ceshitablayout.homePageFragment.HomeFragment;
 import com.example.wll.ceshitablayout.homePageFragment.MoreFragment;
 import com.example.wll.ceshitablayout.homePageFragment.NewsFragment;
 import com.example.wll.ceshitablayout.homePageFragment.PersonFragment;
+import com.example.wll.ceshitablayout.utils.PreferencesUtils;
 import com.flyco.tablayout.CommonTabLayout;
 import com.flyco.tablayout.listener.CustomTabEntity;
 import com.flyco.tablayout.listener.OnTabSelectListener;
@@ -43,12 +51,15 @@ public class MainActivity extends AppCompatActivity {
     ArrayList<CustomTabEntity> mTabEntities = new ArrayList<>();
     ArrayList<Fragment> mFragments = new ArrayList<>();
 
+
+
     @RequiresApi(api = Build.VERSION_CODES.GINGERBREAD)
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
         getPression();
+
         tabLayout = (CommonTabLayout) findViewById(R.id.tl_2);
         viewpager = (ViewPager) findViewById(R.id.vp_2);
 
@@ -140,6 +151,7 @@ public class MainActivity extends AppCompatActivity {
                     Manifest.permission.READ_EXTERNAL_STORAGE}, 100);
         } else if (checkSelfPermission == PackageManager.PERMISSION_GRANTED) {
             //已经有了权限 ，不需要申请
+            initTraceLocation();
         }
 
     }
@@ -157,4 +169,79 @@ public class MainActivity extends AppCompatActivity {
 
     }
 
+
+    /**
+     * 轨迹采集
+     */
+    private void initTraceLocation() {
+        // 轨迹服务ID
+        long serviceId = 157276;
+        // 设备标识
+        String id = PreferencesUtils.getString(MainActivity.this, UserMsg.UserId);
+        String name = PreferencesUtils.getString(MainActivity.this, UserMsg.UserName);
+        String entityName = id + "_" + name;
+        // 是否需要对象存储服务，默认为：false，关闭对象存储服务。注：鹰眼 Android SDK v3.0以上版本支持随轨迹上传图像等对象数据，若需使用此功能，该参数需设为 true，且需导入bos-android-sdk-1.0.2.jar。
+        boolean isNeedObjectStorage = false;
+        // 初始化轨迹服务
+        Trace mTrace = new Trace(serviceId, entityName, isNeedObjectStorage);
+        // 初始化轨迹服务客户端
+        LBSTraceClient mTraceClient = new LBSTraceClient(getApplicationContext());
+        // 定位周期(单位:秒)
+        int gatherInterval = 5;
+        // 打包回传周期(单位:秒)
+        int packInterval = 10;
+
+        // 设置定位和打包周期
+        mTraceClient.setInterval(gatherInterval, packInterval);
+// 初始化轨迹服务监听器
+        OnTraceListener mTraceListener = new OnTraceListener() {
+            @Override
+            public void onBindServiceCallback(int i, String s) {
+
+            }
+
+            // 开启服务回调
+            @Override
+            public void onStartTraceCallback(int status, String message) {
+                LogUtils.i("开启服务回调"+message);
+                LogUtils.i("开启服务回调"+status);
+            }
+
+            // 停止服务回调
+            @Override
+            public void onStopTraceCallback(int status, String message) {
+                LogUtils.i("停止服务回调"+message);
+                LogUtils.i("停止服务回调"+status);
+            }
+
+            // 开启采集回调
+            @Override
+            public void onStartGatherCallback(int status, String message) {
+                LogUtils.d("开启采集回调"+message);
+                LogUtils.d("开启采集回调"+status);
+            }
+
+            // 停止采集回调
+            @Override
+            public void onStopGatherCallback(int status, String message) {
+                LogUtils.i("停止采集回调"+message);
+                LogUtils.i("停止采集回调"+status);
+            }
+
+            // 推送回调
+            @Override
+            public void onPushCallback(byte messageNo, PushMessage message) {
+            }
+
+            @Override
+            public void onInitBOSCallback(int i, String s) {
+
+            }
+        };
+
+        // 开启服务
+        mTraceClient.startTrace(mTrace, mTraceListener);
+        // 开启采集
+        mTraceClient.startGather(mTraceListener);
+    }
 }

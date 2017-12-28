@@ -2,6 +2,7 @@ package com.example.wll.ceshitablayout.baiDuMap;
 
 import android.content.Context;
 import android.os.Bundle;
+import android.support.annotation.NonNull;
 import android.view.View;
 import android.widget.ImageView;
 import android.widget.RelativeLayout;
@@ -9,15 +10,31 @@ import android.widget.TextView;
 
 import com.apkfuns.logutils.LogUtils;
 import com.baidu.mapapi.map.BaiduMap;
+import com.baidu.mapapi.map.MapView;
 import com.baidu.mapapi.map.TextureMapView;
 import com.baidu.trace.LBSTraceClient;
-import com.baidu.trace.Trace;
-import com.baidu.trace.model.OnTraceListener;
-import com.baidu.trace.model.PushMessage;
+import com.baidu.trace.api.track.HistoryTrackRequest;
+import com.baidu.trace.api.track.HistoryTrackResponse;
+import com.baidu.trace.api.track.OnTrackListener;
+import com.baidu.trace.api.track.SupplementMode;
+import com.baidu.trace.api.track.TrackPoint;
+import com.baidu.trace.model.ProcessOption;
+import com.baidu.trace.model.SortType;
+import com.baidu.trace.model.TransportMode;
+import com.example.wll.ceshitablayout.MainActivity;
 import com.example.wll.ceshitablayout.R;
 import com.example.wll.ceshitablayout.base.BaseActivity;
 import com.example.wll.ceshitablayout.constant.UserMsg;
+import com.example.wll.ceshitablayout.utils.MapUtil;
 import com.example.wll.ceshitablayout.utils.PreferencesUtils;
+
+import java.text.DateFormat;
+import java.text.ParseException;
+import java.text.SimpleDateFormat;
+import java.util.ArrayList;
+import java.util.Calendar;
+import java.util.Date;
+import java.util.List;
 
 import butterknife.BindView;
 import butterknife.ButterKnife;
@@ -42,26 +59,24 @@ public class MapTraceActivity extends BaseActivity {
     @BindView(R.id.rl_title_bg)
     RelativeLayout rlTitleBg;
     @BindView(R.id.bmapView)
-    TextureMapView bmapView;
+    MapView bmapView;
     private BaiduMap map;
+    // 分页大小
+    final int pageSize = 5000;
+    // 分页索引
+    int pageIndex = 1;
+    /**
+     * 轨迹点集合
+     */
+    private List<com.baidu.mapapi.model.LatLng> trackPoints = new ArrayList<>();
 
-    // 轨迹服务ID
-    long serviceId = 157276;
-    // 设备标识
-    String id = PreferencesUtils.getString(MapTraceActivity.this, UserMsg.UserId);
-    String name = PreferencesUtils.getString(MapTraceActivity.this, UserMsg.UserName);
-    String entityName = id + "_" + name;
-    // 是否需要对象存储服务，默认为：false，关闭对象存储服务。注：鹰眼 Android SDK v3.0以上版本支持随轨迹上传图像等对象数据，若需使用此功能，该参数需设为 true，且需导入bos-android-sdk-1.0.2.jar。
-    boolean isNeedObjectStorage = false;
-    // 初始化轨迹服务
-    Trace mTrace = new Trace(serviceId, entityName, isNeedObjectStorage);
-    // 初始化轨迹服务客户端
-    LBSTraceClient mTraceClient = new LBSTraceClient(getApplicationContext());
-    // 定位周期(单位:秒)
-    int gatherInterval = 5;
-    // 打包回传周期(单位:秒)
-    int packInterval = 10;
-// 设置定位和打包周期
+    /**
+     * 轨迹排序规则
+     */
+    private SortType sortType = SortType.asc;
+    private OnTrackListener mTrackListener;
+    private HistoryTrackRequest historyTrackRequest;
+    MapUtil mapUtil = null;
 
     @Override
     public void widgetClick(View v) {
@@ -76,61 +91,104 @@ public class MapTraceActivity extends BaseActivity {
         tvBack.setVisibility(View.VISIBLE);
         setSteepStatusBar(false);
         map = bmapView.getMap();
-        initTraceLocation();
+        mapUtil = MapUtil.getInstance();
+        mapUtil.init(bmapView);
+        mapUtil.setCenter();
+        initDrawGuiji();
+        getHistoryTrackRequest();
+
+        // 查询历史轨迹
     }
 
-    /**
-     *
-     */
-    private void initTraceLocation() {
-        mTraceClient.setInterval(gatherInterval, packInterval);
-// 初始化轨迹服务监听器
-        OnTraceListener mTraceListener = new OnTraceListener() {
-            @Override
-            public void onBindServiceCallback(int i, String s) {
+    @NonNull
+    private void getHistoryTrackRequest() {
+        // 请求标识
+        int tag = 1;
+        // 轨迹服务ID
+        long serviceId = 157276;
+        // 设备标识
+        String id = PreferencesUtils.getString(MapTraceActivity.this, UserMsg.UserId);
+        String name = PreferencesUtils.getString(MapTraceActivity.this, UserMsg.UserName);
+        String entityName = id + "_" + name;
+        // 初始化轨迹服务客户端
+        LBSTraceClient mTraceClient = new LBSTraceClient(getApplicationContext());
+        // 创建历史轨迹请求实例
+        historyTrackRequest = new HistoryTrackRequest(tag, serviceId, entityName);
 
-            }
+        //设置轨迹查询起止时间
+        // 开始时间(单位：秒)
+        long startTime = 0;
+        long endTime = 0;
+        try {
+            startTime = getTimesmorning("2017-12-28 00:00:00");
+            endTime = getTimesnight("2017-12-28 23:59:59");
+        } catch (ParseException e) {
+            e.printStackTrace();
+        }
+        // 结束时间(单位：秒)
+        // 设置开始时间
+        historyTrackRequest.setStartTime(startTime);
+        // 设置结束时间
+        historyTrackRequest.setEndTime(endTime);
 
-            // 开启服务回调
-            @Override
-            public void onStartTraceCallback(int status, String message) {
-                LogUtils.i(message);
-                LogUtils.i(status);
-            }
 
-            // 停止服务回调
-            @Override
-            public void onStopTraceCallback(int status, String message) {
-            }
+//        // 设置需要纠偏
+//        historyTrackRequest.setProcessed(true);
+//        // 创建纠偏选项实例
+//        ProcessOption processOption = new ProcessOption();
+//        // 设置需要去噪
+//        processOption.setNeedDenoise(true);
+//        // 设置需要抽稀
+//        processOption.setNeedVacuate(true);
+//        // 设置需要绑路
+//        processOption.setNeedMapMatch(true);
+//        // 设置精度过滤值(定位精度大于100米的过滤掉)
+//        processOption.setRadiusThreshold(20);
+//        // 设置交通方式为驾车
+//        processOption.setTransportMode(TransportMode.driving);
+//        // 设置纠偏选项
+//        historyTrackRequest.setProcessOption(processOption);
+//        // 设置里程填充方式为驾车
+//        historyTrackRequest.setSupplementMode(SupplementMode.driving);
+        mTraceClient.queryHistoryTrack(historyTrackRequest, mTrackListener);
 
-            // 开启采集回调
-            @Override
-            public void onStartGatherCallback(int status, String message) {
-                LogUtils.d(message);
-                LogUtils.d(status);
-            }
+    }
 
-            // 停止采集回调
+    private void initDrawGuiji() {
+        // 初始化轨迹监听器
+        // 历史轨迹回调
+        mTrackListener = new OnTrackListener() {
+            // 历史轨迹回调
             @Override
-            public void onStopGatherCallback(int status, String message) {
-            }
+            public void onHistoryTrackCallback(HistoryTrackResponse response) {
+                LogUtils.i(response.getMessage() + "===");
+                int total = response.getTotal();
+                LogUtils.d("daxa" + total);
+                List<TrackPoint> Points = response.getTrackPoints();
 
-            // 推送回调
-            @Override
-            public void onPushCallback(byte messageNo, PushMessage message) {
-            }
+                if (Points != null) {
+                    LogUtils.d("aaaaaaaaaaaaaaaaaaaaaa" + Points.size());
+                    for (int i = 1; i < Points.size(); i++) {
+                        trackPoints.add(MapUtil.convertTrace2Map(Points.get(i).getLocation()));
+                        LogUtils.d("aaaaaaaaaaaaaaaaaaaaaa" + Points.get(i).getLocation().getLatitude() + "aa" + Points.get(i).getLocation().getLongitude());
+                    }
+                }
+                if (total > pageSize * pageIndex) {
+                    historyTrackRequest.setPageIndex(++pageIndex);
+                    try {
+                        getHistoryTrackRequest();
+                    } catch (Exception e) {
+                        e.printStackTrace();
+                    }
+                } else {
+                    mapUtil.drawHistoryTrack(trackPoints, sortType);
 
-            @Override
-            public void onInitBOSCallback(int i, String s) {
+                }
 
             }
         };
-
-        // 开启服务
-        mTraceClient.startTrace(mTrace, mTraceListener);
-        // 开启采集
-        mTraceClient.startGather(mTraceListener);
     }
+
 
     @Override
     public View bindView() {
@@ -176,5 +234,29 @@ public class MapTraceActivity extends BaseActivity {
         super.onPause();
         //在activity执行onPause时执行mMapView. onPause ()，实现地图生命周期管理
         bmapView.onPause();
+    }
+
+    //获取当天0点
+    public static long getTimesmorning(String str) throws ParseException {
+        DateFormat df = new SimpleDateFormat("yyyy-MM-dd HH:mm:ss");
+        Date date = df.parse(str);
+
+        Calendar cal = Calendar.getInstance();
+        cal.setTime(date);
+        long timestamp = cal.getTimeInMillis() / 1000;
+        LogUtils.i(timestamp);
+        return timestamp;
+    }
+
+    //获得当天24点时间
+    public static long getTimesnight(String str) throws ParseException {
+        DateFormat df = new SimpleDateFormat("yyyy-MM-dd HH:mm:ss");
+        Date date = df.parse(str);
+
+        Calendar cal = Calendar.getInstance();
+        cal.setTime(date);
+        long timestamp = cal.getTimeInMillis() / 1000;
+        LogUtils.i(timestamp);
+        return timestamp;
     }
 }

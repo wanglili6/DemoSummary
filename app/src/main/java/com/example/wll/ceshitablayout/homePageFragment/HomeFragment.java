@@ -14,6 +14,7 @@ import com.apkfuns.logutils.LogUtils;
 import com.example.wll.ceshitablayout.R;
 import com.example.wll.ceshitablayout.WordHtmlActivity;
 import com.example.wll.ceshitablayout.baiDuMap.MapShowActivity;
+import com.example.wll.ceshitablayout.baiDuMap.MapTraceActivity;
 import com.uuzuche.lib_zxing.activity.CaptureActivity;
 import com.uuzuche.lib_zxing.activity.CodeUtils;
 
@@ -33,6 +34,8 @@ public class HomeFragment extends Fragment {
     Unbinder unbinder;
     @BindView(R.id.btn_map)
     Button btnMap;
+    @BindView(R.id.btn_map_guiji)
+    Button btnMapGuiji;
     private String TAG = "HomeFragment的log";
 
     @Nullable
@@ -73,6 +76,13 @@ public class HomeFragment extends Fragment {
             @Override
             public void onClick(View v) {
                 Intent intent = new Intent(getContext(), MapShowActivity.class);
+                startActivity(intent);
+            }
+        });
+        btnMapGuiji.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                Intent intent = new Intent(getContext(), MapTraceActivity.class);
                 startActivity(intent);
             }
         });
