@@ -10,8 +10,13 @@ import android.widget.TextView;
 
 import com.apkfuns.logutils.LogUtils;
 import com.baidu.mapapi.map.BaiduMap;
+import com.baidu.mapapi.map.BitmapDescriptor;
+import com.baidu.mapapi.map.BitmapDescriptorFactory;
 import com.baidu.mapapi.map.MapView;
+import com.baidu.mapapi.map.Marker;
+import com.baidu.mapapi.map.MarkerOptions;
 import com.baidu.mapapi.map.TextureMapView;
+import com.baidu.mapapi.model.LatLng;
 import com.baidu.trace.LBSTraceClient;
 import com.baidu.trace.api.track.HistoryTrackRequest;
 import com.baidu.trace.api.track.HistoryTrackResponse;
@@ -35,6 +40,8 @@ import java.util.ArrayList;
 import java.util.Calendar;
 import java.util.Date;
 import java.util.List;
+import java.util.Timer;
+import java.util.TimerTask;
 
 import butterknife.BindView;
 import butterknife.ButterKnife;
@@ -52,6 +59,8 @@ public class MapTraceActivity extends BaseActivity {
     RelativeLayout rlBack;
     @BindView(R.id.tv_title)
     TextView tvTitle;
+    @BindView(R.id.tv_guiji)
+    TextView tvGuiJi;
     @BindView(R.id.tv_select)
     TextView tvSelect;
     @BindView(R.id.rl_select)
@@ -69,6 +78,7 @@ public class MapTraceActivity extends BaseActivity {
      * 轨迹点集合
      */
     private List<com.baidu.mapapi.model.LatLng> trackPoints = new ArrayList<>();
+    List<TrackPoint> mapPoints = new ArrayList<>();
 
     /**
      * 轨迹排序规则
@@ -77,12 +87,18 @@ public class MapTraceActivity extends BaseActivity {
     private OnTrackListener mTrackListener;
     private HistoryTrackRequest historyTrackRequest;
     MapUtil mapUtil = null;
+    private Marker mMarkerD;
+    Timer timer = new Timer();
+    int recLen = 1;
 
     @Override
     public void widgetClick(View v) {
         switch (v.getId()) {
             case R.id.rl_back:
                 finish();
+                break;
+            case R.id.tv_guiji:
+                GuiJiHuiFang(mapPoints);
                 break;
         }
     }
@@ -158,6 +174,9 @@ public class MapTraceActivity extends BaseActivity {
 
     }
 
+    /**
+     * 历史轨迹回调
+     */
     private void initDrawGuiji() {
         // 初始化轨迹监听器
         // 历史轨迹回调
@@ -168,13 +187,12 @@ public class MapTraceActivity extends BaseActivity {
                 LogUtils.i(response.getMessage() + "===");
                 int total = response.getTotal();
                 LogUtils.d("daxa" + total);
-                List<TrackPoint> Points = response.getTrackPoints();
-
+                final List<TrackPoint> Points = response.getTrackPoints();
+                mapPoints.clear();
+                mapPoints.addAll(Points);
                 if (Points != null) {
-                    LogUtils.d("aaaaaaaaaaaaaaaaaaaaaa" + Points.size());
-                    for (int i = 1; i < Points.size(); i++) {
+                    for (int i = 0; i < Points.size(); i++) {
                         trackPoints.add(MapUtil.convertTrace2Map(Points.get(i).getLocation()));
-                        LogUtils.d("aaaaaaaaaaaaaaaaaaaaaa" + Points.get(i).getLocation().getLatitude() + "aa" + Points.get(i).getLocation().getLongitude());
                     }
                 }
                 if (total > pageSize * pageIndex) {
@@ -191,6 +209,45 @@ public class MapTraceActivity extends BaseActivity {
 
             }
         };
+    }
+
+    /**
+     * 轨迹回放
+     *
+     * @param points
+     */
+    private void GuiJiHuiFang(final List<TrackPoint> points) {
+        if (points != null) {
+            recLen = 0;
+            timer.schedule(new TimerTask() {
+                @Override
+                public void run() {
+
+                    runOnUiThread(new Runnable() {
+                        @Override
+                        public void run() {
+                            recLen++;
+
+                            if (recLen >= points.size()) {
+                                timer.cancel();
+//                                            mMarkerD.remove();
+                            } else {
+                                if (mMarkerD != null) {
+                                    mMarkerD.remove();
+                                }
+                                BitmapDescriptor bitmapDescriptor4 = BitmapDescriptorFactory.fromResource(R.mipmap.mark);
+                                MarkerOptions ooD = new MarkerOptions()
+                                        .position(new LatLng(points.get(recLen).getLocation().getLatitude(), points.get(recLen).getLocation().getLongitude()))
+                                        .icon(bitmapDescriptor4)
+                                        .zIndex(0)
+                                        .period(10);
+                                mMarkerD = (Marker) (map.addOverlay(ooD));
+                            }
+                        }
+                    });
+                }
+            }, 1000, 200);
+        }
     }
 
 
@@ -212,6 +269,7 @@ public class MapTraceActivity extends BaseActivity {
     @Override
     public void setListener() {
         rlBack.setOnClickListener(this);
+        tvGuiJi.setOnClickListener(this);
 
     }
 
@@ -225,6 +283,8 @@ public class MapTraceActivity extends BaseActivity {
         super.onDestroy();
         //在activity执行onDestroy时执行mMapView.onDestroy()，实现地图生命周期管理
         bmapView.onDestroy();
+        map.clear();
+        mMarkerD = null;
     }
 
     @Override

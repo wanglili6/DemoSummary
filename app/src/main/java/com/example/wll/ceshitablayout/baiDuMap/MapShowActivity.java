@@ -226,12 +226,10 @@ public class MapShowActivity extends BaseActivity {
         map.setMapStatus(mMapStatusUpdate);
 
         // 添加mark
-        ArrayList<BitmapDescriptor> giflist = new ArrayList<BitmapDescriptor>();
         BitmapDescriptor bitmapDescriptor4 = BitmapDescriptorFactory.fromResource(R.mipmap.mark);
-        giflist.add(bitmapDescriptor4);
         MarkerOptions ooD = new MarkerOptions()
                 .position(cenpt)
-                .icons(giflist)
+                .icon(bitmapDescriptor4)
                 .zIndex(0)
                 .period(10);
         ooD.animateType(MarkerOptions.MarkerAnimateType.drop);

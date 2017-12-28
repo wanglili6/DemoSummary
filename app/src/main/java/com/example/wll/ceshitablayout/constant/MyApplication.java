@@ -1,5 +1,6 @@
 package com.example.wll.ceshitablayout.constant;
 
+import android.app.Application;
 import android.content.Context;
 import android.support.multidex.MultiDexApplication;
 import android.util.DisplayMetrics;
@@ -13,7 +14,6 @@ import com.baidu.location.LocationClient;
 import com.baidu.location.LocationClientOption;
 import com.baidu.location.Poi;
 import com.baidu.mapapi.SDKInitializer;
-import com.example.wll.ceshitablayout.baiDuMap.MapShowActivity;
 import com.example.wll.ceshitablayout.utils.*;
 import com.uuzuche.lib_zxing.activity.ZXingLibrary;
 import com.zhy.http.okhttp.OkHttpUtils;
