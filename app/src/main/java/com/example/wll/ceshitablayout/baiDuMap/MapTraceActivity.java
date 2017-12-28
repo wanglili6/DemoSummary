@@ -88,7 +88,7 @@ public class MapTraceActivity extends BaseActivity {
     private HistoryTrackRequest historyTrackRequest;
     MapUtil mapUtil = null;
     private Marker mMarkerD;
-    Timer timer = new Timer();
+
     int recLen = 1;
 
     @Override
@@ -218,6 +218,7 @@ public class MapTraceActivity extends BaseActivity {
      */
     private void GuiJiHuiFang(final List<TrackPoint> points) {
         if (points != null) {
+            final Timer timer = new Timer();
             recLen = 0;
             timer.schedule(new TimerTask() {
                 @Override
