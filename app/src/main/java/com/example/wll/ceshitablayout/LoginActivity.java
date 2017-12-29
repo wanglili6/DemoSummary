@@ -138,10 +138,12 @@ public class LoginActivity extends BaseActivity {
             String pwd = parms.getString("pwd");
             if (!TextUtils.isEmpty(pwd)) {
                 userPwd.setText(pwd + "");
+
             }
             if (!TextUtils.isEmpty(name)) {
-
                 userName.setText(name + "");
+                PreferencesUtils.putString(LoginActivity.this, UserMsg.UserName, name);
+                PreferencesUtils.putString(LoginActivity.this, UserMsg.UserId, "");
             }
 
             String preName = PreferencesUtils.getString(LoginActivity.this, UserMsg.UserName);

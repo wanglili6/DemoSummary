@@ -1,18 +1,17 @@
 package com.example.wll.ceshitablayout;
 
-import android.Manifest;
-import android.content.pm.PackageManager;
+import android.content.Context;
+import android.content.DialogInterface;
+import android.content.Intent;
+import android.location.LocationManager;
 import android.os.Build;
-import android.support.annotation.NonNull;
-import android.support.annotation.RequiresApi;
-import android.support.v4.app.ActivityCompat;
-import android.support.v4.app.Fragment;
-import android.support.v4.content.ContextCompat;
-import android.support.v4.view.ViewPager;
-import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
+import android.support.annotation.RequiresApi;
+import android.support.v4.app.Fragment;
+import android.support.v4.view.ViewPager;
+import android.text.TextUtils;
 import android.util.Log;
-import android.widget.Toast;
+import android.view.View;
 
 import com.apkfuns.logutils.LogUtils;
 import com.baidu.trace.LBSTraceClient;
@@ -20,7 +19,7 @@ import com.baidu.trace.Trace;
 import com.baidu.trace.model.OnTraceListener;
 import com.baidu.trace.model.PushMessage;
 import com.example.wll.ceshitablayout.adapter.MyPagerAdapter;
-import com.example.wll.ceshitablayout.baiDuMap.MapTraceActivity;
+import com.example.wll.ceshitablayout.base.BaseActivity;
 import com.example.wll.ceshitablayout.constant.TabEntity;
 import com.example.wll.ceshitablayout.constant.UserMsg;
 import com.example.wll.ceshitablayout.homePageFragment.HomeFragment;
@@ -34,7 +33,7 @@ import com.flyco.tablayout.listener.OnTabSelectListener;
 
 import java.util.ArrayList;
 
-public class MainActivity extends AppCompatActivity {
+public class MainActivity extends BaseActivity {
 
     private CommonTabLayout tabLayout;
     private ViewPager viewpager;
@@ -52,14 +51,22 @@ public class MainActivity extends AppCompatActivity {
     ArrayList<Fragment> mFragments = new ArrayList<>();
 
 
+    @Override
+    public void widgetClick(View v) {
+
+    }
+
 
     @RequiresApi(api = Build.VERSION_CODES.GINGERBREAD)
     @Override
-    protected void onCreate(Bundle savedInstanceState) {
-        super.onCreate(savedInstanceState);
-        setContentView(R.layout.activity_main);
-        getPression();
+    public void initParms(Bundle parms) {
+        initData();
+    }
 
+    /**
+     * 初始化
+     */
+    private void initData() {
         tabLayout = (CommonTabLayout) findViewById(R.id.tl_2);
         viewpager = (ViewPager) findViewById(R.id.vp_2);
 
@@ -132,53 +139,58 @@ public class MainActivity extends AppCompatActivity {
             }
         });
 
+        // GPS
+        LocationManager locationManager = (LocationManager) getSystemService(Context.LOCATION_SERVICE);
+        // 判断GPS是否正常启动
+        if (!locationManager.isProviderEnabled(LocationManager.GPS_PROVIDER)) {
+            gpsAlertMess();
+            return;
+        } else {
+            String id = PreferencesUtils.getString(MainActivity.this, UserMsg.UserId);
+            String name = PreferencesUtils.getString(MainActivity.this, UserMsg.UserName);
+            if (TextUtils.isEmpty(id) || TextUtils.isEmpty(name)) {
 
+            } else {
+                initTraceLocation(id, name);
+            }
+        }
     }
 
-    /**
-     * 动态添加权限
-     */
-    public void getPression() {
-        int checkSelfPermission = ContextCompat.checkSelfPermission(MainActivity.this, Manifest.permission.WRITE_EXTERNAL_STORAGE);
-        if (checkSelfPermission == PackageManager.PERMISSION_DENIED) {
-            //没有权限，申请权限
-            ActivityCompat.requestPermissions(MainActivity.this, new String[]{
-                    Manifest.permission.WRITE_EXTERNAL_STORAGE,
-                    Manifest.permission.CAMERA,
-                    Manifest.permission.VIBRATE,
-                    Manifest.permission.ACCESS_COARSE_LOCATION,
-                    Manifest.permission.ACCESS_FINE_LOCATION,
-                    Manifest.permission.READ_EXTERNAL_STORAGE}, 100);
-        } else if (checkSelfPermission == PackageManager.PERMISSION_GRANTED) {
-            //已经有了权限 ，不需要申请
-            initTraceLocation();
-        }
+    @Override
+    public View bindView() {
+        return null;
+    }
+
+    @Override
+    public int bindLayout() {
+        return R.layout.activity_main;
+    }
+
+    @Override
+    public void initView(View view) {
 
     }
 
     @Override
-    public void onRequestPermissionsResult(int requestCode, @NonNull String[] permissions, @NonNull int[] grantResults) {
-        super.onRequestPermissionsResult(requestCode, permissions, grantResults);
-        switch (requestCode) {
-            case 100:
-                if (grantResults[0] == PackageManager.PERMISSION_GRANTED) {
-                    Toast.makeText(MainActivity.this, "已经授权成功了", Toast.LENGTH_SHORT).show();
-                }
-                break;
-        }
+    public void setListener() {
 
     }
 
+    @Override
+    public void doBusiness(Context mContext) {
+
+    }
 
     /**
      * 轨迹采集
+     *
+     * @param id
+     * @param name
      */
-    private void initTraceLocation() {
+    private void initTraceLocation(String id, String name) {
         // 轨迹服务ID
         long serviceId = 157276;
         // 设备标识
-        String id = PreferencesUtils.getString(MainActivity.this, UserMsg.UserId);
-        String name = PreferencesUtils.getString(MainActivity.this, UserMsg.UserName);
         String entityName = id + "_" + name;
         // 是否需要对象存储服务，默认为：false，关闭对象存储服务。注：鹰眼 Android SDK v3.0以上版本支持随轨迹上传图像等对象数据，若需使用此功能，该参数需设为 true，且需导入bos-android-sdk-1.0.2.jar。
         boolean isNeedObjectStorage = false;
@@ -193,7 +205,7 @@ public class MainActivity extends AppCompatActivity {
 
         // 设置定位和打包周期
         mTraceClient.setInterval(gatherInterval, packInterval);
-// 初始化轨迹服务监听器
+        // 初始化轨迹服务监听器
         OnTraceListener mTraceListener = new OnTraceListener() {
             @Override
             public void onBindServiceCallback(int i, String s) {
@@ -203,29 +215,29 @@ public class MainActivity extends AppCompatActivity {
             // 开启服务回调
             @Override
             public void onStartTraceCallback(int status, String message) {
-                LogUtils.i("开启服务回调"+message);
-                LogUtils.i("开启服务回调"+status);
+                LogUtils.i("开启服务回调" + message);
+                LogUtils.i("开启服务回调" + status);
             }
 
             // 停止服务回调
             @Override
             public void onStopTraceCallback(int status, String message) {
-                LogUtils.i("停止服务回调"+message);
-                LogUtils.i("停止服务回调"+status);
+                LogUtils.i("停止服务回调" + message);
+                LogUtils.i("停止服务回调" + status);
             }
 
             // 开启采集回调
             @Override
             public void onStartGatherCallback(int status, String message) {
-                LogUtils.d("开启采集回调"+message);
-                LogUtils.d("开启采集回调"+status);
+                LogUtils.d("开启采集回调" + message);
+                LogUtils.d("开启采集回调" + status);
             }
 
             // 停止采集回调
             @Override
             public void onStopGatherCallback(int status, String message) {
-                LogUtils.i("停止采集回调"+message);
-                LogUtils.i("停止采集回调"+status);
+                LogUtils.i("停止采集回调" + message);
+                LogUtils.i("停止采集回调" + status);
             }
 
             // 推送回调
@@ -244,4 +256,25 @@ public class MainActivity extends AppCompatActivity {
         // 开启采集
         mTraceClient.startGather(mTraceListener);
     }
+
+    /**
+     * 开启GPS
+     */
+    public void gpsAlertMess() {
+        android.support.v7.app.AlertDialog.Builder alert = new android.support.v7.app.AlertDialog.Builder(
+                this);
+        alert.setTitle("GPS定位").setMessage("请开启GPS定位导航!")
+                .setPositiveButton("确定", new DialogInterface.OnClickListener() {
+                    public void onClick(DialogInterface dialog, int which) {
+                        // 返回开启GPS导航设置界面
+                        Intent intent = new Intent(
+                                android.provider.Settings.ACTION_LOCATION_SOURCE_SETTINGS);
+                        startActivityForResult(intent, 0);
+                    }
+                });
+        alert.setCancelable(false);
+        alert.create().show();
+    }
+
+
 }

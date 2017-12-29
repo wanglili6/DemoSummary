@@ -279,15 +279,17 @@ public class MapUtil {
 
         // 添加起点图标
         OverlayOptions startOptions = new MarkerOptions()
-                .position(startPoint).icon(BitmapDescriptorFactory.fromResource(R.mipmap.icon_start))
+                .position(startPoint).icon(BitmapDescriptorFactory.fromResource(R.mipmap.rise_default))
                 .zIndex(9).draggable(true);
         // 添加终点图标
         OverlayOptions endOptions = new MarkerOptions().position(endPoint)
-                .icon(BitmapDescriptorFactory.fromResource(R.mipmap.icon_end)).zIndex(9).draggable(true);
+                .icon(BitmapDescriptorFactory.fromResource(R.mipmap.end_default)).zIndex(9).draggable(true);
 
         // 添加路线（轨迹）
-        OverlayOptions polylineOptions = new PolylineOptions().width(10)
-                .color(Color.BLUE).points(points);
+        BitmapDescriptor mRedTexture = BitmapDescriptorFactory.fromAsset("xian.png");
+        OverlayOptions polylineOptions = new PolylineOptions().width(15).color(0xAAFF0000)
+                .points(points).dottedLine(true).customTexture(mRedTexture);
+
 
         baiduMap.addOverlay(startOptions);
         baiduMap.addOverlay(endOptions);

@@ -140,9 +140,12 @@ public class MapTraceActivity extends BaseActivity {
         // 开始时间(单位：秒)
         long startTime = 0;
         long endTime = 0;
+        DateFormat df = new SimpleDateFormat("yyyy-MM-dd");
+        long l = System.currentTimeMillis();
+        String format = df.format(l);
         try {
-            startTime = getTimesmorning("2017-12-28 00:00:00");
-            endTime = getTimesnight("2017-12-28 23:59:59");
+            startTime = getTimesmorning(format + " 00:00:00");
+            endTime = getTimesnight(format + " 23:59:59");
         } catch (ParseException e) {
             e.printStackTrace();
         }
@@ -164,12 +167,12 @@ public class MapTraceActivity extends BaseActivity {
         processOption.setNeedMapMatch(true);
         // 设置精度过滤值(定位精度大于100米的过滤掉)
         processOption.setRadiusThreshold(100);
-        // 设置交通方式为驾车
-        processOption.setTransportMode(TransportMode.driving);
+        // 设置交通方式为步行
+        processOption.setTransportMode(TransportMode.walking);
         // 设置纠偏选项
         historyTrackRequest.setProcessOption(processOption);
         // 设置里程填充方式为驾车
-        historyTrackRequest.setSupplementMode(SupplementMode.driving);
+        historyTrackRequest.setSupplementMode(SupplementMode.no_supplement);
         mTraceClient.queryHistoryTrack(historyTrackRequest, mTrackListener);
 
     }
@@ -188,9 +191,9 @@ public class MapTraceActivity extends BaseActivity {
                 int total = response.getTotal();
                 LogUtils.d("daxa" + total);
                 final List<TrackPoint> Points = response.getTrackPoints();
-                mapPoints.clear();
-                mapPoints.addAll(Points);
                 if (Points != null) {
+                    mapPoints.clear();
+                    mapPoints.addAll(Points);
                     for (int i = 0; i < Points.size(); i++) {
                         trackPoints.add(MapUtil.convertTrace2Map(Points.get(i).getLocation()));
                     }
@@ -231,12 +234,12 @@ public class MapTraceActivity extends BaseActivity {
 
                             if (recLen >= points.size()) {
                                 timer.cancel();
-//                                            mMarkerD.remove();
+                                mMarkerD.remove();
                             } else {
                                 if (mMarkerD != null) {
                                     mMarkerD.remove();
                                 }
-                                BitmapDescriptor bitmapDescriptor4 = BitmapDescriptorFactory.fromResource(R.mipmap.mark);
+                                BitmapDescriptor bitmapDescriptor4 = BitmapDescriptorFactory.fromResource(R.mipmap.icon_point);
                                 MarkerOptions ooD = new MarkerOptions()
                                         .position(new LatLng(points.get(recLen).getLocation().getLatitude(), points.get(recLen).getLocation().getLongitude()))
                                         .icon(bitmapDescriptor4)
@@ -304,6 +307,7 @@ public class MapTraceActivity extends BaseActivity {
 
     //获取当天0点
     public static long getTimesmorning(String str) throws ParseException {
+
         DateFormat df = new SimpleDateFormat("yyyy-MM-dd HH:mm:ss");
         Date date = df.parse(str);
 

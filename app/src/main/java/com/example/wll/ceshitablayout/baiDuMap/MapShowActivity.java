@@ -1,7 +1,6 @@
 package com.example.wll.ceshitablayout.baiDuMap;
 
 import android.content.Context;
-import android.graphics.Color;
 import android.os.Bundle;
 import android.view.View;
 import android.widget.ImageView;
@@ -20,25 +19,37 @@ import com.baidu.mapapi.map.BitmapDescriptorFactory;
 import com.baidu.mapapi.map.MapStatus;
 import com.baidu.mapapi.map.MapStatusUpdate;
 import com.baidu.mapapi.map.MapStatusUpdateFactory;
+import com.baidu.mapapi.map.MapView;
 import com.baidu.mapapi.map.Marker;
 import com.baidu.mapapi.map.MarkerOptions;
-import com.baidu.mapapi.map.MyLocationConfiguration;
-import com.baidu.mapapi.map.MyLocationData;
+import com.baidu.mapapi.map.Overlay;
+import com.baidu.mapapi.map.OverlayOptions;
 import com.baidu.mapapi.map.TextureMapView;
 import com.baidu.mapapi.model.LatLng;
+import com.baidu.trace.LBSTraceClient;
+import com.baidu.trace.api.entity.EntityInfo;
+import com.baidu.trace.api.entity.EntityListRequest;
+import com.baidu.trace.api.entity.EntityListResponse;
+import com.baidu.trace.api.entity.FilterCondition;
+import com.baidu.trace.api.entity.LatestLocation;
+import com.baidu.trace.api.entity.OnEntityListener;
+import com.baidu.trace.model.CoordType;
+import com.baidu.trace.model.StatusCodes;
 import com.example.wll.ceshitablayout.R;
 import com.example.wll.ceshitablayout.base.BaseActivity;
 import com.example.wll.ceshitablayout.constant.MyApplication;
 import com.example.wll.ceshitablayout.utils.Constants;
+import com.example.wll.ceshitablayout.utils.MapUtil;
 import com.example.wll.ceshitablayout.utils.PreferencesUtils;
 
-import java.util.ArrayList;
 import java.util.List;
 
 import butterknife.BindView;
 import butterknife.ButterKnife;
 
-
+/**
+ * 实时定位
+ */
 public class MapShowActivity extends BaseActivity {
 
     @BindView(R.id.iv_back)
@@ -56,13 +67,32 @@ public class MapShowActivity extends BaseActivity {
     @BindView(R.id.rl_title_bg)
     RelativeLayout rlTitleBg;
     @BindView(R.id.bmapView)
-    TextureMapView bmapView;
+    MapView bmapView;
     private BaiduMap map;
 
     public LocationClient mLocationClient = null;
     private MyLocationListener myListener = new MyLocationListener();
 
     private Marker mMarkerD;
+    //鹰眼服务ID
+    long serviceId = 157276;
+    //entity标识列表（多个entityName，以英文逗号"," 分割）
+    String entityNames = "25_wll,30_zmz";
+    //检索条件（格式为 : "key1=value1,key2=value2,....."）
+//        String columnKey = "car_team=1";
+    //返回结果的类型（0 : 返回全部结果，1 : 只返回entityName的列表）
+    int returnType = 0;
+    //活跃时间，UNIX时间戳（指定该字段时，返回从该时间点之后仍有位置变动的entity的实时点集合）
+    int activeTime = (int) (System.currentTimeMillis() / 1000 - 5 * 60);
+    //分页大小
+    int pageSize = 1000;
+    //分页索引
+    int pageIndex = 1;
+    int tag = 5;
+    // 返回结果坐标类型
+    CoordType coordTypeOutput = CoordType.bd09ll;
+    private MapUtil mapUtil;
+    private Marker overlay;
 
     @Override
     public void initParms(Bundle parms) {
@@ -70,10 +100,59 @@ public class MapShowActivity extends BaseActivity {
         tvBack.setText("返回");
         tvBack.setVisibility(View.VISIBLE);
         setSteepStatusBar(false);
-        map = bmapView.getMap();
 
-        initLocation();
+        map = bmapView.getMap();
+        mapUtil = MapUtil.getInstance();
+        mapUtil.init(bmapView);
+        mapUtil.setCenter();
+        init();
     }
+
+
+    private void init() {
+        FilterCondition filterCondition = new FilterCondition();
+        filterCondition.setActiveTime(activeTime);
+        LBSTraceClient mTraceClient = new LBSTraceClient(getApplicationContext());
+
+        // 创建Entity列表请求实例
+        EntityListRequest request = new EntityListRequest(tag, serviceId, filterCondition, coordTypeOutput, pageIndex, pageSize);
+        mTraceClient.queryEntityList(request, entityListener);
+
+    }
+
+    // 初始化监听器
+    OnEntityListener entityListener = new OnEntityListener() {
+
+        @Override
+        public void onEntityListCallback(EntityListResponse response) {
+            if (StatusCodes.SUCCESS != response.getStatus()) {
+                return;
+            }
+            List<EntityInfo> entities = response.getEntities();
+            if (entities.size() > 0) {
+                LogUtils.i(entities.size());
+                for (int i = 0; i < entities.size(); i++) {
+                    entities.get(i).getEntityDesc();
+                    BitmapDescriptor bitmap = BitmapDescriptorFactory
+                            .fromResource(R.mipmap.mark);
+                    LatestLocation latestLocation =
+                            entities.get(i).getLatestLocation();
+                    com.baidu.trace.model.LatLng location = latestLocation.getLocation();
+                    OverlayOptions overlayOptions = new MarkerOptions()
+                            .position(MapUtil.convertTrace2Map(location))
+                            .icon(bitmap).zIndex(0).draggable(true);
+                    overlay = (Marker) map.addOverlay(overlayOptions);
+                    bitmap.recycle();
+
+
+                }
+
+            }
+
+
+        }
+
+    };
 
     /**
      * 地图定位配置
@@ -230,7 +309,7 @@ public class MapShowActivity extends BaseActivity {
         MarkerOptions ooD = new MarkerOptions()
                 .position(cenpt)
                 .icon(bitmapDescriptor4)
-                .zIndex(0)
+                .zIndex(5)
                 .period(10);
         ooD.animateType(MarkerOptions.MarkerAnimateType.drop);
         mMarkerD = (Marker) (map.addOverlay(ooD));
@@ -247,6 +326,7 @@ public class MapShowActivity extends BaseActivity {
         map.setMyLocationEnabled(false);
         map.clear();
         mMarkerD = null;
+        overlay = null;
     }
 
     @Override

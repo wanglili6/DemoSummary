@@ -5,6 +5,9 @@ import android.support.v4.app.Fragment;
 import android.support.v4.app.FragmentManager;
 import android.support.v4.app.FragmentPagerAdapter;
 
+
+import com.example.wll.ceshitablayout.MainActivity;
+
 import java.util.ArrayList;
 
 /**
@@ -24,6 +27,8 @@ public class MyPagerAdapter extends FragmentPagerAdapter {
         this.mFragments = mFragments;
         this.mTitles = mTitles;
     }
+
+
 
 
     @Override

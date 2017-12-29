@@ -14,6 +14,11 @@ import com.baidu.location.LocationClient;
 import com.baidu.location.LocationClientOption;
 import com.baidu.location.Poi;
 import com.baidu.mapapi.SDKInitializer;
+import com.baidu.trace.LBSTraceClient;
+import com.baidu.trace.Trace;
+import com.baidu.trace.model.OnTraceListener;
+import com.baidu.trace.model.PushMessage;
+import com.example.wll.ceshitablayout.MainActivity;
 import com.example.wll.ceshitablayout.utils.*;
 import com.uuzuche.lib_zxing.activity.ZXingLibrary;
 import com.zhy.http.okhttp.OkHttpUtils;
@@ -188,4 +193,7 @@ public class MyApplication extends MultiDexApplication {
 
         }
     }
+
+
+
 }

@@ -35,9 +35,7 @@ import rx.schedulers.Schedulers;
 /**
  * 短信登录
  */
-public class SmsLoginActivity extends BaseActivity
-
-{
+public class SmsLoginActivity extends BaseActivity {
 
     @BindView(R.id.user_name)
     EditText userName;
@@ -56,7 +54,7 @@ public class SmsLoginActivity extends BaseActivity
     @BindView(R.id.iv_user_login)
     ImageView ivUserLogin;
     private CodeUtils codeUtils;
-    Timer timer = new Timer();
+
     private int recLen = 60;
 
     @Override
@@ -103,6 +101,7 @@ public class SmsLoginActivity extends BaseActivity
      * @param phone
      */
     private void getPhoneCode(String phone) {
+        final Timer timer = new Timer();
         btnCode.setVisibility(View.GONE);
         tvCodeTime.setVisibility(View.VISIBLE);
         timer.schedule(new TimerTask() {

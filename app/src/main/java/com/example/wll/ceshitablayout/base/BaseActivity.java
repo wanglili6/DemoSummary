@@ -1,11 +1,20 @@
 package com.example.wll.ceshitablayout.base;
 
+import android.Manifest;
 import android.app.Activity;
 import android.content.Context;
+import android.content.DialogInterface;
 import android.content.Intent;
 import android.content.pm.ActivityInfo;
+import android.content.pm.PackageManager;
+import android.location.LocationManager;
 import android.os.Build;
 import android.os.Bundle;
+import android.support.annotation.NonNull;
+import android.support.v4.app.ActivityCompat;
+import android.support.v4.content.ContextCompat;
+import android.support.v7.app.AppCompatActivity;
+import android.text.TextUtils;
 import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
@@ -13,7 +22,16 @@ import android.view.Window;
 import android.view.WindowManager;
 import android.widget.Toast;
 
-public abstract class BaseActivity extends Activity implements View.OnClickListener {
+import com.apkfuns.logutils.LogUtils;
+import com.baidu.trace.LBSTraceClient;
+import com.baidu.trace.Trace;
+import com.baidu.trace.model.OnTraceListener;
+import com.baidu.trace.model.PushMessage;
+import com.example.wll.ceshitablayout.MainActivity;
+import com.example.wll.ceshitablayout.constant.UserMsg;
+import com.example.wll.ceshitablayout.utils.PreferencesUtils;
+
+public abstract class BaseActivity extends AppCompatActivity implements View.OnClickListener {
     /**
      * 是否沉浸状态栏
      **/
@@ -46,6 +64,8 @@ public abstract class BaseActivity extends Activity implements View.OnClickListe
         Log.d(TAG, "BaseActivity-->onCreate()");
         Bundle bundle = getIntent().getExtras();
         View mView = bindView();
+        //获取权限
+        getPression();
         if (null == mView) {
             mContextView = LayoutInflater.from(this)
                     .inflate(bindLayout(), null);
@@ -66,7 +86,10 @@ public abstract class BaseActivity extends Activity implements View.OnClickListe
         if (isSetStatusBar) {
             steepStatusBar();
         }
+
     }
+
+
 
     /**
      * [沉浸状态栏]
@@ -253,5 +276,39 @@ public abstract class BaseActivity extends Activity implements View.OnClickListe
     }
 
 
+
+    /**
+     * 动态添加权限
+     */
+    public void getPression() {
+        int checkSelfPermission = ContextCompat.checkSelfPermission(BaseActivity.this, Manifest.permission.WRITE_EXTERNAL_STORAGE);
+        if (checkSelfPermission == PackageManager.PERMISSION_DENIED) {
+            //没有权限，申请权限
+            ActivityCompat.requestPermissions(BaseActivity.this, new String[]{
+                    Manifest.permission.WRITE_EXTERNAL_STORAGE,
+                    Manifest.permission.CAMERA,
+                    Manifest.permission.VIBRATE,
+                    Manifest.permission.ACCESS_COARSE_LOCATION,
+                    Manifest.permission.ACCESS_FINE_LOCATION,
+                    Manifest.permission.READ_EXTERNAL_STORAGE}, 100);
+        } else if (checkSelfPermission == PackageManager.PERMISSION_GRANTED) {
+            //已经有了权限 ，不需要申请
+//            initTraceLocation();
+        }
+
+    }
+
+    @Override
+    public void onRequestPermissionsResult(int requestCode, @NonNull String[] permissions, @NonNull int[] grantResults) {
+        super.onRequestPermissionsResult(requestCode, permissions, grantResults);
+        switch (requestCode) {
+            case 100:
+                if (grantResults[0] == PackageManager.PERMISSION_GRANTED) {
+                    Toast.makeText(BaseActivity.this, "已经授权成功了", Toast.LENGTH_SHORT).show();
+                }
+                break;
+        }
+
+    }
 }
 
