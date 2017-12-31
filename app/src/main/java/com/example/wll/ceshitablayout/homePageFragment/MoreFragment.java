@@ -1,5 +1,6 @@
 package com.example.wll.ceshitablayout.homePageFragment;
 
+import android.content.Intent;
 import android.os.Bundle;
 import android.support.annotation.Nullable;
 import android.support.v4.app.Fragment;
@@ -8,7 +9,13 @@ import android.view.View;
 import android.view.ViewGroup;
 import android.widget.Button;
 
+import com.baidu.trace.LBSTraceClient;
+import com.example.wll.ceshitablayout.LoginActivity;
 import com.example.wll.ceshitablayout.R;
+import com.example.wll.ceshitablayout.constant.MyApplication;
+import com.example.wll.ceshitablayout.constant.UserMsg;
+import com.example.wll.ceshitablayout.pojoBean.UserInfo;
+import com.example.wll.ceshitablayout.utils.PreferencesUtils;
 
 import butterknife.BindView;
 import butterknife.ButterKnife;
@@ -39,7 +46,17 @@ public class MoreFragment extends Fragment {
      */
     private void initData() {
         btnCeshi.setText("更多");
+        //退出
+        btnDayin.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                PreferencesUtils.putString(getContext(), UserMsg.UserId, "");
+                MyApplication.finish();
+                startActivity(new Intent(getContext(), LoginActivity.class));
+            }
+        });
     }
+
     @Override
     public void onDestroyView() {
         super.onDestroyView();

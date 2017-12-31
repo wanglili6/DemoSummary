@@ -206,7 +206,11 @@ public class MapTraceActivity extends BaseActivity {
                         e.printStackTrace();
                     }
                 } else {
-                    mapUtil.drawHistoryTrack(trackPoints, sortType);
+                    try{
+                        mapUtil.drawHistoryTrack(trackPoints, sortType);
+                    }catch (Exception e){
+
+                    }
 
                 }
 
@@ -239,7 +243,7 @@ public class MapTraceActivity extends BaseActivity {
                                 if (mMarkerD != null) {
                                     mMarkerD.remove();
                                 }
-                                BitmapDescriptor bitmapDescriptor4 = BitmapDescriptorFactory.fromResource(R.mipmap.icon_point);
+                                BitmapDescriptor bitmapDescriptor4 = BitmapDescriptorFactory.fromResource(R.mipmap.map_guiji);
                                 MarkerOptions ooD = new MarkerOptions()
                                         .position(new LatLng(points.get(recLen).getLocation().getLatitude(), points.get(recLen).getLocation().getLongitude()))
                                         .icon(bitmapDescriptor4)

@@ -3,6 +3,7 @@ package com.example.wll.ceshitablayout;
 import android.content.Context;
 import android.os.Bundle;
 import android.text.TextUtils;
+import android.view.KeyEvent;
 import android.view.View;
 import android.widget.EditText;
 import android.widget.TextView;
@@ -31,27 +32,35 @@ public class RegistrationActivity extends BaseActivity {
     EditText userName;
     @BindView(R.id.user_pwd)
     EditText userPwd;
-    @BindView(R.id.tv_register)
+    @BindView(R.id.tv_login)
     TextView tvLogin;
+    @BindView(R.id.tv_register)
+    TextView tvRegister;
 
     @Override
     public void widgetClick(View v) {
-switch (v.getId()){
-    case R.id.tv_register:
-        String username = userName.getText().toString().trim();
-        String userpwd = userPwd.getText().toString().trim();
-        if (!TextUtils.isEmpty(username) && !TextUtils.isEmpty(userpwd)) {
-            register(username, userpwd);
-        } else {
-            showToast("用户名或者密码不能为空!");
-        }
+        switch (v.getId()) {
+            case R.id.tv_register:
+                String username = userName.getText().toString().trim();
+                String userpwd = userPwd.getText().toString().trim();
+                if (!TextUtils.isEmpty(username) && !TextUtils.isEmpty(userpwd)) {
+                    register(username, userpwd);
+                } else {
+                    showToast("用户名和者密码不能为空!");
+                }
 
-        break;
-}
+                break;
+
+            case R.id.tv_login:
+                startActivity(LoginActivity.class);
+                finish();
+                break;
+        }
     }
 
     /**
      * 注册
+     *
      * @param username
      * @param userpwd
      */
@@ -88,13 +97,13 @@ switch (v.getId()){
                     @Override
                     public void onNext(RegisterInfo registerInfo) {
                         //请求成功
-                        if (registerInfo!=null){
-                                showToast(registerInfo.getMsg());
-                            if (registerInfo.getMsg().equals("注册成功")){
+                        if (registerInfo != null) {
+                            showToast(registerInfo.getMsg());
+                            if (registerInfo.getMsg().equals("注册成功")) {
                                 Bundle bundle = new Bundle();
-                                bundle.putString("name",username);
-                                bundle.putString("pwd",userpwd);
-                                startActivity(LoginActivity.class,bundle);
+                                bundle.putString("name", username);
+                                bundle.putString("pwd", userpwd);
+                                startActivity(LoginActivity.class, bundle);
                                 finish();
                             }
                         }
@@ -125,6 +134,7 @@ switch (v.getId()){
     @Override
     public void setListener() {
         tvLogin.setOnClickListener(this);
+        tvRegister.setOnClickListener(this);
 
     }
 
@@ -133,5 +143,12 @@ switch (v.getId()){
 
     }
 
-
+    @Override
+    public boolean onKeyDown(int keyCode, KeyEvent event) {
+        if (keyCode==KeyEvent.KEYCODE_BACK){
+            startActivity(LoginActivity.class);
+            finish();
+        }
+        return super.onKeyDown(keyCode, event);
+    }
 }

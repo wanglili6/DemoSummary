@@ -20,6 +20,7 @@ import com.baidu.trace.model.OnTraceListener;
 import com.baidu.trace.model.PushMessage;
 import com.example.wll.ceshitablayout.adapter.MyPagerAdapter;
 import com.example.wll.ceshitablayout.base.BaseActivity;
+import com.example.wll.ceshitablayout.constant.MyApplication;
 import com.example.wll.ceshitablayout.constant.TabEntity;
 import com.example.wll.ceshitablayout.constant.UserMsg;
 import com.example.wll.ceshitablayout.homePageFragment.HomeFragment;
@@ -49,6 +50,9 @@ public class MainActivity extends BaseActivity {
             R.mipmap.tab_contact_select, R.mipmap.tab_more_select};
     ArrayList<CustomTabEntity> mTabEntities = new ArrayList<>();
     ArrayList<Fragment> mFragments = new ArrayList<>();
+    private LBSTraceClient mTraceClient;
+    private OnTraceListener mTraceListener;
+    private Trace mTrace;
 
 
     @Override
@@ -69,7 +73,7 @@ public class MainActivity extends BaseActivity {
     private void initData() {
         tabLayout = (CommonTabLayout) findViewById(R.id.tl_2);
         viewpager = (ViewPager) findViewById(R.id.vp_2);
-
+        MyApplication.add(this);
         String sdk = Build.VERSION.SDK;
         int sdkInt = Build.VERSION.SDK_INT;
         Log.i("-=----", "onCreate: " + sdk);
@@ -195,9 +199,9 @@ public class MainActivity extends BaseActivity {
         // 是否需要对象存储服务，默认为：false，关闭对象存储服务。注：鹰眼 Android SDK v3.0以上版本支持随轨迹上传图像等对象数据，若需使用此功能，该参数需设为 true，且需导入bos-android-sdk-1.0.2.jar。
         boolean isNeedObjectStorage = false;
         // 初始化轨迹服务
-        Trace mTrace = new Trace(serviceId, entityName, isNeedObjectStorage);
+        mTrace = new Trace(serviceId, entityName, isNeedObjectStorage);
         // 初始化轨迹服务客户端
-        LBSTraceClient mTraceClient = new LBSTraceClient(getApplicationContext());
+        mTraceClient = new LBSTraceClient(getApplicationContext());
         // 定位周期(单位:秒)
         int gatherInterval = 5;
         // 打包回传周期(单位:秒)
@@ -206,7 +210,8 @@ public class MainActivity extends BaseActivity {
         // 设置定位和打包周期
         mTraceClient.setInterval(gatherInterval, packInterval);
         // 初始化轨迹服务监听器
-        OnTraceListener mTraceListener = new OnTraceListener() {
+
+        mTraceListener = new OnTraceListener() {
             @Override
             public void onBindServiceCallback(int i, String s) {
 
@@ -276,5 +281,15 @@ public class MainActivity extends BaseActivity {
         alert.create().show();
     }
 
+    @Override
+    protected void onDestroy() {
+        super.onDestroy();
+        try {
+            mTraceClient.stopGather(mTraceListener);
+            mTraceClient.stopTrace(mTrace, mTraceListener);
+            LogUtils.i("停止鹰眼轨迹服务");
+        } catch (Exception e) {
 
+        }
+    }
 }

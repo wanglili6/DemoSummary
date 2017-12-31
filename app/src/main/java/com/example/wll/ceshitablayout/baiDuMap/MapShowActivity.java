@@ -2,6 +2,7 @@ package com.example.wll.ceshitablayout.baiDuMap;
 
 import android.content.Context;
 import android.os.Bundle;
+import android.text.TextUtils;
 import android.view.View;
 import android.widget.ImageView;
 import android.widget.RelativeLayout;
@@ -146,6 +147,26 @@ public class MapShowActivity extends BaseActivity {
 
 
                 }
+                String string = PreferencesUtils.getString(MapShowActivity.this, Constants.LAST_LOCATION);
+                if (!TextUtils.isEmpty(string)){
+                    String[] split = string.split(";");
+                    if (split!=null){
+                        if (split.length!=0){
+                            double latitude = Double.parseDouble(split[0]);
+                            double longitude = Double.parseDouble(split[1]);
+                            LatLng cenpt = new LatLng(latitude, longitude);
+                            //定义地图状态
+                            MapStatus mMapStatus = new MapStatus.Builder()
+                                    .target(cenpt)
+                                    .zoom(16)
+                                    .build();
+                            MapStatusUpdate mMapStatusUpdate = MapStatusUpdateFactory.newMapStatus(mMapStatus);
+                            //改变地图状态
+                            map.setMapStatus(mMapStatusUpdate);
+                        }
+                    }
+                }
+
 
             }
 
@@ -178,7 +199,7 @@ public class MapShowActivity extends BaseActivity {
         //如果开发者需要获得当前点的位置信息，此处必须为true
 
 
-        //option.setCoorType("bd09ll");
+        option.setCoorType("bd09ll");
         //可选，设置返回经纬度坐标类型，默认gcj02
         //gcj02：国测局坐标；
         //bd09ll：百度经纬度坐标；

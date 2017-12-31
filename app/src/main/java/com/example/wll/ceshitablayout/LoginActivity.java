@@ -3,10 +3,12 @@ package com.example.wll.ceshitablayout;
 import android.content.Context;
 import android.os.Bundle;
 import android.text.TextUtils;
+import android.view.KeyEvent;
 import android.view.View;
 import android.widget.EditText;
 import android.widget.ImageView;
 import android.widget.TextView;
+import android.widget.Toast;
 
 import com.apkfuns.logutils.LogUtils;
 import com.example.wll.ceshitablayout.base.BaseActivity;
@@ -38,6 +40,7 @@ public class LoginActivity extends BaseActivity {
     TextView tvRegister;
     @BindView(R.id.iv_user_login)
     ImageView tvUns;
+    private long exitTime = 0;
 
     /**
      * 点击事件
@@ -53,7 +56,7 @@ public class LoginActivity extends BaseActivity {
                 if (!TextUtils.isEmpty(username) && !TextUtils.isEmpty(userpwd)) {
                     login(username, userpwd);
                 } else {
-                    showToast("用户名或者密码不能为空!");
+                    showToast("用户名和者密码不能为空!");
                 }
 
                 break;
@@ -132,13 +135,11 @@ public class LoginActivity extends BaseActivity {
     @Override
     public void initParms(Bundle parms) {
         setSteepStatusBar(false);
-
         if (parms != null) {
             String name = parms.getString("name");
             String pwd = parms.getString("pwd");
             if (!TextUtils.isEmpty(pwd)) {
                 userPwd.setText(pwd + "");
-
             }
             if (!TextUtils.isEmpty(name)) {
                 userName.setText(name + "");
@@ -146,14 +147,15 @@ public class LoginActivity extends BaseActivity {
                 PreferencesUtils.putString(LoginActivity.this, UserMsg.UserId, "");
             }
 
-            String preName = PreferencesUtils.getString(LoginActivity.this, UserMsg.UserName);
-            String prePwd = PreferencesUtils.getString(LoginActivity.this, UserMsg.UserPassword);
-            if (TextUtils.isEmpty(preName) && TextUtils.isEmpty(prePwd)) {
 
-            } else {
-                userName.setText(preName);
-                userPwd.setText(prePwd);
-            }
+        }
+        String preName = PreferencesUtils.getString(LoginActivity.this, UserMsg.UserName);
+        String prePwd = PreferencesUtils.getString(LoginActivity.this, UserMsg.UserPassword);
+        if (TextUtils.isEmpty(preName) && TextUtils.isEmpty(prePwd)) {
+
+        } else {
+            userName.setText(preName);
+            userPwd.setText(prePwd);
         }
     }
 
@@ -192,4 +194,25 @@ public class LoginActivity extends BaseActivity {
         super.onDestroy();
 
     }
+
+    @Override
+    public boolean onKeyDown(int keyCode, KeyEvent event) {
+        if (keyCode == KeyEvent.KEYCODE_BACK) {
+            exit();
+            return false;
+        }
+        return super.onKeyDown(keyCode, event);
+    }
+
+    public void exit() {
+        if ((System.currentTimeMillis() - exitTime) > 2000) {
+            Toast.makeText(getApplicationContext(), "再按一次退出程序",
+                    Toast.LENGTH_SHORT).show();
+            exitTime = System.currentTimeMillis();
+        } else {
+            finish();
+            System.exit(0);
+        }
+    }
+
 }

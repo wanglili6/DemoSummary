@@ -1,5 +1,6 @@
 package com.example.wll.ceshitablayout.constant;
 
+import android.app.Activity;
 import android.app.Application;
 import android.content.Context;
 import android.support.multidex.MultiDexApplication;
@@ -23,6 +24,7 @@ import com.example.wll.ceshitablayout.utils.*;
 import com.uuzuche.lib_zxing.activity.ZXingLibrary;
 import com.zhy.http.okhttp.OkHttpUtils;
 
+import java.util.ArrayList;
 import java.util.List;
 import java.util.concurrent.TimeUnit;
 
@@ -38,7 +40,7 @@ public class MyApplication extends MultiDexApplication {
     public static int screenHeight = 0;
     public LocationClient mLocationClient = null;
     private MyLocationListener myListener = new MyLocationListener();
-
+    public static List<Activity> activitylist = new ArrayList<>();
     @Override
     public void onCreate() {
         super.onCreate();
@@ -83,6 +85,15 @@ public class MyApplication extends MultiDexApplication {
         screenWidth = dm.widthPixels;
     }
 
+    public static void add(Activity activity) {
+        activitylist.add(activity);
+    }
+
+    public static void finish() {
+        for (Activity activity : activitylist) {
+            activity.finish();
+        }
+    }
     /**
      * 全局context
      *
@@ -116,7 +127,7 @@ public class MyApplication extends MultiDexApplication {
         //如果开发者需要获得当前点的位置信息，此处必须为true
 
 
-        //option.setCoorType("bd09ll");
+        option.setCoorType("bd09ll");
         //可选，设置返回经纬度坐标类型，默认gcj02
         //gcj02：国测局坐标；
         //bd09ll：百度经纬度坐标；

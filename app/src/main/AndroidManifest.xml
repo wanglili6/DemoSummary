@@ -85,9 +85,12 @@
         <activity android:name=".SmsLoginActivity" />
         <activity android:name=".baiDuMap.MapShowActivity" />
 
+        <!--<meta-data-->
+            <!--android:name="com.baidu.lbsapi.API_KEY"-->
+            <!--android:value="bXfO8Tbvt718FGRW1zdUEzr1FIdBaMEN" /> -->
         <meta-data
             android:name="com.baidu.lbsapi.API_KEY"
-            android:value="bXfO8Tbvt718FGRW1zdUEzr1FIdBaMEN" />
+            android:value="nMLls8v8gCNnnGG0YNFEuaLpGLvslZfq" />
 
         <service
             android:name="com.baidu.trace.LBSTraceService"
