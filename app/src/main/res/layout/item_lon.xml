@@ -1,0 +1,17 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:orientation="vertical" android:layout_width="match_parent"
+    android:layout_height="match_parent">
+<TextView
+    android:text="张三"
+    android:textSize="10sp"
+    android:background="@mipmap/positioning_avat"
+    android:id="@+id/icon_title"
+    android:layout_gravity="center_horizontal"
+    android:gravity="center_horizontal"
+    android:paddingTop="12dp"
+    android:paddingLeft="3dp"
+    android:textColor="#fff"
+    android:layout_width="40dp"
+    android:layout_height="50dp" />
+</LinearLayout>

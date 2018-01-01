@@ -148,7 +148,7 @@ public class MainActivity extends BaseActivity {
         // 判断GPS是否正常启动
         if (!locationManager.isProviderEnabled(LocationManager.GPS_PROVIDER)) {
             gpsAlertMess();
-            return;
+//            return;
         } else {
             String id = PreferencesUtils.getString(MainActivity.this, UserMsg.UserId);
             String name = PreferencesUtils.getString(MainActivity.this, UserMsg.UserName);
