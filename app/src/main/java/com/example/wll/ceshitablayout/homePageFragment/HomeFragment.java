@@ -17,10 +17,13 @@ import com.example.wll.ceshitablayout.baiDuMap.MapShowActivity;
 import com.example.wll.ceshitablayout.baiDuMap.MapTraceActivity;
 import com.uuzuche.lib_zxing.activity.CaptureActivity;
 import com.uuzuche.lib_zxing.activity.CodeUtils;
+import com.zhy.http.okhttp.OkHttpUtils;
+import com.zhy.http.okhttp.callback.StringCallback;
 
 import butterknife.BindView;
 import butterknife.ButterKnife;
 import butterknife.Unbinder;
+import okhttp3.Call;
 
 /**
  * Created by wll on 2017/12/9.
@@ -103,7 +106,15 @@ public class HomeFragment extends Fragment {
                 }
                 if (bundle.getInt(CodeUtils.RESULT_TYPE) == CodeUtils.RESULT_SUCCESS) {
                     String result = bundle.getString(CodeUtils.RESULT_STRING);
-                    Toast.makeText(getContext(), "解析结果:" + result, Toast.LENGTH_LONG).show();
+                    String substring = result.substring(0, 4);
+                    LogUtils.d(substring);
+                    if (substring.equals("http")){
+                        Toast.makeText(getContext(), "这个是地址", Toast.LENGTH_LONG).show();
+
+                    }else {
+                        Toast.makeText(getContext(), "这个是"+result, Toast.LENGTH_LONG).show();
+                    }
+
                     LogUtils.d(result);
                 } else if (bundle.getInt(CodeUtils.RESULT_TYPE) == CodeUtils.RESULT_FAILED) {
                     Toast.makeText(getContext(), "解析二维码失败", Toast.LENGTH_LONG).show();
