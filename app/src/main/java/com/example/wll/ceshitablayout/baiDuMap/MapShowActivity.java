@@ -2,6 +2,7 @@ package com.example.wll.ceshitablayout.baiDuMap;
 
 import android.content.Context;
 import android.os.Bundle;
+import android.text.TextUtils;
 import android.view.MotionEvent;
 import android.view.View;
 import android.widget.ImageView;
@@ -15,6 +16,7 @@ import com.baidu.mapapi.map.BitmapDescriptor;
 import com.baidu.mapapi.map.BitmapDescriptorFactory;
 import com.baidu.mapapi.map.MapPoi;
 import com.baidu.mapapi.map.MapStatus;
+import com.baidu.mapapi.map.MapStatusUpdate;
 import com.baidu.mapapi.map.MapStatusUpdateFactory;
 import com.baidu.mapapi.map.MapView;
 import com.baidu.mapapi.map.Marker;
@@ -33,7 +35,9 @@ import com.example.wll.ceshitablayout.base.BaseActivity;
 import com.example.wll.ceshitablayout.baiDuMap.clusterutil.clustering.Cluster;
 import com.example.wll.ceshitablayout.baiDuMap.clusterutil.clustering.ClusterItem;
 import com.example.wll.ceshitablayout.baiDuMap.clusterutil.clustering.ClusterManager;
+import com.example.wll.ceshitablayout.utils.Constants;
 import com.example.wll.ceshitablayout.utils.MapUtil;
+import com.example.wll.ceshitablayout.utils.PreferencesUtils;
 
 import java.util.ArrayList;
 import java.util.Collection;
@@ -71,7 +75,7 @@ public class MapShowActivity extends BaseActivity {
     //鹰眼服务ID
     long serviceId = 157276;
     //活跃时间，UNIX时间戳（指定该字段时，返回从该时间点之后仍有位置变动的entity的实时点集合）
-    int activeTime = (int) (System.currentTimeMillis() / 1000 - 5 * 60);
+    int activeTime = (int) (System.currentTimeMillis() / 1000 - 10 * 60);
     //分页大小
     int pageSize = 1000;
     //分页索引
@@ -89,11 +93,29 @@ public class MapShowActivity extends BaseActivity {
         tvBack.setText("返回");
         tvBack.setVisibility(View.VISIBLE);
         setSteepStatusBar(false);
-
         mBaiduMap = bmapView.getMap();
         mapUtil = MapUtil.getInstance();
+        String string = PreferencesUtils.getString(MapShowActivity.this, Constants.LAST_LOCATION);
+        if (!TextUtils.isEmpty(string)) {
+            String[] split = string.split(";");
+            if (split != null) {
+                if (split.length != 0) {
+                    double latitude = Double.parseDouble(split[0]);
+                    double longitude = Double.parseDouble(split[1]);
+                    LatLng cenpt = new LatLng(latitude, longitude);
+                    //定义地图状态
+                    MapStatus mMapStatus = new MapStatus.Builder()
+                            .target(cenpt)
+                            .zoom(9)
+                            .build();
+                    MapStatusUpdate mMapStatusUpdate = MapStatusUpdateFactory.newMapStatus(mMapStatus);
+                    //改变地图状态
+                    mBaiduMap.setMapStatus(mMapStatusUpdate);
+                }
+            }
+        }
+        initData();
         // 定义点聚合管理类ClusterManager
-        init();
         mClusterManager = new ClusterManager<MyItem>(MapShowActivity.this, mBaiduMap);
 
         // 设置maker点击时的响应
@@ -143,10 +165,10 @@ public class MapShowActivity extends BaseActivity {
             public boolean onClusterClick(Cluster<MyItem> cluster) {
                 //获取点击的聚合点的坐标
                 Collection<MyItem> items = cluster.getItems();
-                if (items!=null){
+                if (items != null) {
                     for (MyItem item : items) {
                         String name = item.getName();
-                        LogUtils.i("聚合点的点击事件"+name);
+                        LogUtils.i("聚合点的点击事件" + name);
                     }
 
                 }
@@ -161,9 +183,9 @@ public class MapShowActivity extends BaseActivity {
             @Override
             public boolean onClusterItemClick(MyItem item) {
                 String name = item.mBundle.getString("name");
-                LogUtils.i("单个的点击事件___"+name);
+                LogUtils.i("单个的点击事件___" + name);
                 String id = item.mBundle.getString("id");
-                LogUtils.i("单个的点击事件___"+id);
+                LogUtils.i("单个的点击事件___" + id);
 
                 return false;
             }
@@ -175,7 +197,7 @@ public class MapShowActivity extends BaseActivity {
     }
 
 
-    private void init() {
+    private void initData() {
         FilterCondition filterCondition = new FilterCondition();
         filterCondition.setActiveTime(activeTime);
         LBSTraceClient mTraceClient = new LBSTraceClient(getApplicationContext());
@@ -191,12 +213,13 @@ public class MapShowActivity extends BaseActivity {
 
         @Override
         public void onEntityListCallback(EntityListResponse response) {
+            LogUtils.i(response.getStatus());
             if (StatusCodes.SUCCESS != response.getStatus()) {
                 return;
             }
             List<EntityInfo> entities = response.getEntities();
+            LogUtils.i(entities.size());
             if (entities.size() > 0) {
-                LogUtils.i(entities.size());
                 entitiesList.clear();
                 entitiesList.addAll(entities);
                 //添加mack
@@ -205,25 +228,7 @@ public class MapShowActivity extends BaseActivity {
                 double longitude = entities.get(0).getLatestLocation().getLocation().longitude;
                 MapStatus build = new MapStatus.Builder().target(new LatLng(latitude, longitude)).zoom(16).build();
                 mBaiduMap.animateMapStatus(MapStatusUpdateFactory.newMapStatus(build));
-//                String string = PreferencesUtils.getString(MapShowActivity.this, Constants.LAST_LOCATION);
-//                if (!TextUtils.isEmpty(string)) {
-//                    String[] split = string.split(";");
-//                    if (split != null) {
-//                        if (split.length != 0) {
-//                            double latitude = Double.parseDouble(split[0]);
-//                            double longitude = Double.parseDouble(split[1]);
-//                            LatLng cenpt = new LatLng(latitude, longitude);
-//                            //定义地图状态
-//                            MapStatus mMapStatus = new MapStatus.Builder()
-//                                    .target(cenpt)
-//                                    .zoom(16)
-//                                    .build();
-//                            MapStatusUpdate mMapStatusUpdate = MapStatusUpdateFactory.newMapStatus(mMapStatus);
-//                            //改变地图状态
-//                            mBaiduMap.setMapStatus(mMapStatusUpdate);
-//                        }
-//                    }
-//                }
+//
 
 
             }

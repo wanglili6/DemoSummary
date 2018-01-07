@@ -16,6 +16,9 @@ import android.view.View;
 import com.apkfuns.logutils.LogUtils;
 import com.baidu.trace.LBSTraceClient;
 import com.baidu.trace.Trace;
+import com.baidu.trace.api.fence.AlarmPoint;
+import com.baidu.trace.api.fence.FenceAlarmPushInfo;
+import com.baidu.trace.api.fence.MonitoredAction;
 import com.baidu.trace.model.OnTraceListener;
 import com.baidu.trace.model.PushMessage;
 import com.example.wll.ceshitablayout.adapter.MyPagerAdapter;
@@ -248,6 +251,20 @@ public class MainActivity extends BaseActivity {
             // 推送回调
             @Override
             public void onPushCallback(byte messageNo, PushMessage message) {
+                LogUtils.d("预警推送" + messageNo + "信息" + message);
+                FenceAlarmPushInfo alarmPushInfo = message.getFenceAlarmPushInfo();
+                LogUtils.d("预警推送围栏id" + alarmPushInfo.getFenceId());
+                LogUtils.d("预警推送围栏动作" + alarmPushInfo.getMonitoredAction());
+                //获取围栏id
+                long fenceId = alarmPushInfo.getFenceId();
+                String monitoredPerson = alarmPushInfo.getMonitoredPerson();//获取监控对象标识
+                String fenceName = alarmPushInfo.getFenceName();//获取围栏名称
+                alarmPushInfo.getPrePoint();//获取上一个点经度信息
+                AlarmPoint alarmPoin = alarmPushInfo.getCurrentPoint();//获取报警点经纬度等信息
+                alarmPoin.getCreateTime();//获取此位置上传到服务端时间
+                alarmPoin.getLocTime();//获取定位产生的原始时间
+                MonitoredAction monitoredAction = alarmPushInfo.getMonitoredAction();
+                LogUtils.d("电子围栏监控" + "围栏id" + fenceId + "    " + "监控对象  " + monitoredPerson + "围栏名称  " + fenceName);
             }
 
             @Override

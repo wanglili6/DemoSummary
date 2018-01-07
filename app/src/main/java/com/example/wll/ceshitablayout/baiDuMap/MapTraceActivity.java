@@ -1,34 +1,52 @@
 package com.example.wll.ceshitablayout.baiDuMap;
 
 import android.content.Context;
+import android.graphics.Color;
 import android.os.Bundle;
 import android.support.annotation.NonNull;
+import android.text.TextUtils;
 import android.view.View;
 import android.widget.ImageView;
 import android.widget.RelativeLayout;
 import android.widget.TextView;
 
+import com.apkfuns.logutils.Constant;
 import com.apkfuns.logutils.LogUtils;
 import com.baidu.mapapi.map.BaiduMap;
 import com.baidu.mapapi.map.BitmapDescriptor;
 import com.baidu.mapapi.map.BitmapDescriptorFactory;
+import com.baidu.mapapi.map.CircleOptions;
 import com.baidu.mapapi.map.MapView;
 import com.baidu.mapapi.map.Marker;
 import com.baidu.mapapi.map.MarkerOptions;
+import com.baidu.mapapi.map.OverlayOptions;
+import com.baidu.mapapi.map.PolygonOptions;
+import com.baidu.mapapi.map.Stroke;
 import com.baidu.mapapi.map.TextureMapView;
 import com.baidu.mapapi.model.LatLng;
 import com.baidu.trace.LBSTraceClient;
+import com.baidu.trace.api.fence.CreateFenceRequest;
+import com.baidu.trace.api.fence.CreateFenceResponse;
+import com.baidu.trace.api.fence.DeleteFenceResponse;
+import com.baidu.trace.api.fence.FenceListResponse;
+import com.baidu.trace.api.fence.HistoryAlarmResponse;
+import com.baidu.trace.api.fence.MonitoredStatusByLocationResponse;
+import com.baidu.trace.api.fence.MonitoredStatusResponse;
+import com.baidu.trace.api.fence.OnFenceListener;
+import com.baidu.trace.api.fence.UpdateFenceResponse;
 import com.baidu.trace.api.track.HistoryTrackRequest;
 import com.baidu.trace.api.track.HistoryTrackResponse;
 import com.baidu.trace.api.track.OnTrackListener;
 import com.baidu.trace.api.track.SupplementMode;
 import com.baidu.trace.api.track.TrackPoint;
+import com.baidu.trace.model.CoordType;
 import com.baidu.trace.model.ProcessOption;
 import com.baidu.trace.model.SortType;
 import com.baidu.trace.model.TransportMode;
 import com.example.wll.ceshitablayout.MainActivity;
 import com.example.wll.ceshitablayout.R;
 import com.example.wll.ceshitablayout.base.BaseActivity;
+import com.example.wll.ceshitablayout.constant.Constants;
 import com.example.wll.ceshitablayout.constant.UserMsg;
 import com.example.wll.ceshitablayout.utils.MapUtil;
 import com.example.wll.ceshitablayout.utils.PreferencesUtils;
@@ -74,6 +92,7 @@ public class MapTraceActivity extends BaseActivity {
     final int pageSize = 5000;
     // 分页索引
     int pageIndex = 1;
+
     /**
      * 轨迹点集合
      */
@@ -90,6 +109,7 @@ public class MapTraceActivity extends BaseActivity {
     private Marker mMarkerD;
 
     int recLen = 1;
+    private LBSTraceClient mTraceClient;
 
     @Override
     public void widgetClick(View v) {
@@ -112,12 +132,210 @@ public class MapTraceActivity extends BaseActivity {
         setSteepStatusBar(false);
         map = bmapView.getMap();
         mapUtil = MapUtil.getInstance();
+        mTraceClient = new LBSTraceClient(getApplicationContext());
         mapUtil.init(bmapView);
         //设置中心点
         mapUtil.setCenter();
         // 查询历史轨迹
         initDrawGuiji();
+        creatyuanxingDianziWeilan();
+//        creatduobianxingDianziWeilan();
         getHistoryTrackRequest();
+
+    }
+
+    /**
+     * 创建多边形电子围栏
+     */
+    private void creatduobianxingDianziWeilan() {
+        // 请求标识
+        int tag = 11;
+// 轨迹服务ID
+        long serviceId = 157276;
+// 围栏名称
+        String fenceName = "server_polygon_fence";
+// 监控对象
+        String monitoredPerson = "30_zmz";//对应的指定用户
+// 多边形顶点集
+        List<com.baidu.trace.model.LatLng> vertexes = new ArrayList();
+        vertexes.add(new com.baidu.trace.model.LatLng(40.0581750000, 116.3067370000));
+        vertexes.add(new com.baidu.trace.model.LatLng(40.0583410000, 116.3079580000));
+        vertexes.add(new com.baidu.trace.model.LatLng(40.0554970000, 116.3093600000));
+        vertexes.add(new com.baidu.trace.model.LatLng(40.0554140000, 116.3078150000));
+// 去噪精度
+        int denoise = 100;
+// 坐标类型
+        CoordType coordType = CoordType.bd09ll;
+
+// 创建服务端多边形围栏请求实例
+        CreateFenceRequest request = CreateFenceRequest.buildServerPolygonRequest(tag,
+                serviceId, fenceName, monitoredPerson, vertexes, denoise, coordType);
+
+// 初始化围栏监听器
+        OnFenceListener mFenceListener = new OnFenceListener() {
+            @Override
+            public void onCreateFenceCallback(CreateFenceResponse createFenceResponse) {
+                LogUtils.i(createFenceResponse.getMessage());
+                LogUtils.i(createFenceResponse.getStatus());
+                if (createFenceResponse.getMessage().equals("成功")) {
+                    //定义多边形的五个顶点
+                    com.baidu.mapapi.model.LatLng pt1 = new com.baidu.mapapi.model.LatLng(40.0581750000, 116.3067370000);
+                    com.baidu.mapapi.model.LatLng pt2 = new com.baidu.mapapi.model.LatLng(40.0583410000, 116.3079580000);
+                    com.baidu.mapapi.model.LatLng pt3 = new com.baidu.mapapi.model.LatLng(40.0554970000, 116.3093600000);
+                    com.baidu.mapapi.model.LatLng pt4 = new com.baidu.mapapi.model.LatLng(40.0554140000, 116.3078150000);
+                    List<com.baidu.mapapi.model.LatLng> pts = new ArrayList();
+                    pts.add(pt1);
+                    pts.add(pt2);
+                    pts.add(pt3);
+                    pts.add(pt4);
+
+//构建用户绘制多边形的Option对象
+                    OverlayOptions polygonOption = new PolygonOptions()
+                            .points(pts)
+                            .stroke(new Stroke(5, 0xAA00FF00))
+                            .fillColor(0xAAFFFF00);
+
+//在地图上添加多边形Option，用于显示
+                    map.addOverlay(polygonOption);
+                } else {
+                    showToast("创建围栏失败");
+                }
+            }
+
+            @Override
+            public void onUpdateFenceCallback(UpdateFenceResponse updateFenceResponse) {
+
+            }
+
+            @Override
+            public void onDeleteFenceCallback(DeleteFenceResponse deleteFenceResponse) {
+
+            }
+
+            @Override
+            public void onFenceListCallback(FenceListResponse fenceListResponse) {
+
+            }
+
+            @Override
+            public void onMonitoredStatusCallback(MonitoredStatusResponse monitoredStatusResponse) {
+
+            }
+
+            @Override
+            public void onMonitoredStatusByLocationCallback(MonitoredStatusByLocationResponse monitoredStatusByLocationResponse) {
+
+            }
+
+            @Override
+            public void onHistoryAlarmCallback(HistoryAlarmResponse historyAlarmResponse) {
+
+            }
+
+        };
+
+
+// 创建服务端多边形围栏
+        mTraceClient.createFence(request, mFenceListener);
+    }
+
+    /**
+     * 创建电子围栏
+     */
+    private void creatyuanxingDianziWeilan() {
+        // 请求标识
+        int tag = 3;
+// 轨迹服务ID
+        long serviceId = 157276;
+// 围栏名称
+        String fenceName = "local_circle";
+// 监控对象
+        String monitoredPerson = "myTrace";//对应的是本身
+        String string = PreferencesUtils.getString(MapTraceActivity.this, com.example.wll.ceshitablayout.utils.Constants.LAST_LOCATION, "");
+        if (!TextUtils.isEmpty(string)) {
+            String[] split = string.split(";");
+            final double lat = Double.parseDouble(split[0]);
+            final double loug = Double.parseDouble(split[1]);
+// 围栏圆心
+
+            com.baidu.trace.model.LatLng center = new com.baidu.trace.model.LatLng(lat, loug);
+
+            // 围栏半径（单位 : 米）
+            double radius = 2000;
+// 去噪精度
+            int denoise = 100;
+// 坐标类型
+            CoordType coordType = CoordType.bd09ll;
+
+
+// 创建本地圆形围栏请求实例
+            CreateFenceRequest localCircleFenceRequest = CreateFenceRequest.buildLocalCircleRequest(tag, serviceId, fenceName, monitoredPerson, center, radius, denoise, coordType);
+
+
+// 初始化围栏监听器
+            OnFenceListener mFenceListener = new OnFenceListener() {
+                // 创建围栏回调
+                @Override
+                public void onCreateFenceCallback(CreateFenceResponse response) {
+                    LogUtils.i(response.getStatus());
+                    LogUtils.i(response.getMessage());
+                    if (response.getMessage().equals("成功")) {
+                        //设置颜色和透明度，均使用16进制显示，0xAARRGGBB，如 0xAA000000 其中AA是透明度，000000为颜色
+                        LatLng llCircle = new LatLng(lat, loug);
+                        OverlayOptions ooCircle = new CircleOptions().fillColor(Color.parseColor("#609CDAB1"))
+                                .center(llCircle).stroke(new Stroke(5, Color.parseColor("#9cdab1"))).radius(2000);
+                        map.addOverlay(ooCircle);
+                    } else {
+                        showToast("创建围栏失败");
+                    }
+                }
+
+                // 更新围栏回调
+                @Override
+                public void onUpdateFenceCallback(UpdateFenceResponse response) {
+                }
+
+                // 删除围栏回调
+                @Override
+                public void onDeleteFenceCallback(DeleteFenceResponse response) {
+                    LogUtils.i(response.getMessage());
+                    LogUtils.i(response.getStatus());
+                }
+
+                // 围栏列表回调
+                @Override
+                public void onFenceListCallback(FenceListResponse response) {
+                    LogUtils.i(response.getMessage());
+                    LogUtils.i(response.getStatus());
+                }
+
+                // 监控状态回调
+                @Override
+                public void onMonitoredStatusCallback(MonitoredStatusResponse
+                                                              response) {
+                    LogUtils.i(response.getMessage());
+                    LogUtils.i(response.getStatus());
+                }
+
+                // 指定位置监控状态回调
+                @Override
+                public void onMonitoredStatusByLocationCallback(MonitoredStatusByLocationResponse response) {
+                    LogUtils.i(response.getMessage());
+                    LogUtils.i(response.getStatus());
+                }
+
+                // 历史报警回调
+                @Override
+                public void onHistoryAlarmCallback(HistoryAlarmResponse response) {
+                    LogUtils.i(response.getMessage());
+                    LogUtils.i(response.getStatus());
+                }
+            };
+
+
+// 创建本地圆形围栏
+            mTraceClient.createFence(localCircleFenceRequest, mFenceListener);
+        }
 
     }
 
@@ -166,12 +384,12 @@ public class MapTraceActivity extends BaseActivity {
         // 设置需要绑路
         processOption.setNeedMapMatch(true);
         // 设置精度过滤值(定位精度大于100米的过滤掉)
-        processOption.setRadiusThreshold(100);
+        processOption.setRadiusThreshold(200);
         // 设置交通方式为步行
         processOption.setTransportMode(TransportMode.walking);
         // 设置纠偏选项
         historyTrackRequest.setProcessOption(processOption);
-        // 设置里程填充方式为驾车
+        //
         historyTrackRequest.setSupplementMode(SupplementMode.no_supplement);
         mTraceClient.queryHistoryTrack(historyTrackRequest, mTrackListener);
 
@@ -206,9 +424,9 @@ public class MapTraceActivity extends BaseActivity {
                         e.printStackTrace();
                     }
                 } else {
-                    try{
+                    try {
                         mapUtil.drawHistoryTrack(trackPoints, sortType);
-                    }catch (Exception e){
+                    } catch (Exception e) {
 
                     }
 
