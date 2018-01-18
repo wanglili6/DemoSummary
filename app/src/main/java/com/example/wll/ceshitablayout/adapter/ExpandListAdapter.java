@@ -56,6 +56,7 @@ public class ExpandListAdapter extends BaseExpandableListAdapter {
     //获取孩子的个数
     @Override
     public int getChildrenCount(int groupPosition) {
+
         return childList.get(groupPosition).getAdapterBeanList() != null ? childList.get(groupPosition).getAdapterBeanList().size() : 0;
     }
 
