@@ -1,5 +1,6 @@
 package com.example.wll.ceshitablayout.homePageFragment;
 
+import android.content.Intent;
 import android.os.Bundle;
 import android.support.annotation.Nullable;
 import android.support.v4.app.Fragment;
@@ -8,6 +9,7 @@ import android.view.View;
 import android.view.ViewGroup;
 import android.widget.Button;
 
+import com.example.wll.ceshitablayout.ModeActivity;
 import com.example.wll.ceshitablayout.R;
 
 import butterknife.BindView;
@@ -28,9 +30,17 @@ public class NewsFragment extends Fragment {
     @Nullable
     @Override
     public View onCreateView(LayoutInflater inflater, @Nullable ViewGroup container, @Nullable Bundle savedInstanceState) {
-        View inflate = inflater.inflate(R.layout.news_fragment, container, false);
+        final View inflate = inflater.inflate(R.layout.news_fragment, container, false);
         unbinder = ButterKnife.bind(this, inflate);
         initData();
+        btnCeshi.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                Intent intent = new Intent();
+                intent.setClass(getContext(), ModeActivity.class);
+                startActivity(intent);
+            }
+        });
         return inflate;
     }
 
