@@ -16,7 +16,9 @@ import com.example.wll.ceshitablayout.bean.ModeGoupBean;
 import com.example.wll.ceshitablayout.bean.ModeParentBean;
 
 import java.util.ArrayList;
+import java.util.HashMap;
 import java.util.List;
+import java.util.Map;
 
 import butterknife.BindView;
 import butterknife.ButterKnife;
@@ -71,8 +73,8 @@ public class CListAdapter extends BaseAdapter {
         holder.tvChildTitle.setText(listBean.getModeName());
         List<ModeBean.ListBean.TemplateBean> template = listBean.getTemplate();
         ModeGoupBean modeGoupBean = groupList.get(position);
-
-        ExpandListAdapter expandListAdapter = new ExpandListAdapter(mContext, template, modeGoupBean.getAdapterBeanList());
+         Map<String, Map<String, String>> parentMap = new HashMap<>();
+        ExpandListAdapter expandListAdapter = new ExpandListAdapter(mContext, template, modeGoupBean.getAdapterBeanList(),modeGoupBean.getId());
         holder.listView.setAdapter(expandListAdapter);
         expandListAdapter.notifyDataSetChanged();
 

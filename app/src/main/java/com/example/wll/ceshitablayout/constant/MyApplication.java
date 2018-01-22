@@ -25,7 +25,9 @@ import com.uuzuche.lib_zxing.activity.ZXingLibrary;
 import com.zhy.http.okhttp.OkHttpUtils;
 
 import java.util.ArrayList;
+import java.util.HashMap;
 import java.util.List;
+import java.util.Map;
 import java.util.concurrent.TimeUnit;
 
 import okhttp3.OkHttpClient;
@@ -41,6 +43,9 @@ public class MyApplication extends MultiDexApplication {
     public LocationClient mLocationClient = null;
     private MyLocationListener myListener = new MyLocationListener();
     public static List<Activity> activitylist = new ArrayList<>();
+    public static Map<String, String> jcnr_map = new HashMap<>();
+    public static Map<String, Map<String, String>> parentMap = new HashMap<>();
+    public static Map<String, Map<String, Map<String, String>>> goupMap = new HashMap<>();
     @Override
     public void onCreate() {
         super.onCreate();

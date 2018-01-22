@@ -1,0 +1,70 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout 
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto" 
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="@color/white"
+    android:orientation="vertical" >
+    <RelativeLayout
+        android:id="@+id/rl_title_top"
+        android:layout_height="56dp"
+		android:layout_width="match_parent"
+        android:background="@color/colorPrimaryDark"
+        android:elevation="0dp" >
+        <TextView
+            android:id="@+id/tv_merchant_title"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_centerInParent="true"
+            android:text="签   名"
+            android:textColor="@android:color/white"
+            android:textSize="18sp" />
+        <ImageView 
+            android:id="@+id/close_image"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_centerVertical="true"
+            android:layout_alignParentRight="true"
+            android:layout_marginRight="16dp"
+            android:src="@mipmap/sms"/>
+    </RelativeLayout>
+    <com.example.wll.ceshitablayout.utils.SignView
+        android:id="@+id/signView"  
+        android:layout_width="match_parent"  
+        android:layout_height="wrap_content"  
+        android:layout_weight="4"  
+        android:background="@android:color/white"  
+        app:lineColor="@android:color/holo_orange_dark"  
+        app:lineWidth="10dp"/> 
+        <LinearLayout 
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:background="@color/colorPrimaryDark"
+            android:layout_margin="1dp"
+            android:orientation="horizontal"
+            >
+            <Button 
+		        android:id="@+id/btn_cleanView"  
+		        android:layout_width="0dp"  
+		        android:layout_height="wrap_content"
+		        android:layout_weight="1"
+		        style="@style/Widget.AppCompat.Button.Borderless"
+		        android:text="清  除"
+		        android:textColor="@color/white"
+		        android:textSize="18sp"/>
+            <View 
+                android:layout_width="1dp"
+                android:layout_height="match_parent"
+                android:background="@color/white"/>
+		     <Button 
+		        android:id="@+id/btn_saveView"  
+		        android:layout_width="0dp"  
+		        android:layout_height="wrap_content"
+		        android:layout_weight="1"
+		        style="@style/Widget.AppCompat.Button.Borderless"
+		        android:text="确  定"
+		        android:textColor="@color/white"
+		        android:textSize="18sp"/>
+        </LinearLayout>
+</LinearLayout>

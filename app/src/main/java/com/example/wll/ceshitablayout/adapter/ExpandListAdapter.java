@@ -2,6 +2,7 @@ package com.example.wll.ceshitablayout.adapter;
 
 import android.content.Context;
 import android.graphics.Color;
+import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -18,8 +19,10 @@ import com.example.wll.ceshitablayout.R;
 import com.example.wll.ceshitablayout.bean.ModeAdapterBean;
 import com.example.wll.ceshitablayout.bean.ModeBean;
 import com.example.wll.ceshitablayout.bean.ModeParentBean;
+import com.example.wll.ceshitablayout.constant.MyApplication;
 
 import java.util.HashMap;
+import java.util.Iterator;
 import java.util.List;
 import java.util.Map;
 
@@ -36,14 +39,15 @@ public class ExpandListAdapter extends BaseExpandableListAdapter {
     private Context context;
     private List<ModeBean.ListBean.TemplateBean> titleList;
     private List<ModeParentBean> childList;
-    private Map<String, String> jcnr_map;
-    boolean isShowList = false;
 
-    public ExpandListAdapter(Context context, List<ModeBean.ListBean.TemplateBean> titleList, List<ModeParentBean> childList) {
+    private String groupid;
+
+
+    public ExpandListAdapter(Context context, List<ModeBean.ListBean.TemplateBean> titleList, List<ModeParentBean> childList, String groupid) {
         this.context = context;
         this.titleList = titleList;
         this.childList = childList;
-        jcnr_map = new HashMap<>();
+        this.groupid = groupid;
 
     }
 
@@ -129,7 +133,7 @@ public class ExpandListAdapter extends BaseExpandableListAdapter {
         } else {
             viewHolderChild = (ViewHolderChild) view.getTag();
         }
-        ModeParentBean modeParentBean = childList.get(parentPos);
+        final ModeParentBean modeParentBean = childList.get(parentPos);
         final List<ModeAdapterBean> adapterBeanList = modeParentBean.getAdapterBeanList();
         ModeAdapterBean modeAdapterBean = adapterBeanList.get(childPos);
         viewHolderChild.childChildTV.setText(modeAdapterBean.getName());
@@ -152,7 +156,10 @@ public class ExpandListAdapter extends BaseExpandableListAdapter {
                 }
             }
         }
-
+        boolean isHaveKey = MyApplication.goupMap.containsKey(groupid);
+        if (!isHaveKey) {
+            MyApplication.goupMap.put(groupid, new HashMap<String, Map<String, String>>());
+        }
         viewHolderChild.radioGroup.setOnCheckedChangeListener(new RadioGroup.OnCheckedChangeListener() {
             @Override
             public void onCheckedChanged(RadioGroup group, int checkedId) {
@@ -160,13 +167,37 @@ public class ExpandListAdapter extends BaseExpandableListAdapter {
                     String id = adapterBeanList.get(i).getId();
                     if (Integer.parseInt(id) == group.getId()) {
                         ModeAdapterBean modeAdapterBean1 = adapterBeanList.get(childPos);
+                        String modeParentBeanId = modeParentBean.getId();
                         switch (checkedId) {
                             case R.id.radio_yes:
-                                jcnr_map.put(adapterBeanList.get(i).getId() + "", "1");
+//                                MyApplication.jcnr_map.put(adapterBeanList.get(i).getId() + "", "1");
+                                Map<String, Map<String, String>> stringMapMap1 = MyApplication.goupMap.get(groupid);
+                                if (stringMapMap1 == null) {
+                                    stringMapMap1 = new HashMap<String, Map<String, String>>();
+                                }
+                                Map<String, String> childMap = stringMapMap1.get(modeParentBeanId);
+                                if (childMap == null) {
+                                    childMap = new HashMap<String, String>();
+                                }
+                                childMap.put(adapterBeanList.get(i).getId() + "", "1");
+                                stringMapMap1.put(modeParentBean.getId(), childMap);
+                                MyApplication.goupMap.put(groupid, stringMapMap1);
                                 modeAdapterBean1.setAnswerid(1);
                                 break;
                             case R.id.radio_no:
-                                jcnr_map.put(adapterBeanList.get(i).getId() + "", "2");
+//                                MyApplication.jcnr_map.put(adapterBeanList.get(i).getId() + "", "2");
+                                Map<String, Map<String, String>> stringMapMap = MyApplication.goupMap.get(groupid);
+                                if (stringMapMap == null) {
+                                    stringMapMap = new HashMap<String, Map<String, String>>();
+                                }
+                                Map<String, String> childMap1 = stringMapMap.get(modeParentBeanId);
+                                if (childMap1 == null) {
+                                    childMap1 = new HashMap<String, String>();
+                                }
+                                childMap1.put(adapterBeanList.get(i).getId() + "", "2");
+
+                                stringMapMap.put(modeParentBean.getId(), childMap1);
+                                MyApplication.goupMap.put(groupid, stringMapMap);
                                 modeAdapterBean1.setAnswerid(2);
                                 break;
                         }
@@ -174,6 +205,7 @@ public class ExpandListAdapter extends BaseExpandableListAdapter {
                 }
             }
         });
+        Log.i("groupMao", "getChildView: " + MyApplication.goupMap.size());
         return view;
     }
 
@@ -182,6 +214,7 @@ public class ExpandListAdapter extends BaseExpandableListAdapter {
     public boolean isChildSelectable(int i, int i1) {
         return true;
     }
+
 
     static class ViewHolderGroup {
         //        @BindView(R.id.tv_calendar_group_name)

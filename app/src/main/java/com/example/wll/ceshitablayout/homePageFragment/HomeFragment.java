@@ -11,6 +11,7 @@ import android.widget.Button;
 import android.widget.Toast;
 
 import com.apkfuns.logutils.LogUtils;
+import com.example.wll.ceshitablayout.PrintMainActivity;
 import com.example.wll.ceshitablayout.R;
 import com.example.wll.ceshitablayout.WordHtmlActivity;
 import com.example.wll.ceshitablayout.baiDuMap.MapShowActivity;
@@ -70,7 +71,7 @@ public class HomeFragment extends Fragment {
         btnDayin.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                Intent intent = new Intent(getContext(), WordHtmlActivity.class);
+                Intent intent = new Intent(getContext(), PrintMainActivity.class);
                 startActivity(intent);
             }
         });
@@ -108,11 +109,11 @@ public class HomeFragment extends Fragment {
                     String result = bundle.getString(CodeUtils.RESULT_STRING);
                     String substring = result.substring(0, 4);
                     LogUtils.d(substring);
-                    if (substring.equals("http")){
+                    if (substring.equals("http")) {
                         Toast.makeText(getContext(), "这个是地址", Toast.LENGTH_LONG).show();
 
-                    }else {
-                        Toast.makeText(getContext(), "这个是"+result, Toast.LENGTH_LONG).show();
+                    } else {
+                        Toast.makeText(getContext(), "这个是" + result, Toast.LENGTH_LONG).show();
                     }
 
                     LogUtils.d(result);

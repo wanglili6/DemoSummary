@@ -3,6 +3,7 @@ package com.example.wll.ceshitablayout;
 import android.os.Bundle;
 import android.support.v4.app.FragmentActivity;
 import android.util.Log;
+import android.view.KeyEvent;
 import android.webkit.WebSettings;
 import android.webkit.WebView;
 
@@ -40,7 +41,7 @@ import javax.xml.transform.stream.StreamResult;
 
 /**
  * Created by fuweiwei on 2015/11/28.
- *
+ * <p>
  * 展示模板并进行填充数据打印
  */
 public class WordHtmlActivity extends FragmentActivity {
@@ -51,10 +52,11 @@ public class WordHtmlActivity extends FragmentActivity {
     private String docName = "test.doc";
     //html文件存储位置
     private String savePath = sdcardUtils.getSDPATH();
-    private String TAG="WordHtmlActivity+hhh";
+    private String TAG = "WordHtmlActivity+hhh";
     private File file;
     private String demoPath;
-    private String newPath=sdcardUtils.getSDPATH()+"newtest.doc";
+    private String newPath = sdcardUtils.getSDPATH() + "jcblMode.doc";
+    private String htmlurl;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -62,15 +64,15 @@ public class WordHtmlActivity extends FragmentActivity {
         setContentView(R.layout.html);
         String name = docName.substring(0, docName.indexOf("."));
         InputStream inputStream = null;
-        demoPath = sdcardUtils.getSDPATH()+"test.doc";
+        demoPath = sdcardUtils.getSDPATH() + "jcblMode.doc";
         try {
-            inputStream = this.getAssets().open("test.doc");
+            inputStream = this.getAssets().open("jcblMode.doc");
             file = new File(demoPath);
             FileUtils.writeFile(file, inputStream);
-            Log.i(TAG, "onCreate: "+file.getAbsolutePath());
+            Log.i(TAG, "onCreate: " + file.getAbsolutePath());
         } catch (IOException e) {
             e.printStackTrace();
-            Log.i(TAG, "onCreate: "+e.toString());
+            Log.i(TAG, "onCreate: " + e.toString());
         }
         doScan();
 
@@ -95,11 +97,11 @@ public class WordHtmlActivity extends FragmentActivity {
     }
 
 
-    private void doScan(){
+    private void doScan() {
         //获取模板文件
-        File demoFile=new File(demoPath);
+        File demoFile = new File(demoPath);
         //创建生成的文件
-        File newFile=new File(newPath);
+        File newFile = new File(newPath);
         Map<String, String> map = new HashMap<String, String>();
         map.put("$QYMC$", "xxx科技股份有限公司");
         map.put("$QYDZ$", "上海市杨浦区xx路xx号");
@@ -113,9 +115,9 @@ public class WordHtmlActivity extends FragmentActivity {
         map.put("$CPRWQM$", "赵六");
         map.put("$ZFZH$", "100001");
         map.put("$BZ$", "无");
-        writeDoc(demoFile,newFile,map);
+        writeDoc(demoFile, newFile, map);
         try {
-            convert2Html(newFile.getAbsolutePath(), savePath + "newtest.html");
+            convert2Html(newFile.getAbsolutePath(), savePath + "jcblMode.html");
         } catch (Exception e) {
             e.printStackTrace();
         }
@@ -131,19 +133,18 @@ public class WordHtmlActivity extends FragmentActivity {
         webSettings.setJavaScriptEnabled(true);
 
 
-        String htmlurl = savePath + "newtest.html";
+        htmlurl = savePath + "jcblMode.html";
         webView.loadUrl("file://" + htmlurl);
 
     }
+
     /**
      * demoFile 模板文件
      * newFile 生成文件
      * map 要填充的数据
-     * */
-    public void writeDoc(File demoFile ,File newFile ,Map<String, String> map)
-    {
-        try
-        {
+     */
+    public void writeDoc(File demoFile, File newFile, Map<String, String> map) {
+        try {
             FileInputStream in = new FileInputStream(demoFile);
             HWPFDocument hdt = new HWPFDocument(in);
             // Fields fields = hdt.getFields();
@@ -152,8 +153,7 @@ public class WordHtmlActivity extends FragmentActivity {
             // System.out.println(range.text());
 
             // 替换文本内容
-            for(Map.Entry<String, String> entry : map.entrySet())
-            {
+            for (Map.Entry<String, String> entry : map.entrySet()) {
                 range.replaceText(entry.getKey(), entry.getValue());
             }
             ByteArrayOutputStream ostream = new ByteArrayOutputStream();
@@ -163,13 +163,9 @@ public class WordHtmlActivity extends FragmentActivity {
             out.write(ostream.toByteArray());
             out.close();
             ostream.close();
-        }
-        catch(IOException e)
-        {
+        } catch (IOException e) {
             e.printStackTrace();
-        }
-        catch(Exception e)
-        {
+        } catch (Exception e) {
             e.printStackTrace();
         }
     }
@@ -197,7 +193,7 @@ public class WordHtmlActivity extends FragmentActivity {
             if (pics != null) {
                 for (int i = 0; i < pics.size(); i++) {
                     Picture pic = (Picture) pics.get(i);
-                    Log.i(TAG, "convert2Html: "+pic.suggestFullFileName());
+                    Log.i(TAG, "convert2Html: " + pic.suggestFullFileName());
                     try {
                         String name = docName.substring(0, docName.indexOf("."));
                         String file = savePath + name + "/"
@@ -257,5 +253,24 @@ public class WordHtmlActivity extends FragmentActivity {
             } catch (IOException ie) {
             }
         }
+    }
+
+    @Override
+    public boolean onKeyDown(int keyCode, KeyEvent event) {
+        if (keyCode == KeyEvent.KEYCODE_BACK) {
+            File demoPathFile = new File(demoPath);
+            File newPathFile = new File(newPath);
+            File htmlurlFile = new File(htmlurl);
+            if (demoPathFile.exists()) {
+                demoPathFile.delete();
+            }
+            if (newPathFile.exists()) {
+                newPathFile.delete();
+            }
+            if (htmlurlFile.exists()) {
+                htmlurlFile.delete();
+            }
+        }
+        return super.onKeyDown(keyCode, event);
     }
 }

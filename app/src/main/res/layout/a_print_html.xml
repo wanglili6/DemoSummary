@@ -1,0 +1,80 @@
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:orientation="vertical">
+
+    <RelativeLayout
+        android:background="@color/colorPrimaryDark"
+        android:id="@+id/rl_title_top"
+        android:layout_height="50dp"
+        android:layout_width="match_parent"
+        android:elevation="5dp">
+
+        <ImageButton
+            android:id="@+id/ibtn_back"
+            android:layout_width="wrap_content"
+            android:layout_height="match_parent"
+            android:layout_alignParentLeft="true"
+            android:background="@color/colorPrimaryDark"
+            android:src="@mipmap/sms" />
+
+        <TextView
+            android:id="@+id/tv_myinfo_title"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_centerInParent="true"
+            android:text="预览打印"
+            android:textColor="@android:color/white"
+            android:textSize="18sp" />
+    </RelativeLayout>
+
+
+
+    <WebView
+        android:id="@+id/office"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:layout_weight="1000">
+
+    </WebView>
+
+
+
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:background="@color/colorPrimaryDark"
+            android:orientation="horizontal">
+
+            <Button
+                android:background="@color/colorPrimaryDark"
+                android:id="@+id/btn_dachu"
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:layout_gravity="center"
+                android:layout_weight="1"
+                android:text="导        出"
+                android:textColor="@android:color/white"
+                android:textSize="18sp"
+               />
+
+            <Button
+                android:background="@color/colorPrimaryDark"
+                android:id="@+id/btn_print"
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:layout_gravity="center"
+                android:layout_weight="1"
+                android:text="打        印"
+                android:textColor="@android:color/white"
+                android:textSize="18sp"
+                />
+
+
+        </LinearLayout>
+
+
+
+</LinearLayout>
