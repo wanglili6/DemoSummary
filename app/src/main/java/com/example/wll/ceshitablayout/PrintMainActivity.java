@@ -328,7 +328,7 @@ public class PrintMainActivity extends Activity implements OnClickListener {
         Log.i("打印文件", "downloadword: " + params);
         try {
             // 构造URL
-            URL url = new URL("file://" + savePath + "");
+            URL url = new URL("file:///" + savePath + "");
             // 打开连接
             URLConnection con = url.openConnection();
             //获得文件的长度

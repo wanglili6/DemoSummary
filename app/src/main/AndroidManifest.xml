@@ -95,8 +95,11 @@
             android:process=":remote" />
 
         <activity android:name=".baiDuMap.MapTraceActivity" />
-        <activity android:name=".ModeActivity"></activity>
+        <activity android:name=".ModeActivity" />
         <activity android:name=".PrintMainActivity" />
+        <activity android:name=".tabLayout.SlidingTabActivity" />
+        <activity android:name=".tabLayout.CommonTabActivity" />
+        <activity android:name=".tabLayout.SegmentTabActivity"></activity>
     </application>
 
 </manifest>

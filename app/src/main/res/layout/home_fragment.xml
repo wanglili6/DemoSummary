@@ -1,46 +1,72 @@
 <?xml version="1.0" encoding="utf-8"?>
 <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
-              android:layout_width="match_parent"
-              android:layout_height="match_parent"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
 
-              android:orientation="vertical">
+    android:orientation="vertical">
 
     <Button
-        android:layout_margin="10dp"
-        android:background="@drawable/ripple_bg"
-        android:textColor="#fff"
         android:id="@+id/btn_ceshi"
         android:layout_width="match_parent"
         android:layout_height="50dp"
-        android:text="扫描二维码"/>
+        android:layout_margin="10dp"
+        android:background="@drawable/ripple_bg"
+        android:text="扫描二维码"
+        android:textColor="#fff" />
 
     <Button
-        android:layout_margin="10dp"
-        android:textColor="#fff"
-        android:background="@drawable/ripple_bg"
         android:id="@+id/btn_dayin"
         android:layout_width="match_parent"
         android:layout_height="50dp"
-        android:text="打印"/>
+        android:layout_margin="10dp"
+        android:background="@drawable/ripple_bg"
+        android:text="打印"
+        android:textColor="#fff" />
 
     <Button
-        android:layout_margin="10dp"
-        android:textColor="#fff"
-        android:background="@drawable/ripple_bg"
         android:id="@+id/btn_map"
         android:layout_width="match_parent"
         android:layout_height="50dp"
-        android:text="地图"/>
+        android:layout_margin="10dp"
+        android:background="@drawable/ripple_bg"
+        android:text="地图"
+        android:textColor="#fff" />
 
     <Button
-        android:layout_margin="10dp"
-        android:textColor="#fff"
-        android:background="@drawable/ripple_bg"
         android:id="@+id/btn_map_guiji"
         android:layout_width="match_parent"
         android:layout_height="50dp"
-        android:text="轨迹查询"/>
+        android:layout_margin="10dp"
+        android:background="@drawable/ripple_bg"
+        android:text="轨迹查询"
+        android:textColor="#fff" />
 
+    <Button
+        android:id="@+id/btn_commontabactivity"
+        android:layout_width="match_parent"
+        android:layout_height="50dp"
+        android:layout_margin="10dp"
+        android:background="@drawable/ripple_bg"
+        android:text="CommonTabActivity"
+        android:textColor="#fff" />
+
+    <Button
+        android:id="@+id/btn_segmenttabactivity"
+        android:layout_width="match_parent"
+        android:layout_height="50dp"
+        android:layout_margin="10dp"
+        android:background="@drawable/ripple_bg"
+        android:text="segmentTabActivity"
+        android:textColor="#fff" />
+
+    <Button
+        android:id="@+id/btn_slidingtabactivity"
+        android:layout_width="match_parent"
+        android:layout_height="50dp"
+        android:layout_margin="10dp"
+        android:background="@drawable/ripple_bg"
+        android:text="btn_slidingtabactivity"
+        android:textColor="#fff" />
 
 
 </LinearLayout>

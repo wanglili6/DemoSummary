@@ -13,18 +13,19 @@ import android.widget.Toast;
 import com.apkfuns.logutils.LogUtils;
 import com.example.wll.ceshitablayout.PrintMainActivity;
 import com.example.wll.ceshitablayout.R;
-import com.example.wll.ceshitablayout.WordHtmlActivity;
 import com.example.wll.ceshitablayout.baiDuMap.MapShowActivity;
 import com.example.wll.ceshitablayout.baiDuMap.MapTraceActivity;
+import com.example.wll.ceshitablayout.tabLayout.CommonTabActivity;
+import com.example.wll.ceshitablayout.tabLayout.SegmentTabActivity;
+import com.example.wll.ceshitablayout.tabLayout.SlidingTabActivity;
+import com.flyco.tablayout.SlidingTabLayout;
 import com.uuzuche.lib_zxing.activity.CaptureActivity;
 import com.uuzuche.lib_zxing.activity.CodeUtils;
-import com.zhy.http.okhttp.OkHttpUtils;
-import com.zhy.http.okhttp.callback.StringCallback;
 
 import butterknife.BindView;
 import butterknife.ButterKnife;
+import butterknife.OnClick;
 import butterknife.Unbinder;
-import okhttp3.Call;
 
 /**
  * Created by wll on 2017/12/9.
@@ -40,6 +41,12 @@ public class HomeFragment extends Fragment {
     Button btnMap;
     @BindView(R.id.btn_map_guiji)
     Button btnMapGuiji;
+    @BindView(R.id.btn_commontabactivity)
+    Button btnCommontabactivity;
+    @BindView(R.id.btn_segmenttabactivity)
+    Button btnSegmenttabactivity;
+    @BindView(R.id.btn_slidingtabactivity)
+    Button btnSlidingtabactivity;
     private String TAG = "HomeFragment的log";
 
     @Nullable
@@ -128,5 +135,26 @@ public class HomeFragment extends Fragment {
     public void onDestroyView() {
         super.onDestroyView();
         unbinder.unbind();
+    }
+
+    @OnClick({R.id.btn_commontabactivity, R.id.btn_segmenttabactivity, R.id.btn_slidingtabactivity})
+    public void onViewClicked(View view) {
+        switch (view.getId()) {
+            case R.id.btn_commontabactivity:
+                Intent intent = new Intent();
+                intent.setClass(getActivity(), CommonTabActivity.class);
+                startActivity(intent);
+                break;
+            case R.id.btn_segmenttabactivity:
+                Intent intent1 = new Intent();
+                intent1.setClass(getActivity(), SegmentTabActivity.class);
+                startActivity(intent1);
+                break;
+            case R.id.btn_slidingtabactivity:
+                Intent intent2 = new Intent();
+                intent2.setClass(getActivity(), SlidingTabActivity.class);
+                startActivity(intent2);
+                break;
+        }
     }
 }
