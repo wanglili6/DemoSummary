@@ -68,5 +68,14 @@
         android:text="btn_slidingtabactivity"
         android:textColor="#fff" />
 
+    <Button
+        android:id="@+id/btn_bnner"
+        android:layout_width="match_parent"
+        android:layout_height="50dp"
+        android:layout_margin="10dp"
+        android:background="@drawable/ripple_bg"
+        android:text="轮播图"
+        android:textColor="#fff" />
+
 
 </LinearLayout>

@@ -11,6 +11,7 @@ import android.widget.Button;
 import android.widget.Toast;
 
 import com.apkfuns.logutils.LogUtils;
+import com.example.wll.ceshitablayout.BannerActivity;
 import com.example.wll.ceshitablayout.PrintMainActivity;
 import com.example.wll.ceshitablayout.R;
 import com.example.wll.ceshitablayout.baiDuMap.MapShowActivity;
@@ -137,7 +138,7 @@ public class HomeFragment extends Fragment {
         unbinder.unbind();
     }
 
-    @OnClick({R.id.btn_commontabactivity, R.id.btn_segmenttabactivity, R.id.btn_slidingtabactivity})
+    @OnClick({R.id.btn_commontabactivity, R.id.btn_segmenttabactivity, R.id.btn_slidingtabactivity, R.id.btn_bnner})
     public void onViewClicked(View view) {
         switch (view.getId()) {
             case R.id.btn_commontabactivity:
@@ -154,6 +155,11 @@ public class HomeFragment extends Fragment {
                 Intent intent2 = new Intent();
                 intent2.setClass(getActivity(), SlidingTabActivity.class);
                 startActivity(intent2);
+                break;
+            case R.id.btn_bnner:
+                Intent intent3 = new Intent();
+                intent3.setClass(getActivity(), BannerActivity.class);
+                startActivity(intent3);
                 break;
         }
     }
