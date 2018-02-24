@@ -5,16 +5,28 @@
     android:orientation="vertical">
 
     <Button
-        android:id="@+id/btn_ceshi"
+        android:id="@+id/btn_upfile"
         android:layout_width="match_parent"
         android:layout_height="50dp"
-        android:text="测试版本" />
+        android:layout_margin="10dp"
+        android:background="@drawable/ripple_bg"
+        android:text="上传附件"
+        android:textColor="#fff" />
+    <Button
+        android:id="@+id/btn_yuyin"
+        android:layout_width="match_parent"
+        android:layout_height="50dp"
+        android:layout_margin="10dp"
+        android:background="@drawable/ripple_bg"
+        android:text="语音"
+        android:textColor="#fff" />
 
     <Button
-        android:textColor="#fff"
-        android:background="@drawable/ripple_bg"
         android:id="@+id/btn_dayin"
         android:layout_width="match_parent"
         android:layout_height="50dp"
-        android:text="退出" />
+        android:layout_margin="10dp"
+        android:background="@drawable/ripple_bg"
+        android:text="退出"
+        android:textColor="#fff" />
 </LinearLayout>

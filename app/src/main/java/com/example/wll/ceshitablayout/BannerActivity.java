@@ -99,6 +99,7 @@ public class BannerActivity extends AppCompatActivity {
         banner.stopAutoPlay();
     }
 
+
     public class GlideImageLoader extends ImageLoader {
         @Override
         public void displayImage(Context context, Object path, ImageView imageView) {

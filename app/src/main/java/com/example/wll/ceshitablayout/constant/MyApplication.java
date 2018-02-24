@@ -21,6 +21,13 @@ import com.baidu.trace.model.OnTraceListener;
 import com.baidu.trace.model.PushMessage;
 import com.example.wll.ceshitablayout.MainActivity;
 import com.example.wll.ceshitablayout.utils.*;
+import com.iflytek.cloud.GrammarListener;
+import com.iflytek.cloud.SpeechConstant;
+import com.iflytek.cloud.SpeechError;
+import com.iflytek.cloud.SpeechRecognizer;
+import com.iflytek.cloud.SpeechUtility;
+import com.iflytek.cloud.util.ResourceUtil;
+import com.iflytek.msc.MSC;
 import com.uuzuche.lib_zxing.activity.ZXingLibrary;
 import com.zhy.http.okhttp.OkHttpUtils;
 
@@ -46,6 +53,7 @@ public class MyApplication extends MultiDexApplication {
     public static Map<String, String> jcnr_map = new HashMap<>();
     public static Map<String, Map<String, String>> parentMap = new HashMap<>();
     public static Map<String, Map<String, Map<String, String>>> goupMap = new HashMap<>();
+
     @Override
     public void onCreate() {
         super.onCreate();
@@ -78,6 +86,7 @@ public class MyApplication extends MultiDexApplication {
         SDKInitializer.initialize(getApplicationContext());
         context();
         initLocation();
+        SpeechUtility.createUtility(getApplicationContext(), SpeechConstant.APPID + "=5a90d3bb");
 
     }
 
@@ -99,6 +108,7 @@ public class MyApplication extends MultiDexApplication {
             activity.finish();
         }
     }
+
     /**
      * 全局context
      *
@@ -209,7 +219,6 @@ public class MyApplication extends MultiDexApplication {
 
         }
     }
-
 
 
 }

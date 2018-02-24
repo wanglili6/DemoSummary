@@ -9,6 +9,7 @@ import rx.Observable;
 
 /**
  * Created by wll on 2017/12/24.
+ * 登陆参数
  */
 
 public  interface LoginSevser {

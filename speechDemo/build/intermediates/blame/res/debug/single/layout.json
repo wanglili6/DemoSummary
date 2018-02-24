@@ -1,0 +1,70 @@
+[
+    {
+        "merged": "D:\\wll\\work\\CeshiTablayout\\CeshiTablayout\\speechDemo\\build\\intermediates\\res\\merged\\debug\\layout\\iatdemo.xml",
+        "source": "D:\\wll\\work\\CeshiTablayout\\CeshiTablayout\\speechDemo\\src\\main\\res\\layout\\iatdemo.xml"
+    },
+    {
+        "merged": "D:\\wll\\work\\CeshiTablayout\\CeshiTablayout\\speechDemo\\build\\intermediates\\res\\merged\\debug\\layout\\activity_result_identify.xml",
+        "source": "D:\\wll\\work\\CeshiTablayout\\CeshiTablayout\\speechDemo\\src\\main\\res\\layout\\activity_result_identify.xml"
+    },
+    {
+        "merged": "D:\\wll\\work\\CeshiTablayout\\CeshiTablayout\\speechDemo\\build\\intermediates\\res\\merged\\debug\\layout\\activity_group_manager.xml",
+        "source": "D:\\wll\\work\\CeshiTablayout\\CeshiTablayout\\speechDemo\\src\\main\\res\\layout\\activity_group_manager.xml"
+    },
+    {
+        "merged": "D:\\wll\\work\\CeshiTablayout\\CeshiTablayout\\speechDemo\\build\\intermediates\\res\\merged\\debug\\layout\\item_identify_result.xml",
+        "source": "D:\\wll\\work\\CeshiTablayout\\CeshiTablayout\\speechDemo\\src\\main\\res\\layout\\item_identify_result.xml"
+    },
+    {
+        "merged": "D:\\wll\\work\\CeshiTablayout\\CeshiTablayout\\speechDemo\\build\\intermediates\\res\\merged\\debug\\layout\\activity_face_identify.xml",
+        "source": "D:\\wll\\work\\CeshiTablayout\\CeshiTablayout\\speechDemo\\src\\main\\res\\layout\\activity_face_identify.xml"
+    },
+    {
+        "merged": "D:\\wll\\work\\CeshiTablayout\\CeshiTablayout\\speechDemo\\build\\intermediates\\res\\merged\\debug\\layout\\main.xml",
+        "source": "D:\\wll\\work\\CeshiTablayout\\CeshiTablayout\\speechDemo\\src\\main\\res\\layout\\main.xml"
+    },
+    {
+        "merged": "D:\\wll\\work\\CeshiTablayout\\CeshiTablayout\\speechDemo\\build\\intermediates\\res\\merged\\debug\\layout\\isedemo.xml",
+        "source": "D:\\wll\\work\\CeshiTablayout\\CeshiTablayout\\speechDemo\\src\\main\\res\\layout\\isedemo.xml"
+    },
+    {
+        "merged": "D:\\wll\\work\\CeshiTablayout\\CeshiTablayout\\speechDemo\\build\\intermediates\\res\\merged\\debug\\layout\\title.xml",
+        "source": "D:\\wll\\work\\CeshiTablayout\\CeshiTablayout\\speechDemo\\src\\main\\res\\layout\\title.xml"
+    },
+    {
+        "merged": "D:\\wll\\work\\CeshiTablayout\\CeshiTablayout\\speechDemo\\build\\intermediates\\res\\merged\\debug\\layout\\activity_vocal_identify.xml",
+        "source": "D:\\wll\\work\\CeshiTablayout\\CeshiTablayout\\speechDemo\\src\\main\\res\\layout\\activity_vocal_identify.xml"
+    },
+    {
+        "merged": "D:\\wll\\work\\CeshiTablayout\\CeshiTablayout\\speechDemo\\build\\intermediates\\res\\merged\\debug\\layout\\online_facedemo.xml",
+        "source": "D:\\wll\\work\\CeshiTablayout\\CeshiTablayout\\speechDemo\\src\\main\\res\\layout\\online_facedemo.xml"
+    },
+    {
+        "merged": "D:\\wll\\work\\CeshiTablayout\\CeshiTablayout\\speechDemo\\build\\intermediates\\res\\merged\\debug\\layout\\isvdemo.xml",
+        "source": "D:\\wll\\work\\CeshiTablayout\\CeshiTablayout\\speechDemo\\src\\main\\res\\layout\\isvdemo.xml"
+    },
+    {
+        "merged": "D:\\wll\\work\\CeshiTablayout\\CeshiTablayout\\speechDemo\\build\\intermediates\\res\\merged\\debug\\layout\\ttsdemo.xml",
+        "source": "D:\\wll\\work\\CeshiTablayout\\CeshiTablayout\\speechDemo\\src\\main\\res\\layout\\ttsdemo.xml"
+    },
+    {
+        "merged": "D:\\wll\\work\\CeshiTablayout\\CeshiTablayout\\speechDemo\\build\\intermediates\\res\\merged\\debug\\layout\\item_group.xml",
+        "source": "D:\\wll\\work\\CeshiTablayout\\CeshiTablayout\\speechDemo\\src\\main\\res\\layout\\item_group.xml"
+    },
+    {
+        "merged": "D:\\wll\\work\\CeshiTablayout\\CeshiTablayout\\speechDemo\\build\\intermediates\\res\\merged\\debug\\layout\\list_items.xml",
+        "source": "D:\\wll\\work\\CeshiTablayout\\CeshiTablayout\\speechDemo\\src\\main\\res\\layout\\list_items.xml"
+    },
+    {
+        "merged": "D:\\wll\\work\\CeshiTablayout\\CeshiTablayout\\speechDemo\\build\\intermediates\\res\\merged\\debug\\layout\\understander.xml",
+        "source": "D:\\wll\\work\\CeshiTablayout\\CeshiTablayout\\speechDemo\\src\\main\\res\\layout\\understander.xml"
+    },
+    {
+        "merged": "D:\\wll\\work\\CeshiTablayout\\CeshiTablayout\\speechDemo\\build\\intermediates\\res\\merged\\debug\\layout\\group_header_layout.xml",
+        "source": "D:\\wll\\work\\CeshiTablayout\\CeshiTablayout\\speechDemo\\src\\main\\res\\layout\\group_header_layout.xml"
+    },
+    {
+        "merged": "D:\\wll\\work\\CeshiTablayout\\CeshiTablayout\\speechDemo\\build\\intermediates\\res\\merged\\debug\\layout\\isrdemo.xml",
+        "source": "D:\\wll\\work\\CeshiTablayout\\CeshiTablayout\\speechDemo\\src\\main\\res\\layout\\isrdemo.xml"
+    }
+]

@@ -22,7 +22,6 @@ import android.webkit.WebSettings;
 import android.webkit.WebView;
 import android.webkit.WebViewClient;
 import android.widget.Button;
-import android.widget.ImageButton;
 import android.widget.ImageView;
 import android.widget.RelativeLayout;
 import android.widget.TextView;
@@ -56,12 +55,20 @@ public class PrintMainActivity extends Activity implements OnClickListener {
     private static String newhtml2wordPath = "";
     //html文件存储位置
     private static String savePath = "";
-    @BindView(R.id.ibtn_back)
-    ImageButton ibtnBack;
-    @BindView(R.id.tv_myinfo_title)
-    TextView tvMyinfoTitle;
-    @BindView(R.id.rl_title_top)
-    RelativeLayout rlTitleTop;
+    @BindView(R.id.iv_back)
+    ImageView ivBack;
+    @BindView(R.id.tv_back)
+    TextView tvBack;
+    @BindView(R.id.rl_back)
+    RelativeLayout rlBack;
+    @BindView(R.id.tv_title)
+    TextView tvTitle;
+    @BindView(R.id.tv_select)
+    TextView tvSelect;
+    @BindView(R.id.rl_select)
+    RelativeLayout rlSelect;
+    @BindView(R.id.rl_title_bg)
+    RelativeLayout rlTitleBg;
     @BindView(R.id.office)
     WebView office;
     @BindView(R.id.btn_dachu)
@@ -103,6 +110,8 @@ public class PrintMainActivity extends Activity implements OnClickListener {
     }
 
     private void init() {
+        tvTitle.setText("文书模板");
+        ivBack.setVisibility(View.VISIBLE);
         btnDachu.setOnClickListener(this);
         btnPrint.setOnClickListener(this);
         demoPath = SDpath.getSDPath() + "/" + "wll/" + modename + "";//必须用doc格式的
@@ -258,7 +267,7 @@ public class PrintMainActivity extends Activity implements OnClickListener {
     @Override
     public void onClick(View v) {
         switch (v.getId()) {
-            case R.id.ibtn_back:
+            case R.id.rl_back:
                 finish();
                 break;
             case R.id.btn_print:
@@ -266,7 +275,7 @@ public class PrintMainActivity extends Activity implements OnClickListener {
                 PrintDocumentAdapter printAdapter = webView.createPrintDocumentAdapter();
                 PrintManager printManager = (PrintManager) this.getSystemService(Context.PRINT_SERVICE);
                 printManager.print(wordname, printAdapter, null);
-
+                break;
             case R.id.btn_dachu://导出
                 downloadword("");
 //                if (wordname.equals("jcbl")) {

@@ -1,0 +1,1168 @@
+[
+    {
+        "outputFile": "D:\\wll\\work\\CeshiTablayout\\CeshiTablayout\\speechDemo\\build\\intermediates\\incremental\\mergeDebugResources\\merged.dir\\values\\values.xml",
+        "map": [
+            {
+                "to": {
+                    "startLine": 2,
+                    "startColumn": 4,
+                    "startOffset": 55,
+                    "endLine": 6,
+                    "endColumn": 19,
+                    "endOffset": 185
+                },
+                "from": {
+                    "file": "D:\\wll\\work\\CeshiTablayout\\CeshiTablayout\\speechDemo\\src\\main\\res\\values\\strings.xml",
+                    "position": {
+                        "startLine": 134,
+                        "startColumn": 4,
+                        "startOffset": 5425,
+                        "endLine": 138,
+                        "endColumn": 19,
+                        "endOffset": 5559
+                    }
+                }
+            },
+            {
+                "to": {
+                    "startLine": 7,
+                    "startColumn": 4,
+                    "startOffset": 190,
+                    "endLine": 11,
+                    "endColumn": 19,
+                    "endOffset": 348
+                },
+                "from": {
+                    "file": "D:\\wll\\work\\CeshiTablayout\\CeshiTablayout\\speechDemo\\src\\main\\res\\values\\strings.xml",
+                    "position": {
+                        "startLine": 139,
+                        "startColumn": 4,
+                        "startOffset": 5565,
+                        "endLine": 143,
+                        "endColumn": 19,
+                        "endOffset": 5727
+                    }
+                }
+            },
+            {
+                "to": {
+                    "startLine": 12,
+                    "startColumn": 4,
+                    "startOffset": 353,
+                    "endLine": 15,
+                    "endColumn": 19,
+                    "endOffset": 454
+                },
+                "from": {
+                    "file": "D:\\wll\\work\\CeshiTablayout\\CeshiTablayout\\speechDemo\\src\\main\\res\\values\\strings.xml",
+                    "position": {
+                        "startLine": 157,
+                        "startColumn": 4,
+                        "startOffset": 6101,
+                        "endLine": 160,
+                        "endColumn": 19,
+                        "endOffset": 6205
+                    }
+                }
+            },
+            {
+                "to": {
+                    "startLine": 16,
+                    "startColumn": 4,
+                    "startOffset": 459,
+                    "endLine": 21,
+                    "endColumn": 19,
+                    "endOffset": 609
+                },
+                "from": {
+                    "file": "D:\\wll\\work\\CeshiTablayout\\CeshiTablayout\\speechDemo\\src\\main\\res\\values\\strings.xml",
+                    "position": {
+                        "startLine": 80,
+                        "startColumn": 4,
+                        "startOffset": 3644,
+                        "endLine": 85,
+                        "endColumn": 19,
+                        "endOffset": 3799
+                    }
+                }
+            },
+            {
+                "to": {
+                    "startLine": 22,
+                    "startColumn": 4,
+                    "startOffset": 614,
+                    "endLine": 27,
+                    "endColumn": 19,
+                    "endOffset": 775
+                },
+                "from": {
+                    "file": "D:\\wll\\work\\CeshiTablayout\\CeshiTablayout\\speechDemo\\src\\main\\res\\values\\strings.xml",
+                    "position": {
+                        "startLine": 86,
+                        "startColumn": 4,
+                        "startOffset": 3805,
+                        "endLine": 91,
+                        "endColumn": 19,
+                        "endOffset": 3971
+                    }
+                }
+            },
+            {
+                "to": {
+                    "startLine": 28,
+                    "startColumn": 4,
+                    "startOffset": 780,
+                    "endLine": 31,
+                    "endColumn": 19,
+                    "endOffset": 888
+                },
+                "from": {
+                    "file": "D:\\wll\\work\\CeshiTablayout\\CeshiTablayout\\speechDemo\\src\\main\\res\\values\\strings.xml",
+                    "position": {
+                        "startLine": 32,
+                        "startColumn": 4,
+                        "startOffset": 2132,
+                        "endLine": 35,
+                        "endColumn": 19,
+                        "endOffset": 2243
+                    }
+                }
+            },
+            {
+                "to": {
+                    "startLine": 32,
+                    "startColumn": 4,
+                    "startOffset": 893,
+                    "endLine": 35,
+                    "endColumn": 19,
+                    "endOffset": 1002
+                },
+                "from": {
+                    "file": "D:\\wll\\work\\CeshiTablayout\\CeshiTablayout\\speechDemo\\src\\main\\res\\values\\strings.xml",
+                    "position": {
+                        "startLine": 36,
+                        "startColumn": 4,
+                        "startOffset": 2249,
+                        "endLine": 39,
+                        "endColumn": 19,
+                        "endOffset": 2361
+                    }
+                }
+            },
+            {
+                "to": {
+                    "startLine": 36,
+                    "startColumn": 4,
+                    "startOffset": 1007,
+                    "endLine": 39,
+                    "endColumn": 19,
+                    "endOffset": 1117
+                },
+                "from": {
+                    "file": "D:\\wll\\work\\CeshiTablayout\\CeshiTablayout\\speechDemo\\src\\main\\res\\values\\strings.xml",
+                    "position": {
+                        "startLine": 126,
+                        "startColumn": 4,
+                        "startOffset": 5182,
+                        "endLine": 129,
+                        "endColumn": 19,
+                        "endOffset": 5295
+                    }
+                }
+            },
+            {
+                "to": {
+                    "startLine": 40,
+                    "startColumn": 4,
+                    "startOffset": 1122,
+                    "endLine": 43,
+                    "endColumn": 19,
+                    "endOffset": 1237
+                },
+                "from": {
+                    "file": "D:\\wll\\work\\CeshiTablayout\\CeshiTablayout\\speechDemo\\src\\main\\res\\values\\strings.xml",
+                    "position": {
+                        "startLine": 130,
+                        "startColumn": 4,
+                        "startOffset": 5301,
+                        "endLine": 133,
+                        "endColumn": 19,
+                        "endOffset": 5419
+                    }
+                }
+            },
+            {
+                "to": {
+                    "startLine": 44,
+                    "startColumn": 4,
+                    "startOffset": 1242,
+                    "endLine": 48,
+                    "endColumn": 19,
+                    "endOffset": 1373
+                },
+                "from": {
+                    "file": "D:\\wll\\work\\CeshiTablayout\\CeshiTablayout\\speechDemo\\src\\main\\res\\values\\strings.xml",
+                    "position": {
+                        "startLine": 110,
+                        "startColumn": 4,
+                        "startOffset": 4497,
+                        "endLine": 114,
+                        "endColumn": 19,
+                        "endOffset": 4632
+                    }
+                }
+            },
+            {
+                "to": {
+                    "startLine": 49,
+                    "startColumn": 4,
+                    "startOffset": 1378,
+                    "endLine": 53,
+                    "endColumn": 19,
+                    "endOffset": 1523
+                },
+                "from": {
+                    "file": "D:\\wll\\work\\CeshiTablayout\\CeshiTablayout\\speechDemo\\src\\main\\res\\values\\strings.xml",
+                    "position": {
+                        "startLine": 115,
+                        "startColumn": 4,
+                        "startOffset": 4638,
+                        "endLine": 119,
+                        "endColumn": 19,
+                        "endOffset": 4787
+                    }
+                }
+            },
+            {
+                "to": {
+                    "startLine": 54,
+                    "startColumn": 4,
+                    "startOffset": 1528,
+                    "endLine": 57,
+                    "endColumn": 19,
+                    "endOffset": 1632
+                },
+                "from": {
+                    "file": "D:\\wll\\work\\CeshiTablayout\\CeshiTablayout\\speechDemo\\src\\main\\res\\values\\strings.xml",
+                    "position": {
+                        "startLine": 149,
+                        "startColumn": 4,
+                        "startOffset": 5880,
+                        "endLine": 152,
+                        "endColumn": 19,
+                        "endOffset": 5987
+                    }
+                }
+            },
+            {
+                "to": {
+                    "startLine": 58,
+                    "startColumn": 4,
+                    "startOffset": 1637,
+                    "endLine": 61,
+                    "endColumn": 19,
+                    "endOffset": 1736
+                },
+                "from": {
+                    "file": "D:\\wll\\work\\CeshiTablayout\\CeshiTablayout\\speechDemo\\src\\main\\res\\values\\strings.xml",
+                    "position": {
+                        "startLine": 153,
+                        "startColumn": 4,
+                        "startOffset": 5993,
+                        "endLine": 156,
+                        "endColumn": 19,
+                        "endOffset": 6095
+                    }
+                }
+            },
+            {
+                "to": {
+                    "startLine": 62,
+                    "startColumn": 4,
+                    "startOffset": 1741,
+                    "endLine": 65,
+                    "endColumn": 19,
+                    "endOffset": 1860
+                },
+                "from": {
+                    "file": "D:\\wll\\work\\CeshiTablayout\\CeshiTablayout\\speechDemo\\src\\main\\res\\values\\strings.xml",
+                    "position": {
+                        "startLine": 144,
+                        "startColumn": 4,
+                        "startOffset": 5733,
+                        "endLine": 147,
+                        "endColumn": 19,
+                        "endOffset": 5855
+                    }
+                }
+            },
+            {
+                "to": {
+                    "startLine": 66,
+                    "startColumn": 4,
+                    "startOffset": 1865,
+                    "endLine": 73,
+                    "endColumn": 19,
+                    "endOffset": 2065
+                },
+                "from": {
+                    "file": "D:\\wll\\work\\CeshiTablayout\\CeshiTablayout\\speechDemo\\src\\main\\res\\values\\strings.xml",
+                    "position": {
+                        "startLine": 92,
+                        "startColumn": 4,
+                        "startOffset": 3977,
+                        "endLine": 99,
+                        "endColumn": 19,
+                        "endOffset": 4184
+                    }
+                }
+            },
+            {
+                "to": {
+                    "startLine": 74,
+                    "startColumn": 4,
+                    "startOffset": 2070,
+                    "endLine": 81,
+                    "endColumn": 19,
+                    "endOffset": 2263
+                },
+                "from": {
+                    "file": "D:\\wll\\work\\CeshiTablayout\\CeshiTablayout\\speechDemo\\src\\main\\res\\values\\strings.xml",
+                    "position": {
+                        "startLine": 100,
+                        "startColumn": 4,
+                        "startOffset": 4190,
+                        "endLine": 107,
+                        "endColumn": 19,
+                        "endOffset": 4390
+                    }
+                }
+            },
+            {
+                "to": {
+                    "startLine": 82,
+                    "startColumn": 4,
+                    "startOffset": 2268,
+                    "endLine": 101,
+                    "endColumn": 19,
+                    "endOffset": 2921
+                },
+                "from": {
+                    "file": "D:\\wll\\work\\CeshiTablayout\\CeshiTablayout\\speechDemo\\src\\main\\res\\values\\strings.xml",
+                    "position": {
+                        "startLine": 40,
+                        "startColumn": 4,
+                        "startOffset": 2367,
+                        "endLine": 59,
+                        "endColumn": 19,
+                        "endOffset": 3039
+                    }
+                }
+            },
+            {
+                "to": {
+                    "startLine": 102,
+                    "startColumn": 4,
+                    "startOffset": 2926,
+                    "endLine": 121,
+                    "endColumn": 19,
+                    "endOffset": 3500
+                },
+                "from": {
+                    "file": "D:\\wll\\work\\CeshiTablayout\\CeshiTablayout\\speechDemo\\src\\main\\res\\values\\strings.xml",
+                    "position": {
+                        "startLine": 60,
+                        "startColumn": 4,
+                        "startOffset": 3045,
+                        "endLine": 79,
+                        "endColumn": 19,
+                        "endOffset": 3638
+                    }
+                }
+            },
+            {
+                "to": {
+                    "startLine": 122,
+                    "startColumn": 4,
+                    "startOffset": 3505,
+                    "endColumn": 47,
+                    "endOffset": 3548
+                },
+                "from": {
+                    "file": "D:\\wll\\work\\CeshiTablayout\\CeshiTablayout\\speechDemo\\src\\main\\res\\values\\colors.xml",
+                    "position": {
+                        "startLine": 14,
+                        "startColumn": 4,
+                        "startOffset": 384,
+                        "endColumn": 47,
+                        "endOffset": 427
+                    }
+                }
+            },
+            {
+                "to": {
+                    "startLine": 123,
+                    "startColumn": 4,
+                    "startOffset": 3553,
+                    "endColumn": 54,
+                    "endOffset": 3603
+                },
+                "from": {
+                    "file": "D:\\wll\\work\\CeshiTablayout\\CeshiTablayout\\speechDemo\\src\\main\\res\\values\\colors.xml",
+                    "position": {
+                        "startLine": 12,
+                        "startColumn": 4,
+                        "startOffset": 283,
+                        "endColumn": 54,
+                        "endOffset": 333
+                    }
+                }
+            },
+            {
+                "to": {
+                    "startLine": 124,
+                    "startColumn": 4,
+                    "startOffset": 3608,
+                    "endColumn": 45,
+                    "endOffset": 3649
+                },
+                "from": {
+                    "file": "D:\\wll\\work\\CeshiTablayout\\CeshiTablayout\\speechDemo\\src\\main\\res\\values\\colors.xml",
+                    "position": {
+                        "startLine": 13,
+                        "startColumn": 4,
+                        "startOffset": 338,
+                        "endColumn": 45,
+                        "endOffset": 379
+                    }
+                }
+            },
+            {
+                "to": {
+                    "startLine": 125,
+                    "startColumn": 4,
+                    "startOffset": 3654,
+                    "endColumn": 39,
+                    "endOffset": 3689
+                },
+                "from": {
+                    "file": "D:\\wll\\work\\CeshiTablayout\\CeshiTablayout\\speechDemo\\src\\main\\res\\values\\colors.xml",
+                    "position": {
+                        "startLine": 9,
+                        "startColumn": 4,
+                        "startOffset": 214,
+                        "endColumn": 39,
+                        "endOffset": 249
+                    }
+                }
+            },
+            {
+                "to": {
+                    "startLine": 126,
+                    "startColumn": 4,
+                    "startOffset": 3694,
+                    "endColumn": 39,
+                    "endOffset": 3729
+                },
+                "from": {
+                    "file": "D:\\wll\\work\\CeshiTablayout\\CeshiTablayout\\speechDemo\\src\\main\\res\\values\\dimen.xml",
+                    "position": {
+                        "startLine": 5,
+                        "startColumn": 4,
+                        "startOffset": 137,
+                        "endColumn": 39,
+                        "endOffset": 172
+                    }
+                }
+            },
+            {
+                "to": {
+                    "startLine": 127,
+                    "startColumn": 4,
+                    "startOffset": 3734,
+                    "endColumn": 41,
+                    "endOffset": 3771
+                },
+                "from": {
+                    "file": "D:\\wll\\work\\CeshiTablayout\\CeshiTablayout\\speechDemo\\src\\main\\res\\values\\dimen.xml",
+                    "position": {
+                        "startLine": 9,
+                        "startColumn": 4,
+                        "startOffset": 241,
+                        "endColumn": 41,
+                        "endOffset": 278
+                    }
+                }
+            },
+            {
+                "to": {
+                    "startLine": 128,
+                    "startColumn": 4,
+                    "startOffset": 3776,
+                    "endColumn": 38,
+                    "endOffset": 3810
+                },
+                "from": {
+                    "file": "D:\\wll\\work\\CeshiTablayout\\CeshiTablayout\\speechDemo\\src\\main\\res\\values\\dimen.xml",
+                    "position": {
+                        "startLine": 3,
+                        "startColumn": 4,
+                        "startOffset": 60,
+                        "endColumn": 38,
+                        "endOffset": 94
+                    }
+                }
+            },
+            {
+                "to": {
+                    "startLine": 129,
+                    "startColumn": 4,
+                    "startOffset": 3815,
+                    "endColumn": 37,
+                    "endOffset": 3848
+                },
+                "from": {
+                    "file": "D:\\wll\\work\\CeshiTablayout\\CeshiTablayout\\speechDemo\\src\\main\\res\\values\\dimen.xml",
+                    "position": {
+                        "startLine": 4,
+                        "startColumn": 4,
+                        "startOffset": 99,
+                        "endColumn": 37,
+                        "endOffset": 132
+                    }
+                }
+            },
+            {
+                "to": {
+                    "startLine": 130,
+                    "startColumn": 4,
+                    "startOffset": 3853,
+                    "endColumn": 39,
+                    "endOffset": 3888
+                },
+                "from": {
+                    "file": "D:\\wll\\work\\CeshiTablayout\\CeshiTablayout\\speechDemo\\src\\main\\res\\values\\dimen.xml",
+                    "position": {
+                        "startLine": 6,
+                        "startColumn": 4,
+                        "startOffset": 177,
+                        "endColumn": 39,
+                        "endOffset": 212
+                    }
+                }
+            },
+            {
+                "to": {
+                    "startLine": 131,
+                    "startColumn": 4,
+                    "startOffset": 3893,
+                    "endColumn": 56,
+                    "endOffset": 3945
+                },
+                "from": {
+                    "file": "D:\\wll\\work\\CeshiTablayout\\CeshiTablayout\\speechDemo\\src\\main\\res\\values\\colors.xml",
+                    "position": {
+                        "startLine": 4,
+                        "startColumn": 4,
+                        "startOffset": 75,
+                        "endColumn": 56,
+                        "endOffset": 127
+                    }
+                }
+            },
+            {
+                "to": {
+                    "startLine": 132,
+                    "startColumn": 4,
+                    "startOffset": 3950,
+                    "endColumn": 55,
+                    "endOffset": 4001
+                },
+                "from": {
+                    "file": "D:\\wll\\work\\CeshiTablayout\\CeshiTablayout\\speechDemo\\src\\main\\res\\values\\colors.xml",
+                    "position": {
+                        "startLine": 7,
+                        "startColumn": 4,
+                        "startOffset": 157,
+                        "endColumn": 55,
+                        "endOffset": 208
+                    }
+                }
+            },
+            {
+                "to": {
+                    "startLine": 133,
+                    "startColumn": 4,
+                    "startOffset": 4006,
+                    "endColumn": 43,
+                    "endOffset": 4045
+                },
+                "from": {
+                    "file": "D:\\wll\\work\\CeshiTablayout\\CeshiTablayout\\speechDemo\\src\\main\\res\\values\\strings.xml",
+                    "position": {
+                        "startLine": 4,
+                        "startColumn": 4,
+                        "startOffset": 151,
+                        "endColumn": 43,
+                        "endOffset": 190
+                    }
+                }
+            },
+            {
+                "to": {
+                    "startLine": 134,
+                    "startColumn": 4,
+                    "startOffset": 4050,
+                    "endColumn": 43,
+                    "endOffset": 4089
+                },
+                "from": {
+                    "file": "D:\\wll\\work\\CeshiTablayout\\CeshiTablayout\\speechDemo\\src\\main\\res\\values\\strings.xml",
+                    "position": {
+                        "startLine": 2,
+                        "startColumn": 4,
+                        "startOffset": 73,
+                        "endColumn": 43,
+                        "endOffset": 112
+                    }
+                }
+            },
+            {
+                "to": {
+                    "startLine": 135,
+                    "startColumn": 4,
+                    "startOffset": 4094,
+                    "endColumn": 120,
+                    "endOffset": 4210
+                },
+                "from": {
+                    "file": "D:\\wll\\work\\CeshiTablayout\\CeshiTablayout\\speechDemo\\src\\main\\res\\values\\strings.xml",
+                    "position": {
+                        "startLine": 5,
+                        "startColumn": 4,
+                        "startOffset": 196,
+                        "endColumn": 120,
+                        "endOffset": 312
+                    }
+                }
+            },
+            {
+                "to": {
+                    "startLine": 136,
+                    "startColumn": 4,
+                    "startOffset": 4215,
+                    "endColumn": 52,
+                    "endOffset": 4263
+                },
+                "from": {
+                    "file": "D:\\wll\\work\\CeshiTablayout\\CeshiTablayout\\speechDemo\\src\\main\\res\\values\\strings.xml",
+                    "position": {
+                        "startLine": 25,
+                        "startColumn": 4,
+                        "startOffset": 1942,
+                        "endColumn": 52,
+                        "endOffset": 1990
+                    }
+                }
+            },
+            {
+                "to": {
+                    "startLine": 137,
+                    "startColumn": 4,
+                    "startOffset": 4268,
+                    "endColumn": 54,
+                    "endOffset": 4318
+                },
+                "from": {
+                    "file": "D:\\wll\\work\\CeshiTablayout\\CeshiTablayout\\speechDemo\\src\\main\\res\\values\\strings.xml",
+                    "position": {
+                        "startLine": 19,
+                        "startColumn": 4,
+                        "startOffset": 1715,
+                        "endColumn": 54,
+                        "endOffset": 1765
+                    }
+                }
+            },
+            {
+                "to": {
+                    "startLine": 138,
+                    "startColumn": 4,
+                    "startOffset": 4323,
+                    "endColumn": 56,
+                    "endOffset": 4375
+                },
+                "from": {
+                    "file": "D:\\wll\\work\\CeshiTablayout\\CeshiTablayout\\speechDemo\\src\\main\\res\\values\\strings.xml",
+                    "position": {
+                        "startLine": 22,
+                        "startColumn": 4,
+                        "startOffset": 1829,
+                        "endColumn": 56,
+                        "endOffset": 1881
+                    }
+                }
+            },
+            {
+                "to": {
+                    "startLine": 139,
+                    "startColumn": 4,
+                    "startOffset": 4380,
+                    "endColumn": 54,
+                    "endOffset": 4430
+                },
+                "from": {
+                    "file": "D:\\wll\\work\\CeshiTablayout\\CeshiTablayout\\speechDemo\\src\\main\\res\\values\\strings.xml",
+                    "position": {
+                        "startLine": 20,
+                        "startColumn": 4,
+                        "startOffset": 1771,
+                        "endColumn": 54,
+                        "endOffset": 1821
+                    }
+                }
+            },
+            {
+                "to": {
+                    "startLine": 140,
+                    "startColumn": 4,
+                    "startOffset": 4435,
+                    "endColumn": 51,
+                    "endOffset": 4482
+                },
+                "from": {
+                    "file": "D:\\wll\\work\\CeshiTablayout\\CeshiTablayout\\speechDemo\\src\\main\\res\\values\\strings.xml",
+                    "position": {
+                        "startLine": 23,
+                        "startColumn": 4,
+                        "startOffset": 1887,
+                        "endColumn": 51,
+                        "endOffset": 1934
+                    }
+                }
+            },
+            {
+                "to": {
+                    "startLine": 141,
+                    "startColumn": 4,
+                    "startOffset": 4487,
+                    "endColumn": 45,
+                    "endOffset": 4528
+                },
+                "from": {
+                    "file": "D:\\wll\\work\\CeshiTablayout\\CeshiTablayout\\speechDemo\\src\\main\\res\\values\\strings.xml",
+                    "position": {
+                        "startLine": 11,
+                        "startColumn": 4,
+                        "startOffset": 1272,
+                        "endColumn": 45,
+                        "endOffset": 1313
+                    }
+                }
+            },
+            {
+                "to": {
+                    "startLine": 142,
+                    "startColumn": 4,
+                    "startOffset": 4533,
+                    "endColumn": 50,
+                    "endOffset": 4579
+                },
+                "from": {
+                    "file": "D:\\wll\\work\\CeshiTablayout\\CeshiTablayout\\speechDemo\\src\\main\\res\\values\\strings.xml",
+                    "position": {
+                        "startLine": 13,
+                        "startColumn": 4,
+                        "startOffset": 1378,
+                        "endColumn": 50,
+                        "endOffset": 1424
+                    }
+                }
+            },
+            {
+                "to": {
+                    "startLine": 143,
+                    "startColumn": 4,
+                    "startOffset": 4584,
+                    "endColumn": 57,
+                    "endOffset": 4637
+                },
+                "from": {
+                    "file": "D:\\wll\\work\\CeshiTablayout\\CeshiTablayout\\speechDemo\\src\\main\\res\\values\\strings.xml",
+                    "position": {
+                        "startLine": 12,
+                        "startColumn": 4,
+                        "startOffset": 1319,
+                        "endColumn": 57,
+                        "endOffset": 1372
+                    }
+                }
+            },
+            {
+                "to": {
+                    "startLine": 144,
+                    "startColumn": 4,
+                    "startOffset": 4642,
+                    "endColumn": 88,
+                    "endOffset": 4726
+                },
+                "from": {
+                    "file": "D:\\wll\\work\\CeshiTablayout\\CeshiTablayout\\speechDemo\\src\\main\\res\\values\\strings.xml",
+                    "position": {
+                        "startLine": 125,
+                        "startColumn": 4,
+                        "startOffset": 5092,
+                        "endColumn": 88,
+                        "endOffset": 5176
+                    }
+                }
+            },
+            {
+                "to": {
+                    "startLine": 145,
+                    "startColumn": 4,
+                    "startOffset": 4731,
+                    "endColumn": 52,
+                    "endOffset": 4779
+                },
+                "from": {
+                    "file": "D:\\wll\\work\\CeshiTablayout\\CeshiTablayout\\speechDemo\\src\\main\\res\\values\\strings.xml",
+                    "position": {
+                        "startLine": 123,
+                        "startColumn": 4,
+                        "startOffset": 4979,
+                        "endColumn": 52,
+                        "endOffset": 5027
+                    }
+                }
+            },
+            {
+                "to": {
+                    "startLine": 146,
+                    "startColumn": 4,
+                    "startOffset": 4784,
+                    "endColumn": 57,
+                    "endOffset": 4837
+                },
+                "from": {
+                    "file": "D:\\wll\\work\\CeshiTablayout\\CeshiTablayout\\speechDemo\\src\\main\\res\\values\\strings.xml",
+                    "position": {
+                        "startLine": 124,
+                        "startColumn": 4,
+                        "startOffset": 5033,
+                        "endColumn": 57,
+                        "endOffset": 5086
+                    }
+                }
+            },
+            {
+                "to": {
+                    "startLine": 147,
+                    "startColumn": 4,
+                    "startOffset": 4842,
+                    "endColumn": 54,
+                    "endOffset": 4892
+                },
+                "from": {
+                    "file": "D:\\wll\\work\\CeshiTablayout\\CeshiTablayout\\speechDemo\\src\\main\\res\\values\\strings.xml",
+                    "position": {
+                        "startLine": 18,
+                        "startColumn": 4,
+                        "startOffset": 1659,
+                        "endColumn": 54,
+                        "endOffset": 1709
+                    }
+                }
+            },
+            {
+                "to": {
+                    "startLine": 148,
+                    "startColumn": 4,
+                    "startOffset": 4897,
+                    "endColumn": 91,
+                    "endOffset": 4984
+                },
+                "from": {
+                    "file": "D:\\wll\\work\\CeshiTablayout\\CeshiTablayout\\speechDemo\\src\\main\\res\\values\\strings.xml",
+                    "position": {
+                        "startLine": 122,
+                        "startColumn": 4,
+                        "startOffset": 4886,
+                        "endColumn": 91,
+                        "endOffset": 4973
+                    }
+                }
+            },
+            {
+                "to": {
+                    "startLine": 149,
+                    "startColumn": 4,
+                    "startOffset": 4989,
+                    "endColumn": 72,
+                    "endOffset": 5057
+                },
+                "from": {
+                    "file": "D:\\wll\\work\\CeshiTablayout\\CeshiTablayout\\speechDemo\\src\\main\\res\\values\\strings.xml",
+                    "position": {
+                        "startLine": 121,
+                        "startColumn": 4,
+                        "startOffset": 4812,
+                        "endColumn": 72,
+                        "endOffset": 4880
+                    }
+                }
+            },
+            {
+                "to": {
+                    "startLine": 150,
+                    "startColumn": 4,
+                    "startOffset": 5062,
+                    "endColumn": 214,
+                    "endOffset": 5272
+                },
+                "from": {
+                    "file": "D:\\wll\\work\\CeshiTablayout\\CeshiTablayout\\speechDemo\\src\\main\\res\\values\\strings.xml",
+                    "position": {
+                        "startLine": 8,
+                        "startColumn": 4,
+                        "startOffset": 892,
+                        "endColumn": 214,
+                        "endOffset": 1102
+                    }
+                }
+            },
+            {
+                "to": {
+                    "startLine": 151,
+                    "startColumn": 4,
+                    "startOffset": 5277,
+                    "endColumn": 156,
+                    "endOffset": 5429
+                },
+                "from": {
+                    "file": "D:\\wll\\work\\CeshiTablayout\\CeshiTablayout\\speechDemo\\src\\main\\res\\values\\strings.xml",
+                    "position": {
+                        "startLine": 6,
+                        "startColumn": 4,
+                        "startOffset": 318,
+                        "endColumn": 156,
+                        "endOffset": 470
+                    }
+                }
+            },
+            {
+                "to": {
+                    "startLine": 152,
+                    "startColumn": 4,
+                    "startOffset": 5434,
+                    "endColumn": 414,
+                    "endOffset": 5844
+                },
+                "from": {
+                    "file": "D:\\wll\\work\\CeshiTablayout\\CeshiTablayout\\speechDemo\\src\\main\\res\\values\\strings.xml",
+                    "position": {
+                        "startLine": 7,
+                        "startColumn": 4,
+                        "startOffset": 476,
+                        "endColumn": 414,
+                        "endOffset": 886
+                    }
+                }
+            },
+            {
+                "to": {
+                    "startLine": 153,
+                    "startColumn": 4,
+                    "startOffset": 5849,
+                    "endColumn": 145,
+                    "endOffset": 5990
+                },
+                "from": {
+                    "file": "D:\\wll\\work\\CeshiTablayout\\CeshiTablayout\\speechDemo\\src\\main\\res\\values\\strings.xml",
+                    "position": {
+                        "startLine": 9,
+                        "startColumn": 4,
+                        "startOffset": 1108,
+                        "endColumn": 145,
+                        "endOffset": 1249
+                    }
+                }
+            },
+            {
+                "to": {
+                    "startLine": 154,
+                    "startColumn": 4,
+                    "startOffset": 5995,
+                    "endColumn": 54,
+                    "endOffset": 6045
+                },
+                "from": {
+                    "file": "D:\\wll\\work\\CeshiTablayout\\CeshiTablayout\\speechDemo\\src\\main\\res\\values\\strings.xml",
+                    "position": {
+                        "startLine": 14,
+                        "startColumn": 4,
+                        "startOffset": 1430,
+                        "endColumn": 54,
+                        "endOffset": 1480
+                    }
+                }
+            },
+            {
+                "to": {
+                    "startLine": 155,
+                    "startColumn": 4,
+                    "startOffset": 6050,
+                    "endColumn": 52,
+                    "endOffset": 6098
+                },
+                "from": {
+                    "file": "D:\\wll\\work\\CeshiTablayout\\CeshiTablayout\\speechDemo\\src\\main\\res\\values\\strings.xml",
+                    "position": {
+                        "startLine": 16,
+                        "startColumn": 4,
+                        "startOffset": 1544,
+                        "endColumn": 52,
+                        "endOffset": 1592
+                    }
+                }
+            },
+            {
+                "to": {
+                    "startLine": 156,
+                    "startColumn": 4,
+                    "startOffset": 6103,
+                    "endColumn": 56,
+                    "endOffset": 6155
+                },
+                "from": {
+                    "file": "D:\\wll\\work\\CeshiTablayout\\CeshiTablayout\\speechDemo\\src\\main\\res\\values\\strings.xml",
+                    "position": {
+                        "startLine": 15,
+                        "startColumn": 4,
+                        "startOffset": 1486,
+                        "endColumn": 56,
+                        "endOffset": 1538
+                    }
+                }
+            },
+            {
+                "to": {
+                    "startLine": 157,
+                    "startColumn": 4,
+                    "startOffset": 6160,
+                    "endColumn": 59,
+                    "endOffset": 6215
+                },
+                "from": {
+                    "file": "D:\\wll\\work\\CeshiTablayout\\CeshiTablayout\\speechDemo\\src\\main\\res\\values\\strings.xml",
+                    "position": {
+                        "startLine": 17,
+                        "startColumn": 4,
+                        "startOffset": 1598,
+                        "endColumn": 59,
+                        "endOffset": 1653
+                    }
+                }
+            },
+            {
+                "to": {
+                    "startLine": 158,
+                    "startColumn": 4,
+                    "startOffset": 6220,
+                    "endColumn": 52,
+                    "endOffset": 6268
+                },
+                "from": {
+                    "file": "D:\\wll\\work\\CeshiTablayout\\CeshiTablayout\\speechDemo\\src\\main\\res\\values\\strings.xml",
+                    "position": {
+                        "startLine": 27,
+                        "startColumn": 4,
+                        "startOffset": 1998,
+                        "endColumn": 52,
+                        "endOffset": 2046
+                    }
+                }
+            },
+            {
+                "to": {
+                    "startLine": 159,
+                    "startColumn": 4,
+                    "startOffset": 6273,
+                    "endColumn": 53,
+                    "endOffset": 6322
+                },
+                "from": {
+                    "file": "D:\\wll\\work\\CeshiTablayout\\CeshiTablayout\\speechDemo\\src\\main\\res\\values\\strings.xml",
+                    "position": {
+                        "startLine": 28,
+                        "startColumn": 4,
+                        "startOffset": 2052,
+                        "endColumn": 53,
+                        "endOffset": 2101
+                    }
+                }
+            },
+            {
+                "to": {
+                    "startLine": 160,
+                    "startColumn": 4,
+                    "startOffset": 6327,
+                    "endColumn": 82,
+                    "endOffset": 6405
+                },
+                "from": {
+                    "file": "D:\\wll\\work\\CeshiTablayout\\CeshiTablayout\\speechDemo\\src\\main\\res\\values\\strings.xml",
+                    "position": {
+                        "startLine": 108,
+                        "startColumn": 4,
+                        "startOffset": 4396,
+                        "endColumn": 82,
+                        "endOffset": 4474
+                    }
+                }
+            },
+            {
+                "to": {
+                    "startLine": 161,
+                    "startColumn": 4,
+                    "startOffset": 6410,
+                    "endLine": 170,
+                    "endColumn": 9,
+                    "endOffset": 6934
+                },
+                "from": {
+                    "file": "D:\\wll\\work\\CeshiTablayout\\CeshiTablayout\\speechDemo\\src\\main\\res\\values\\styles.xml",
+                    "position": {
+                        "startLine": 2,
+                        "startColumn": 6,
+                        "startOffset": 59,
+                        "endLine": 11,
+                        "endColumn": 9,
+                        "endOffset": 592
+                    }
+                }
+            },
+            {
+                "to": {
+                    "startLine": 171,
+                    "startColumn": 4,
+                    "startOffset": 6939,
+                    "endLine": 173,
+                    "endColumn": 12,
+                    "endOffset": 7026
+                },
+                "from": {
+                    "file": "D:\\wll\\work\\CeshiTablayout\\CeshiTablayout\\speechDemo\\src\\main\\res\\values\\styles.xml",
+                    "position": {
+                        "startLine": 13,
+                        "startColumn": 4,
+                        "startOffset": 600,
+                        "endLine": 15,
+                        "endColumn": 12,
+                        "endOffset": 689
+                    }
+                }
+            }
+        ]
+    }
+]

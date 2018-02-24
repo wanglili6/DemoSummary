@@ -1,0 +1,16 @@
+#Sat Feb 24 17:15:08 CST 2018
+renamed.4=classes4.dex
+renamed.3=classes5.dex
+renamed.2=classes2.dex
+renamed.1=classes3.dex
+base.4=D\:\\wll\\work\\CeshiTablayout\\CeshiTablayout\\speechDemo\\build\\intermediates\\transforms\\dex\\debug\\folders\\1000\\2\\Msc_a14a76c19c6cb039a26e94fd009b149a6fb97f61
+renamed.0=classes.dex
+base.3=D\:\\wll\\work\\CeshiTablayout\\CeshiTablayout\\speechDemo\\build\\intermediates\\transforms\\dex\\debug\\folders\\1000\\2\\Sunflower_31d17a1c7f0b42b02fb2119e395bc731629a6bfe
+base.2=D\:\\wll\\work\\CeshiTablayout\\CeshiTablayout\\speechDemo\\build\\intermediates\\transforms\\dex\\debug\\folders\\1000\\10\\internal_impl-23.4.0_940d5da34b3ed296f9059396bfcde9c2ee42b012
+base.1=D\:\\wll\\work\\CeshiTablayout\\CeshiTablayout\\speechDemo\\build\\intermediates\\transforms\\dex\\debug\\folders\\1000\\10\\support-annotations-23.4.0_32aabef763867a5428b54a27af0d302d60a45825
+base.0=D\:\\wll\\work\\CeshiTablayout\\CeshiTablayout\\speechDemo\\build\\intermediates\\transforms\\dex\\debug\\folders\\1000\\10\\classes_290b0a45e8ea018fce62eadf9bacbe9dba3f5a41
+file.4=D\:\\wll\\work\\CeshiTablayout\\CeshiTablayout\\speechDemo\\build\\intermediates\\transforms\\dex\\debug\\folders\\1000\\2\\Msc_a14a76c19c6cb039a26e94fd009b149a6fb97f61\\classes.dex
+file.3=D\:\\wll\\work\\CeshiTablayout\\CeshiTablayout\\speechDemo\\build\\intermediates\\transforms\\dex\\debug\\folders\\1000\\2\\Sunflower_31d17a1c7f0b42b02fb2119e395bc731629a6bfe\\classes.dex
+file.2=D\:\\wll\\work\\CeshiTablayout\\CeshiTablayout\\speechDemo\\build\\intermediates\\transforms\\dex\\debug\\folders\\1000\\10\\internal_impl-23.4.0_940d5da34b3ed296f9059396bfcde9c2ee42b012\\classes.dex
+file.1=D\:\\wll\\work\\CeshiTablayout\\CeshiTablayout\\speechDemo\\build\\intermediates\\transforms\\dex\\debug\\folders\\1000\\10\\support-annotations-23.4.0_32aabef763867a5428b54a27af0d302d60a45825\\classes.dex
+file.0=D\:\\wll\\work\\CeshiTablayout\\CeshiTablayout\\speechDemo\\build\\intermediates\\transforms\\dex\\debug\\folders\\1000\\10\\classes_290b0a45e8ea018fce62eadf9bacbe9dba3f5a41\\classes.dex

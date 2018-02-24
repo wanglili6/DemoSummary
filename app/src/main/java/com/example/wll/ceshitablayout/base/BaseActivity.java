@@ -90,7 +90,6 @@ public abstract class BaseActivity extends AppCompatActivity implements View.OnC
     }
 
 
-
     /**
      * [沉浸状态栏]
      */
@@ -276,7 +275,6 @@ public abstract class BaseActivity extends AppCompatActivity implements View.OnC
     }
 
 
-
     /**
      * 动态添加权限
      */
@@ -285,12 +283,18 @@ public abstract class BaseActivity extends AppCompatActivity implements View.OnC
         if (checkSelfPermission == PackageManager.PERMISSION_DENIED) {
             //没有权限，申请权限
             ActivityCompat.requestPermissions(BaseActivity.this, new String[]{
-                    Manifest.permission.WRITE_EXTERNAL_STORAGE,
+                    Manifest.permission.CALL_PHONE,
                     Manifest.permission.CAMERA,
                     Manifest.permission.VIBRATE,
                     Manifest.permission.ACCESS_COARSE_LOCATION,
                     Manifest.permission.ACCESS_FINE_LOCATION,
-                    Manifest.permission.READ_EXTERNAL_STORAGE}, 100);
+                    Manifest.permission.WRITE_EXTERNAL_STORAGE,
+                    Manifest.permission.LOCATION_HARDWARE,
+                    Manifest.permission.READ_PHONE_STATE,
+                    Manifest.permission.WRITE_SETTINGS,
+                    Manifest.permission.READ_EXTERNAL_STORAGE,
+                    Manifest.permission.RECORD_AUDIO,
+                    Manifest.permission.READ_CONTACTS}, 100);
         } else if (checkSelfPermission == PackageManager.PERMISSION_GRANTED) {
             //已经有了权限 ，不需要申请
 //            initTraceLocation();

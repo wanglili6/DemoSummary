@@ -8,6 +8,7 @@ import rx.Observable;
 
 /**
  * Created by wll on 2017/12/24.
+ * 手机登陆
  */
 
 public interface SmsLoginSevser {
