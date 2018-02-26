@@ -77,7 +77,7 @@ public class PrintMainActivity extends Activity implements OnClickListener {
     Button btnPrint;
 
 
-    private String wordname;//文件名
+    private String wordname="测试";//文件名
 
 
     private WebView webView;
@@ -113,6 +113,7 @@ public class PrintMainActivity extends Activity implements OnClickListener {
         tvTitle.setText("文书模板");
         ivBack.setVisibility(View.VISIBLE);
         btnDachu.setOnClickListener(this);
+        rlBack.setOnClickListener(this);
         btnPrint.setOnClickListener(this);
         demoPath = SDpath.getSDPath() + "/" + "wll/" + modename + "";//必须用doc格式的
         newPath = SDpath.getSDPath() + "/" + "wll/" + printname + ".doc";//必须用doc格式的
@@ -271,7 +272,6 @@ public class PrintMainActivity extends Activity implements OnClickListener {
                 finish();
                 break;
             case R.id.btn_print:
-                //CreatDoc.doWebViewPrint(this,savePath,wordname);
                 PrintDocumentAdapter printAdapter = webView.createPrintDocumentAdapter();
                 PrintManager printManager = (PrintManager) this.getSystemService(Context.PRINT_SERVICE);
                 printManager.print(wordname, printAdapter, null);
