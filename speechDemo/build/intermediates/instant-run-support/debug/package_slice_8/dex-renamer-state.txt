@@ -1,4 +1,4 @@
-#Sat Feb 24 17:15:11 CST 2018
+#Mon Feb 26 10:02:11 CST 2018
 base.0=D\:\\wll\\work\\CeshiTablayout\\CeshiTablayout\\speechDemo\\build\\intermediates\\transforms\\dex\\debug\\folders\\1000\\5\\slice_8
 renamed.0=classes.dex
 file.0=D\:\\wll\\work\\CeshiTablayout\\CeshiTablayout\\speechDemo\\build\\intermediates\\transforms\\dex\\debug\\folders\\1000\\5\\slice_8\\classes.dex

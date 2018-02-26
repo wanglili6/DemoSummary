@@ -2,6 +2,8 @@ package com.example.wll.ceshitablayout;
 
 import android.Manifest;
 import android.app.Activity;
+import android.app.AlertDialog;
+import android.content.DialogInterface;
 import android.content.SharedPreferences;
 import android.content.pm.PackageManager;
 import android.graphics.drawable.AnimationDrawable;
@@ -20,11 +22,8 @@ import android.view.View;
 import android.view.ViewGroup;
 import android.widget.Button;
 import android.widget.EditText;
-import android.widget.ImageButton;
 import android.widget.ImageView;
 import android.widget.LinearLayout;
-import android.widget.RadioButton;
-import android.widget.RadioGroup;
 import android.widget.RelativeLayout;
 import android.widget.TextView;
 import android.widget.Toast;
@@ -32,7 +31,7 @@ import android.widget.Toast;
 import com.apkfuns.logutils.LogUtils;
 import com.example.wll.ceshitablayout.utils.RecordUtil;
 import com.example.wll.ceshitablayout.utils.speech.setting.IatSettings;
-import com.example.wll.ceshitablayout.utils.speech.util.FucUtil;
+import com.example.wll.ceshitablayout.utils.speech.setting.TtsSettings;
 import com.example.wll.ceshitablayout.utils.speech.util.JsonParser;
 import com.iflytek.cloud.ErrorCode;
 import com.iflytek.cloud.InitListener;
@@ -41,6 +40,8 @@ import com.iflytek.cloud.RecognizerResult;
 import com.iflytek.cloud.SpeechConstant;
 import com.iflytek.cloud.SpeechError;
 import com.iflytek.cloud.SpeechRecognizer;
+import com.iflytek.cloud.SpeechSynthesizer;
+import com.iflytek.cloud.SynthesizerListener;
 import com.iflytek.cloud.ui.RecognizerDialog;
 import com.iflytek.cloud.ui.RecognizerDialogListener;
 import com.iflytek.sunflower.FlowerCollector;
@@ -49,6 +50,7 @@ import org.json.JSONException;
 import org.json.JSONObject;
 
 import java.io.File;
+import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.LinkedHashMap;
 
@@ -58,14 +60,16 @@ import butterknife.OnClick;
 
 public class AsrDemoActivity extends AppCompatActivity {
 
-    @BindView(R.id.image_iat_set)
-    ImageButton imageIatSet;
+    @BindView(R.id.imageView1)
+    ImageView imageView1;
+    @BindView(R.id.iv_volume)
+    ImageView ivVolume;
+    @BindView(R.id.tv_tack)
+    TextView tvTack;
+    @BindView(R.id.ll_record)
+    LinearLayout llRecord;
     @BindView(R.id.iat_text)
     EditText iatText;
-    @BindView(R.id.iatRadioCloud)
-    RadioButton iatRadioCloud;
-    @BindView(R.id.radioGroup)
-    RadioGroup radioGroup;
     @BindView(R.id.iv_voice_animal)
     ImageView ivVoiceAnimal;
     @BindView(R.id.iv_voice)
@@ -86,20 +90,20 @@ public class AsrDemoActivity extends AppCompatActivity {
     Button iatStop;
     @BindView(R.id.iat_cancel)
     Button iatCancel;
-    @BindView(R.id.iat_recognize_stream)
-    Button iatRecognizeStream;
-    @BindView(R.id.iat_upload_contacts)
-    Button iatUploadContacts;
-    @BindView(R.id.iat_upload_userwords)
-    Button iatUploadUserwords;
-    @BindView(R.id.imageView1)
-    ImageView imageView1;
-    @BindView(R.id.iv_volume)
-    ImageView ivVolume;
-    @BindView(R.id.tv_tack)
-    TextView tvTack;
-    @BindView(R.id.ll_record)
-    LinearLayout llRecord;
+    @BindView(R.id.iv_back)
+    ImageView ivBack;
+    @BindView(R.id.tv_back)
+    TextView tvBack;
+    @BindView(R.id.rl_back)
+    RelativeLayout rlBack;
+    @BindView(R.id.tv_title)
+    TextView tvTitle;
+    @BindView(R.id.tv_select)
+    TextView tvSelect;
+    @BindView(R.id.rl_select)
+    RelativeLayout rlSelect;
+    @BindView(R.id.rl_title_bg)
+    RelativeLayout rlTitleBg;
     private RecordUtil mRecorduUtil;
     Handler mHandler = new Handler();
     private int time;
@@ -116,11 +120,30 @@ public class AsrDemoActivity extends AppCompatActivity {
     private static String TAG = AsrDemoActivity.class.getSimpleName();
     // 语音听写UI
     private RecognizerDialog mIatDialog;
+    private AudioDecode audioDecode;
+    // 语音合成对象
+    private SpeechSynthesizer mTts;
+
+    // 默认发音人
+    private String voicer = "xiaoyan";
+
+    private String[] mCloudVoicersEntries;
+    private String[] mCloudVoicersValue;
+
+    // 缓冲进度
+    private int mPercentForBuffering = 0;
+    // 播放进度
+    private int mPercentForPlaying = 0;
+    private Toast mToast;
+
     @Override
     protected void onCreate(@Nullable Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.isrdemo);
         ButterKnife.bind(this);
+        tvBack.setVisibility(View.VISIBLE);
+        ivBack.setVisibility(View.VISIBLE);
+        tvTitle.setText("语音文字");
         mRecorduUtil = new RecordUtil();
         // 初始化识别无UI识别对象
         // 使用SpeechRecognizer对象，可根据回调消息自定义界面；
@@ -128,33 +151,19 @@ public class AsrDemoActivity extends AppCompatActivity {
         mIatDialog = new RecognizerDialog(AsrDemoActivity.this, mInitListener);
         // 初始化听写Dialog，如果只使用有UI听写功能，无需创建SpeechRecognizer
         // 使用UI听写功能，请根据sdk文件目录下的notice.txt,放置布局文件和图片资源
-
-
+        mEngineType = SpeechConstant.TYPE_CLOUD;
         mSharedPreferences = getSharedPreferences(IatSettings.PREFER_NAME,
                 Activity.MODE_PRIVATE);
+// 初始化合成对象
+        mTts = SpeechSynthesizer.createSynthesizer(AsrDemoActivity.this, mTtsInitListener);
 
+        // 云端发音人名称列表
+        mCloudVoicersEntries = getResources().getStringArray(R.array.voicer_cloud_entries);
+        mCloudVoicersValue = getResources().getStringArray(R.array.voicer_cloud_values);
+
+        mToast = Toast.makeText(this, "", Toast.LENGTH_SHORT);
         initEvent();
-        radioGroup.setOnCheckedChangeListener(new RadioGroup.OnCheckedChangeListener() {
 
-            @Override
-            public void onCheckedChanged(RadioGroup group, int checkedId) {
-                if (null == mIat) {
-                    // 创建单例失败，与 21001 错误为同样原因，参考 http://bbs.xfyun.cn/forum.php?mod=viewthread&tid=9688
-                    LogUtils.d("创建对象失败，请确认 libmsc.so 放置正确，且有调用 createUtility 进行初始化");
-                    return;
-                }
-
-                switch (checkedId) {
-                    case R.id.iatRadioCloud:
-                        mEngineType = SpeechConstant.TYPE_CLOUD;
-                        findViewById(R.id.iat_upload_contacts).setEnabled(true);
-                        findViewById(R.id.iat_upload_userwords).setEnabled(true);
-                        break;
-                    default:
-                        break;
-                }
-            }
-        });
     }
 
     /**
@@ -344,6 +353,23 @@ public class AsrDemoActivity extends AppCompatActivity {
         if (files.length != 0) {
             path = files[files.length - 1].getAbsolutePath();
             File flacFile = new File(path);
+            iatText.setText(null);// 清空显示内容
+            mIatResults.clear();
+            // 设置参数
+            setParam();
+            // 设置音频来源为外部文件
+//                mIat.setParameter(SpeechConstant.AUDIO_SOURCE, "-1");
+            // 也可以像以下这样直接设置音频文件路径识别（要求设置文件在sdcard上的全路径）：
+            mIat.setParameter(SpeechConstant.AUDIO_SOURCE, "-1");
+            mIat.setParameter(SpeechConstant.SAMPLE_RATE, "8000");//设置正确的采样率
+            mIat.setParameter(SpeechConstant.ASR_SOURCE_PATH, path);
+            ret = mIat.startListening(mRecognizerListener);
+            if (ret != ErrorCode.SUCCESS) {
+                LogUtils.d("识别失败,错误码：" + ret);
+            } else {
+                LogUtils.d("开始音频流识别");
+                audioDecodeFun(path);
+            }
         }
     }
 
@@ -385,7 +411,7 @@ public class AsrDemoActivity extends AppCompatActivity {
 
     }
 
-    @OnClick({R.id.tv_delete, R.id.iat_recognize, R.id.iat_cancel, R.id.iat_recognize_stream, R.id.iat_upload_contacts, R.id.iat_upload_userwords})
+    @OnClick({R.id.tv_delete, R.id.iat_recognize, R.id.iat_stop, R.id.iat_cancel, R.id.tts_play, R.id.tts_pause, R.id.tts_resume, R.id.tts_btn_person_select})
     public void onViewClicked(View view) {
         switch (view.getId()) {
             case R.id.tv_delete:
@@ -428,51 +454,65 @@ public class AsrDemoActivity extends AppCompatActivity {
 
                 break;
             case R.id.iat_cancel:
+                mIat.cancel();
                 break;
-            case R.id.iat_recognize_stream:
-                iatText.setText(null);// 清空显示内容
-                mIatResults.clear();
-                // 设置参数
-                setParam();
-                // 设置音频来源为外部文件
+            case R.id.iat_stop:
+                mIat.stopListening();
+                break;
+//            case R.id.iat_recognize_stream:
+//                iatText.setText(null);// 清空显示内容
+//                mIatResults.clear();
+//                // 设置参数
+//                setParam();
+//                // 设置音频来源为外部文件
+////                mIat.setParameter(SpeechConstant.AUDIO_SOURCE, "-1");
+//                // 也可以像以下这样直接设置音频文件路径识别（要求设置文件在sdcard上的全路径）：
 //                mIat.setParameter(SpeechConstant.AUDIO_SOURCE, "-1");
-                // 也可以像以下这样直接设置音频文件路径识别（要求设置文件在sdcard上的全路径）：
-                mIat.setParameter(SpeechConstant.AUDIO_SOURCE, "-2");
-                mIat.setParameter(SpeechConstant.ASR_SOURCE_PATH, path);
-                ret = mIat.startListening(mRecognizerListener);
-                if (ret != ErrorCode.SUCCESS) {
-                    LogUtils.d("识别失败,错误码：" + ret);
-                } else {
-//                    byte[] audioData = new byte[0];
-//                    try {
-//                        audioData = FucUtil.readStream(path);
-//                    } catch (Exception e) {
-//                        e.printStackTrace();
-//                    }
-////                    byte[] audioData = FucUtil.readAudioFile(AsrDemoActivity.this, "iattest.wav");
-//                    if (null != audioData) {
-//                        LogUtils.d("开始音频流识别");
-//                        // 一次（也可以分多次）写入音频文件数据，数据格式必须是采样率为8KHz或16KHz（本地识别只支持16K采样率，云端都支持），
-//                        // 位长16bit，单声道的wav或者pcm
-//                        // 写入8KHz采样的音频时，必须先调用setParameter(SpeechConstant.SAMPLE_RATE, "8000")设置正确的采样率
-//                        // 注：当音频过长，静音部分时长超过VAD_EOS将导致静音后面部分不能识别。
-//                        // 音频切分方法：FucUtil.splitBuffer(byte[] buffer,int length,int spsize);
-//                        mIat.writeAudio(audioData, 0, audioData.length);
-//                        mIat.stopListening();
-//                    } else {
-//                        mIat.cancel();
-//                        LogUtils.d("读取音频流失败");
-//                    }
+//                mIat.setParameter(SpeechConstant.SAMPLE_RATE, "8000");//设置正确的采样率
+//                mIat.setParameter(SpeechConstant.ASR_SOURCE_PATH, "/storage/emulated/0/Horusch/audio/audio_1.wav");
+//                ret = mIat.startListening(mRecognizerListener);
+//                if (ret != ErrorCode.SUCCESS) {
+//                    LogUtils.d("识别失败,错误码：" + ret);
+//                } else {
+//                    LogUtils.d("开始音频流识别");
+//                    audioDecodeFun("/storage/emulated/0/Horusch/audio/audio_1.wav");
+//                }
+//                break;
+            case R.id.tts_play:
+                iatText.setText(R.string.text_tts_source);
+                // 移动数据分析，收集开始合成事件
+                FlowerCollector.onEvent(AsrDemoActivity.this, "tts_play");
 
-                    LogUtils.d("开始音频流识别");
+                String text = iatText.getText().toString();
+                // 设置参数
+                setHechangParam();
+                int code = mTts.startSpeaking(text, mTtsListener);
+//			/** 
+//			 * 只保存音频不进行播放接口,调用此接口请注释startSpeaking接口
+//			 * text:要合成的文本，uri:需要保存的音频全路径，listener:回调接口
+//			*/
+//			String path = Environment.getExternalStorageDirectory()+"/tts.ico";
+//			int code = mTts.synthesizeToUri(text, path, mTtsListener);
+
+                if (code != ErrorCode.SUCCESS) {
+                    showTip("语音合成失败,错误码: " + code);
                 }
                 break;
-            case R.id.iat_upload_contacts:
+            // 暂停播放
+            case R.id.tts_pause:
+                mTts.pauseSpeaking();
                 break;
-            case R.id.iat_upload_userwords:
+            // 继续播放
+            case R.id.tts_resume:
+                mTts.resumeSpeaking();
+                break;
+            // 选择发音人
+            case R.id.tts_btn_person_select:
+                showPresonSelectDialog();
                 break;
         }
-   }
+
+    }
 
     private boolean mTranslateEnable = false;
     private SharedPreferences mSharedPreferences;
@@ -481,9 +521,9 @@ public class AsrDemoActivity extends AppCompatActivity {
      */
     private RecognizerDialogListener mRecognizerDialogListener = new RecognizerDialogListener() {
         public void onResult(RecognizerResult results, boolean isLast) {
-            if( mTranslateEnable ){
-                printTransResult( results );
-            }else{
+            if (mTranslateEnable) {
+                printTransResult(results);
+            } else {
                 printResult(results);
             }
 
@@ -493,14 +533,15 @@ public class AsrDemoActivity extends AppCompatActivity {
          * 识别回调错误.
          */
         public void onError(SpeechError error) {
-            if(mTranslateEnable && error.getErrorCode() == 14002) {
-                LogUtils.d( error.getPlainDescription(true)+"\n请确认是否已开通翻译功能" );
+            if (mTranslateEnable && error.getErrorCode() == 14002) {
+                LogUtils.d(error.getPlainDescription(true) + "\n请确认是否已开通翻译功能");
             } else {
                 LogUtils.d(error.getPlainDescription(true));
             }
         }
 
     };
+
     /**
      * 删除本地文件
      */
@@ -513,7 +554,7 @@ public class AsrDemoActivity extends AppCompatActivity {
     }
 
     /**
-     * 参数设置
+     * 听写参数设置
      *
      * @return
      */
@@ -618,7 +659,7 @@ public class AsrDemoActivity extends AppCompatActivity {
         @Override
         public void onVolumeChanged(int volume, byte[] data) {
             LogUtils.d("当前正在说话，音量大小：" + volume);
-            LogUtils.d(TAG, "返回音频数据：" + data.length);
+            LogUtils.d(data.length);
         }
 
         @Override
@@ -665,5 +706,208 @@ public class AsrDemoActivity extends AppCompatActivity {
 
         iatText.setText(resultBuffer.toString());
         iatText.setSelection(iatText.length());
+    }
+
+    /**
+     * 工具类
+     *
+     * @param audioPath
+     */
+    private void audioDecodeFun(String audioPath) {
+        audioDecode = AudioDecode.newInstance();
+        audioDecode.setFilePath(audioPath);
+        audioDecode.prepare();
+        audioDecode.setOnCompleteListener(new AudioDecode.OnCompleteListener() {
+            @Override
+            public void completed(final ArrayList<byte[]> pcmData) {
+                if (pcmData != null) {
+                    //写入音频文件数据，数据格式必须是采样率为8KHz或16KHz（本地识别只支持16K采样率，云端都支持），位长16bit，单声道的wav或者pcm
+                    //必须要先保存到本地，才能被讯飞识别
+                    //为防止数据较长，多次写入,把一次写入的音频，限制到 64K 以下，然后循环的调用wirteAudio，直到把音频写完为止
+                    for (byte[] data : pcmData) {
+                        mIat.writeAudio(data, 0, data.length);
+                    }
+                    Log.d("-----------stop", System.currentTimeMillis() + "");
+                    mIat.stopListening();
+                } else {
+                    mIat.cancel();
+                    Log.d(TAG, "--->读取音频流失败");
+                }
+                audioDecode.release();
+            }
+        });
+        audioDecode.startAsync();
+    }
+
+    /**
+     * 初始化监听。
+     */
+    private InitListener mTtsInitListener = new InitListener() {
+        @Override
+        public void onInit(int code) {
+            Log.d(TAG, "InitListener init() code = " + code);
+            if (code != ErrorCode.SUCCESS) {
+                LogUtils.d("初始化失败,错误码：" + code);
+            } else {
+                // 初始化成功，之后可以调用startSpeaking方法
+                // 注：有的开发者在onCreate方法中创建完合成对象之后马上就调用startSpeaking进行合成，
+                // 正确的做法是将onCreate中的startSpeaking调用移至这里
+            }
+        }
+    };
+
+    /**
+     * 合成回调监听。
+     */
+    private SynthesizerListener mTtsListener = new SynthesizerListener() {
+
+        @Override
+        public void onSpeakBegin() {
+            showTip("开始播放");
+        }
+
+        @Override
+        public void onSpeakPaused() {
+            showTip("暂停播放");
+        }
+
+        @Override
+        public void onSpeakResumed() {
+            showTip("继续播放");
+        }
+
+        @Override
+        public void onBufferProgress(int percent, int beginPos, int endPos,
+                                     String info) {
+            // 合成进度
+            mPercentForBuffering = percent;
+            showTip(String.format(getString(R.string.tts_toast_format),
+                    mPercentForBuffering, mPercentForPlaying));
+        }
+
+        @Override
+        public void onSpeakProgress(int percent, int beginPos, int endPos) {
+            // 播放进度
+            mPercentForPlaying = percent;
+            showTip(String.format(getString(R.string.tts_toast_format),
+                    mPercentForBuffering, mPercentForPlaying));
+        }
+
+        @Override
+        public void onCompleted(SpeechError error) {
+            if (error == null) {
+                showTip("播放完成");
+            } else if (error != null) {
+                showTip(error.getPlainDescription(true));
+            }
+        }
+
+        @Override
+        public void onEvent(int eventType, int arg1, int arg2, Bundle obj) {
+            // 以下代码用于获取与云端的会话id，当业务出错时将会话id提供给技术支持人员，可用于查询会话日志，定位出错原因
+            // 若使用本地能力，会话id为null
+            //	if (SpeechEvent.EVENT_SESSION_ID == eventType) {
+            //		String sid = obj.getString(SpeechEvent.KEY_EVENT_SESSION_ID);
+            //		Log.d(TAG, "session id =" + sid);
+            //	}
+        }
+    };
+
+    private void showTip(final String str) {
+        mToast.setText(str);
+        mToast.show();
+    }
+
+    private int selectedNum = 0;
+
+    /**
+     * 发音人选择。
+     */
+    private void showPresonSelectDialog() {
+
+        new AlertDialog.Builder(this).setTitle("在线合成发音人选项")
+                .setSingleChoiceItems(mCloudVoicersEntries, // 单选框有几项,各是什么名字
+                        selectedNum, // 默认的选项
+                        new DialogInterface.OnClickListener() { // 点击单选框后的处理
+                            public void onClick(DialogInterface dialog,
+                                                int which) { // 点击了哪一项
+                                voicer = mCloudVoicersValue[which];
+                                if ("catherine".equals(voicer) || "henry".equals(voicer) || "vimary".equals(voicer)) {
+                                    iatText.setText(R.string.text_tts_source_en);
+                                } else {
+                                    iatText.setText(R.string.text_tts_source);
+                                }
+                                selectedNum = which;
+                                dialog.dismiss();
+                            }
+                        }).show();
+
+
+    }
+
+    /**
+     * 参数设置--合成
+     *
+     * @return
+     */
+    private void setHechangParam() {
+        // 清空参数
+        mTts.setParameter(SpeechConstant.PARAMS, null);
+        // 根据合成引擎设置相应参数
+        if (mEngineType.equals(SpeechConstant.TYPE_CLOUD)) {
+            mTts.setParameter(SpeechConstant.ENGINE_TYPE, SpeechConstant.TYPE_CLOUD);
+            // 设置在线合成发音人
+            mTts.setParameter(SpeechConstant.VOICE_NAME, voicer);
+            //设置合成语速
+            mTts.setParameter(SpeechConstant.SPEED, mSharedPreferences.getString("speed_preference", "50"));
+            //设置合成音调
+            mTts.setParameter(SpeechConstant.PITCH, mSharedPreferences.getString("pitch_preference", "50"));
+            //设置合成音量
+            mTts.setParameter(SpeechConstant.VOLUME, mSharedPreferences.getString("volume_preference", "50"));
+        } else {
+            mTts.setParameter(SpeechConstant.ENGINE_TYPE, SpeechConstant.TYPE_LOCAL);
+            // 设置本地合成发音人 voicer为空，默认通过语记界面指定发音人。
+            mTts.setParameter(SpeechConstant.VOICE_NAME, "");
+            /**
+             * TODO 本地合成不设置语速、音调、音量，默认使用语记设置
+             * 开发者如需自定义参数，请参考在线合成参数设置
+             */
+        }
+        //设置播放器音频流类型
+        mTts.setParameter(SpeechConstant.STREAM_TYPE, mSharedPreferences.getString("stream_preference", "3"));
+        // 设置播放合成音频打断音乐播放，默认为true
+        mTts.setParameter(SpeechConstant.KEY_REQUEST_FOCUS, "true");
+
+        // 设置音频保存路径，保存音频格式支持pcm、wav，设置路径为sd卡请注意WRITE_EXTERNAL_STORAGE权限
+        // 注：AUDIO_FORMAT参数语记需要更新版本才能生效
+        mTts.setParameter(SpeechConstant.AUDIO_FORMAT, "wav");
+        mTts.setParameter(SpeechConstant.TTS_AUDIO_PATH, Environment.getExternalStorageDirectory() + "/msc/tts.wav");
+    }
+
+    @Override
+    protected void onDestroy() {
+        super.onDestroy();
+
+        if (null != mTts) {
+            mTts.stopSpeaking();
+            // 退出时释放连接
+            mTts.destroy();
+        }
+    }
+
+    @Override
+    protected void onResume() {
+        //移动数据统计分析
+        FlowerCollector.onResume(AsrDemoActivity.this);
+        FlowerCollector.onPageStart(TAG);
+        super.onResume();
+    }
+
+    @Override
+    protected void onPause() {
+        //移动数据统计分析
+        FlowerCollector.onPageEnd(TAG);
+        FlowerCollector.onPause(AsrDemoActivity.this);
+        super.onPause();
     }
 }

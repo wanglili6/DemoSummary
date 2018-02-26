@@ -20,6 +20,7 @@ public class RecordUtil {
 
     public boolean isRecording() {
         return recording;
+
     }
 
     public void setRecording(boolean recording) {

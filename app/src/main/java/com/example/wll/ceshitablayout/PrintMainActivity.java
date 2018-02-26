@@ -277,7 +277,7 @@ public class PrintMainActivity extends Activity implements OnClickListener {
                 printManager.print(wordname, printAdapter, null);
                 break;
             case R.id.btn_dachu://导出
-                downloadword("");
+//                downloadword("");
 //                if (wordname.equals("jcbl")) {
 //                    if (countpic < 4) {
 //                        Toast.makeText(PrintMainActivity.this, "缺少签名,请补充完整!", Toast.LENGTH_LONG).show();
@@ -291,7 +291,7 @@ public class PrintMainActivity extends Activity implements OnClickListener {
 //                        saveImage(webView);
 //                    }
 //                } else {
-//                    saveImage(webView);
+                    saveImage(webView);
 //                }
 
 

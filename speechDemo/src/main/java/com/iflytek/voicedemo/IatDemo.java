@@ -166,19 +166,19 @@ public class IatDemo extends Activity implements OnClickListener {
 			// 设置音频来源为外部文件
 //			mIat.setParameter(SpeechConstant.AUDIO_SOURCE, "-1");
 			// 也可以像以下这样直接设置音频文件路径识别（要求设置文件在sdcard上的全路径）：
-			 mIat.setParameter(SpeechConstant.AUDIO_SOURCE, "-2");
-			 mIat.setParameter(SpeechConstant.ASR_SOURCE_PATH, "/storage/emulated/0/Horusch/audio/audio_3.wav");
+			 mIat.setParameter(SpeechConstant.AUDIO_SOURCE, "-1");
+			 mIat.setParameter(SpeechConstant.ASR_SOURCE_PATH, "/storage/emulated/0/Horusch/audio/audio_2.wav");
 			ret = mIat.startListening(mRecognizerListener);
 			if (ret != ErrorCode.SUCCESS) {
 				showTip("识别失败,错误码：" + ret);
 			} else {
-				byte[] audioData = FucUtil.readAudioFile(IatDemo.this, "iattest.wav");
-//				byte[] audioData = new byte[0];
-//				try {
-//					audioData = FucUtil.readStream("/storage/emulated/0/Horusch/audio/audio_3.wav");
-//				} catch (Exception e) {
-//					e.printStackTrace();
-//				}
+//				byte[] audioData = FucUtil.readAudioFile(IatDemo.this, "iattest.wav");
+				byte[] audioData = new byte[0];
+				try {
+					audioData = FucUtil.readStream("/storage/emulated/0/Horusch/audio/audio_2.wav");
+				} catch (Exception e) {
+					e.printStackTrace();
+				}
 				if (null != audioData) {
 					showTip(getString(R.string.text_begin_recognizer));
 					// 一次（也可以分多次）写入音频文件数据，数据格式必须是采样率为8KHz或16KHz（本地识别只支持16K采样率，云端都支持），
