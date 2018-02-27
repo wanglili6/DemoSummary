@@ -129,7 +129,6 @@
         <activity android:name=".tabLayout.CommonTabActivity" />
         <activity android:name=".tabLayout.SegmentTabActivity" />
         <activity android:name=".BannerActivity" />
-        <activity android:name=".NewMainActivity" />
         <activity android:name=".AsrDemoActivity"></activity>
     </application>
 

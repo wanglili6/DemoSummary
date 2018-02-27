@@ -1,81 +1,300 @@
 <?xml version="1.0" encoding="utf-8"?>
 <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-
+    android:background="#e7f5ec"
     android:orientation="vertical">
 
-    <Button
-        android:id="@+id/btn_ceshi"
+    <ScrollView
         android:layout_width="match_parent"
-        android:layout_height="50dp"
-        android:layout_margin="10dp"
-        android:background="@drawable/ripple_bg"
-        android:text="扫描二维码"
-        android:textColor="#fff" />
+        android:layout_height="match_parent">
 
-    <Button
-        android:id="@+id/btn_dayin"
-        android:layout_width="match_parent"
-        android:layout_height="50dp"
-        android:layout_margin="10dp"
-        android:background="@drawable/ripple_bg"
-        android:text="打印"
-        android:textColor="#fff" />
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:orientation="vertical">
 
-    <Button
-        android:id="@+id/btn_map"
-        android:layout_width="match_parent"
-        android:layout_height="50dp"
-        android:layout_margin="10dp"
-        android:background="@drawable/ripple_bg"
-        android:text="地图"
-        android:textColor="#fff" />
+            <com.youth.banner.Banner
+                android:id="@+id/banner"
+                android:layout_width="match_parent"
+                android:layout_height="180dp"
+                app:indicator_drawable_selected="@color/colorPrimaryDark"
+                app:indicator_drawable_unselected="@color/white" />
 
-    <Button
-        android:id="@+id/btn_map_guiji"
-        android:layout_width="match_parent"
-        android:layout_height="50dp"
-        android:layout_margin="10dp"
-        android:background="@drawable/ripple_bg"
-        android:text="轨迹查询"
-        android:textColor="#fff" />
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="10dp"
+                android:background="#ffffff"
+                android:orientation="vertical"
+                android:paddingBottom="10dp">
 
-    <Button
-        android:id="@+id/btn_commontabactivity"
-        android:layout_width="match_parent"
-        android:layout_height="50dp"
-        android:layout_margin="10dp"
-        android:background="@drawable/ripple_bg"
-        android:text="CommonTabActivity"
-        android:textColor="#fff" />
+                <TextView
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_marginBottom="5dp"
+                    android:layout_marginLeft="10dp"
+                    android:layout_marginTop="5dp"
+                    android:padding="5dp"
+                    android:text="常用工具"
+                    android:textColor="#000000"
+                    android:textSize="18sp"
+                    android:textStyle="bold" />
 
-    <Button
-        android:id="@+id/btn_segmenttabactivity"
-        android:layout_width="match_parent"
-        android:layout_height="50dp"
-        android:layout_margin="10dp"
-        android:background="@drawable/ripple_bg"
-        android:text="segmentTabActivity"
-        android:textColor="#fff" />
+                <TableLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="match_parent"
+                    android:layout_marginLeft="15dp"
+                    android:layout_marginRight="15dp"
+                    android:orientation="horizontal"
+                    android:stretchColumns="*">
 
-    <Button
-        android:id="@+id/btn_slidingtabactivity"
-        android:layout_width="match_parent"
-        android:layout_height="50dp"
-        android:layout_margin="10dp"
-        android:background="@drawable/ripple_bg"
-        android:text="btn_slidingtabactivity"
-        android:textColor="#fff" />
+                    <TableRow
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:gravity="center">
 
-    <Button
-        android:id="@+id/btn_bnner"
-        android:layout_width="match_parent"
-        android:layout_height="50dp"
-        android:layout_margin="10dp"
-        android:background="@drawable/ripple_bg"
-        android:text="轮播图"
-        android:textColor="#fff" />
+                        <RelativeLayout
+                            android:layout_width="1dp"
+                            android:layout_height="wrap_content"
+                            android:gravity="center">
+
+                            <TextView
+                                android:id="@+id/search_saomiao"
+                                android:layout_width="wrap_content"
+                                android:layout_height="wrap_content"
+                                android:layout_centerInParent="true"
+                                android:layout_marginTop="10dp"
+                                android:background="@null"
+                                android:clickable="true"
+                                android:drawablePadding="5dp"
+                                android:drawableTop="@mipmap/saomao"
+                                android:gravity="center"
+                                android:text="扫描查询"
+                                android:textColor="#333333"
+                                android:textSize="14sp" />
+
+                            <LinearLayout
+                                android:layout_width="wrap_content"
+                                android:layout_height="wrap_content"
+                                android:layout_toEndOf="@+id/search_saomiao"
+                                android:orientation="vertical">
+
+                                <TextView
+                                    android:id="@+id/tv_search_saomiao"
+                                    android:layout_width="18dp"
+                                    android:layout_height="18dp"
+                                    android:background="@mipmap/red_bg"
+                                    android:gravity="center"
+                                    android:text="1"
+                                    android:textColor="#fff"
+                                    android:textSize="10sp"
+                                    android:visibility="visible" />
+                            </LinearLayout>
+
+
+                        </RelativeLayout>
+
+                        <RelativeLayout
+                            android:layout_width="1dp"
+                            android:layout_height="wrap_content"
+                            android:gravity="center">
+
+                            <TextView
+                                android:id="@+id/tool_print"
+                                android:layout_width="wrap_content"
+                                android:layout_height="wrap_content"
+                                android:layout_centerInParent="true"
+                                android:layout_marginTop="10dp"
+                                android:background="@null"
+                                android:clickable="true"
+                                android:drawablePadding="5dp"
+                                android:drawableTop="@mipmap/tool_print"
+                                android:gravity="center"
+                                android:text="打印文档"
+                                android:textColor="#333333"
+                                android:textSize="14sp" />
+
+                            <LinearLayout
+                                android:layout_width="wrap_content"
+                                android:layout_height="wrap_content"
+                                android:layout_toEndOf="@+id/tool_print"
+                                android:orientation="vertical">
+
+                                <TextView
+                                    android:id="@+id/tv_tool_print"
+                                    android:layout_width="18dp"
+                                    android:layout_height="18dp"
+                                    android:background="@mipmap/red_bg"
+                                    android:gravity="center"
+                                    android:text="1"
+                                    android:textColor="#fff"
+                                    android:textSize="10sp"
+                                    android:visibility="gone" />
+                            </LinearLayout>
+
+
+                        </RelativeLayout>
+
+                        <RelativeLayout
+                            android:layout_width="1dp"
+                            android:layout_height="wrap_content"
+                            android:gravity="center">
+
+                            <TextView
+                                android:id="@+id/tool_updata"
+                                android:layout_width="wrap_content"
+                                android:layout_height="wrap_content"
+                                android:layout_centerInParent="true"
+                                android:layout_marginTop="10dp"
+                                android:background="@null"
+                                android:clickable="true"
+                                android:drawablePadding="5dp"
+                                android:drawableTop="@mipmap/updata"
+                                android:gravity="center"
+                                android:text="上传附件"
+                                android:textColor="#333333"
+                                android:textSize="14sp" />
+
+                            <LinearLayout
+                                android:layout_width="wrap_content"
+                                android:layout_height="wrap_content"
+                                android:layout_toEndOf="@+id/tool_updata"
+                                android:orientation="vertical">
+
+                                <TextView
+                                    android:id="@+id/tv_tool_updata"
+                                    android:layout_width="18dp"
+                                    android:layout_height="18dp"
+                                    android:background="@mipmap/red_bg"
+                                    android:gravity="center"
+                                    android:text="1"
+                                    android:textColor="#fff"
+                                    android:textSize="10sp"
+                                    android:visibility="gone" />
+                            </LinearLayout>
+
+
+                        </RelativeLayout>
+
+                        <RelativeLayout
+                            android:layout_width="1dp"
+                            android:layout_height="wrap_content"
+                            android:gravity="center">
+
+                            <TextView
+                                android:id="@+id/tool_yuyin"
+                                android:layout_width="wrap_content"
+                                android:layout_height="wrap_content"
+                                android:layout_centerInParent="true"
+                                android:layout_marginTop="10dp"
+                                android:background="@null"
+                                android:clickable="true"
+                                android:drawablePadding="5dp"
+                                android:drawableTop="@mipmap/tool_yuyin"
+                                android:gravity="center"
+                                android:text="语音转换"
+                                android:textColor="#333333"
+                                android:textSize="14sp" />
+
+                            <LinearLayout
+                                android:layout_width="wrap_content"
+                                android:layout_height="wrap_content"
+                                android:layout_toEndOf="@+id/tool_yuyin"
+                                android:orientation="vertical">
+
+                                <TextView
+                                    android:id="@+id/tv_tool_yuyin"
+                                    android:layout_width="18dp"
+                                    android:layout_height="18dp"
+                                    android:background="@mipmap/red_bg"
+                                    android:gravity="center"
+                                    android:text="1"
+                                    android:textColor="#fff"
+                                    android:textSize="10sp"
+                                    android:visibility="gone" />
+                            </LinearLayout>
+
+
+                        </RelativeLayout>
+                    </TableRow>
+                </TableLayout>
+            </LinearLayout>
+
+            <Button
+                android:id="@+id/btn_ceshi"
+                android:layout_width="match_parent"
+                android:layout_height="50dp"
+                android:layout_margin="10dp"
+                android:background="@drawable/ripple_bg"
+                android:text="扫描二维码"
+                android:textColor="#fff" />
+
+            <Button
+                android:id="@+id/btn_dayin"
+                android:layout_width="match_parent"
+                android:layout_height="50dp"
+                android:layout_margin="10dp"
+                android:background="@drawable/ripple_bg"
+                android:text="打印"
+                android:textColor="#fff" />
+
+            <Button
+                android:id="@+id/btn_map"
+                android:layout_width="match_parent"
+                android:layout_height="50dp"
+                android:layout_margin="10dp"
+                android:background="@drawable/ripple_bg"
+                android:text="地图"
+                android:textColor="#fff" />
+
+            <Button
+                android:id="@+id/btn_map_guiji"
+                android:layout_width="match_parent"
+                android:layout_height="50dp"
+                android:layout_margin="10dp"
+                android:background="@drawable/ripple_bg"
+                android:text="轨迹查询"
+                android:textColor="#fff" />
+
+            <Button
+                android:id="@+id/btn_commontabactivity"
+                android:layout_width="match_parent"
+                android:layout_height="50dp"
+                android:layout_margin="10dp"
+                android:background="@drawable/ripple_bg"
+                android:text="CommonTabActivity"
+                android:textColor="#fff" />
+
+            <Button
+                android:id="@+id/btn_segmenttabactivity"
+                android:layout_width="match_parent"
+                android:layout_height="50dp"
+                android:layout_margin="10dp"
+                android:background="@drawable/ripple_bg"
+                android:text="segmentTabActivity"
+                android:textColor="#fff" />
+
+            <Button
+                android:id="@+id/btn_slidingtabactivity"
+                android:layout_width="match_parent"
+                android:layout_height="50dp"
+                android:layout_margin="10dp"
+                android:background="@drawable/ripple_bg"
+                android:text="btn_slidingtabactivity"
+                android:textColor="#fff" />
+
+            <Button
+                android:id="@+id/btn_bnner"
+                android:layout_width="match_parent"
+                android:layout_height="50dp"
+                android:layout_margin="10dp"
+                android:background="@drawable/ripple_bg"
+                android:text="轮播图"
+                android:textColor="#fff" />
+        </LinearLayout>
+    </ScrollView>
 
 
 </LinearLayout>
