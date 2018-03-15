@@ -1,18 +1,18 @@
 [
     {
-        "merged": "D:\\wll\\work\\CeshiTablayout\\CeshiTablayout\\speechDemo\\build\\intermediates\\res\\merged\\debug\\xml\\tts_setting.xml",
-        "source": "D:\\wll\\work\\CeshiTablayout\\CeshiTablayout\\speechDemo\\src\\main\\res\\xml\\tts_setting.xml"
+        "merged": "D:\\wll\\ASWork\\CeshiTablayout\\CeshiTablayout\\speechDemo\\build\\intermediates\\res\\merged\\debug\\xml\\understand_setting.xml",
+        "source": "D:\\wll\\ASWork\\CeshiTablayout\\CeshiTablayout\\speechDemo\\src\\main\\res\\xml\\understand_setting.xml"
     },
     {
-        "merged": "D:\\wll\\work\\CeshiTablayout\\CeshiTablayout\\speechDemo\\build\\intermediates\\res\\merged\\debug\\xml\\iat_setting.xml",
-        "source": "D:\\wll\\work\\CeshiTablayout\\CeshiTablayout\\speechDemo\\src\\main\\res\\xml\\iat_setting.xml"
+        "merged": "D:\\wll\\ASWork\\CeshiTablayout\\CeshiTablayout\\speechDemo\\build\\intermediates\\res\\merged\\debug\\xml\\tts_setting.xml",
+        "source": "D:\\wll\\ASWork\\CeshiTablayout\\CeshiTablayout\\speechDemo\\src\\main\\res\\xml\\tts_setting.xml"
     },
     {
-        "merged": "D:\\wll\\work\\CeshiTablayout\\CeshiTablayout\\speechDemo\\build\\intermediates\\res\\merged\\debug\\xml\\understand_setting.xml",
-        "source": "D:\\wll\\work\\CeshiTablayout\\CeshiTablayout\\speechDemo\\src\\main\\res\\xml\\understand_setting.xml"
+        "merged": "D:\\wll\\ASWork\\CeshiTablayout\\CeshiTablayout\\speechDemo\\build\\intermediates\\res\\merged\\debug\\xml\\iat_setting.xml",
+        "source": "D:\\wll\\ASWork\\CeshiTablayout\\CeshiTablayout\\speechDemo\\src\\main\\res\\xml\\iat_setting.xml"
     },
     {
-        "merged": "D:\\wll\\work\\CeshiTablayout\\CeshiTablayout\\speechDemo\\build\\intermediates\\res\\merged\\debug\\xml\\ise_settings.xml",
-        "source": "D:\\wll\\work\\CeshiTablayout\\CeshiTablayout\\speechDemo\\src\\main\\res\\xml\\ise_settings.xml"
+        "merged": "D:\\wll\\ASWork\\CeshiTablayout\\CeshiTablayout\\speechDemo\\build\\intermediates\\res\\merged\\debug\\xml\\ise_settings.xml",
+        "source": "D:\\wll\\ASWork\\CeshiTablayout\\CeshiTablayout\\speechDemo\\src\\main\\res\\xml\\ise_settings.xml"
     }
 ]

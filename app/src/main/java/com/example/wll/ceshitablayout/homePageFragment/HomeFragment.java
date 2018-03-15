@@ -89,6 +89,7 @@ public class HomeFragment extends Fragment {
         View inflate = inflater.inflate(R.layout.home_fragment, container, false);
         unbinder = ButterKnife.bind(this, inflate);
         initData();
+        imagesList.clear();
         imagesList.add(R.mipmap.img_1);
         imagesList.add(R.mipmap.img_2);
         imagesList.add(R.mipmap.img_3);

@@ -1,12 +1,9 @@
 package com.example.wll.ceshitablayout.homePageFragment;
 
-import android.content.Context;
 import android.content.Intent;
 import android.os.Bundle;
-import android.os.PersistableBundle;
 import android.support.annotation.Nullable;
 import android.support.v4.app.Fragment;
-import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -15,9 +12,11 @@ import android.widget.Button;
 import com.apkfuns.logutils.LogUtils;
 import com.example.wll.ceshitablayout.ModeActivity;
 import com.example.wll.ceshitablayout.R;
+import com.example.wll.ceshitablayout.myView.MyViewActivity;
 
 import butterknife.BindView;
 import butterknife.ButterKnife;
+import butterknife.OnClick;
 import butterknife.Unbinder;
 
 /**
@@ -30,6 +29,8 @@ public class NewsFragment extends Fragment {
     @BindView(R.id.btn_dayin)
     Button btnDayin;
     Unbinder unbinder;
+    @BindView(R.id.zidingyi_view)
+    Button zidingyiView;
 
     @Nullable
     @Override
@@ -38,14 +39,7 @@ public class NewsFragment extends Fragment {
         unbinder = ButterKnife.bind(this, inflate);
         LogUtils.i("这是消息的oncreate");
         initData();
-        btnCeshi.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                Intent intent = new Intent();
-                intent.setClass(getContext(), ModeActivity.class);
-                startActivity(intent);
-            }
-        });
+
         return inflate;
     }
 
@@ -71,5 +65,23 @@ public class NewsFragment extends Fragment {
     public void onDestroyView() {
         super.onDestroyView();
         unbinder.unbind();
+    }
+
+    @OnClick({R.id.btn_ceshi, R.id.btn_dayin, R.id.zidingyi_view})
+    public void onViewClicked(View view) {
+        switch (view.getId()) {
+            case R.id.btn_ceshi:
+                Intent intent = new Intent();
+                intent.setClass(getContext(), ModeActivity.class);
+                startActivity(intent);
+                break;
+            case R.id.btn_dayin:
+                break;
+            case R.id.zidingyi_view:
+                Intent intentView = new Intent();
+                intentView.setClass(getContext(), MyViewActivity.class);
+                startActivity(intentView);
+                break;
+        }
     }
 }

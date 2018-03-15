@@ -15,4 +15,10 @@
         android:layout_width="match_parent"
         android:layout_height="50dp"
         android:text="打印" />
+
+    <Button
+        android:id="@+id/zidingyi_view"
+        android:layout_width="match_parent"
+        android:layout_height="50dp"
+        android:text="自定义饼状图" />
 </LinearLayout>

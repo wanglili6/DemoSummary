@@ -1,7 +1,0 @@
-#Sat Feb 24 17:15:11 CST 2018
-base.0=D\:\\wll\\work\\CeshiTablayout\\CeshiTablayout\\speechDemo\\build\\intermediates\\transforms\\dex\\debug\\folders\\1000\\10000\\instant-run-bootstrap_f2703a302b4f5c869aceea115a9ed5a95e41af28
-renamed.1=classes.dex
-renamed.0=classes2.dex
-file.1=D\:\\wll\\work\\CeshiTablayout\\CeshiTablayout\\speechDemo\\build\\intermediates\\transforms\\dex\\debug\\folders\\1000\\10000\\instant-run_ccb27f13b44efa93c94c9a682a10ee53863965cb\\classes.dex
-base.1=D\:\\wll\\work\\CeshiTablayout\\CeshiTablayout\\speechDemo\\build\\intermediates\\transforms\\dex\\debug\\folders\\1000\\10000\\instant-run_ccb27f13b44efa93c94c9a682a10ee53863965cb
-file.0=D\:\\wll\\work\\CeshiTablayout\\CeshiTablayout\\speechDemo\\build\\intermediates\\transforms\\dex\\debug\\folders\\1000\\10000\\instant-run-bootstrap_f2703a302b4f5c869aceea115a9ed5a95e41af28\\classes.dex
