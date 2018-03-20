@@ -295,6 +295,15 @@
                 android:background="@drawable/ripple_bg"
                 android:text="轮播图"
                 android:textColor="#fff" />
+
+            <Button
+                android:id="@+id/btn_jishiqi"
+                android:layout_width="match_parent"
+                android:layout_height="50dp"
+                android:layout_margin="10dp"
+                android:background="@drawable/ripple_bg"
+                android:text="计时器"
+                android:textColor="#fff" />
         </LinearLayout>
     </ScrollView>
 

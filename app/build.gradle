@@ -51,14 +51,13 @@ dependencies {
     compile project(':calendarlib')
     compile files('libs/Msc.jar')
     compile files('libs/Sunflower.jar')
-    compile 'com.android.support:appcompat-v7:25.3.1'
+    compile 'com.android.support:appcompat-v7:25.1.1'
     compile 'com.flyco.tablayout:FlycoTabLayout_Lib:2.1.2@aar'
     compile 'com.zhy:okhttputils:2.6.2'
     compile 'com.jakewharton:butterknife:8.0.1'
     compile 'cn.yipianfengye.android:zxing-library:2.2'
     compile 'com.apkfuns.logutils:library:1.5.1.1'
     compile 'com.apkfuns.log2file:log2file:1.0.0'
-    compile 'com.android.support.constraint:constraint-layout:1.0.2'
     compile 'io.reactivex:rxandroid:1.0.1'
     compile 'com.squareup.retrofit2:retrofit:2.0.2'
     compile 'com.squareup.retrofit2:converter-gson:2.0.2'

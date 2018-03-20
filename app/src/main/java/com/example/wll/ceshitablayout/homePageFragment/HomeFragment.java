@@ -17,6 +17,7 @@ import com.apkfuns.logutils.LogUtils;
 import com.bumptech.glide.Glide;
 import com.example.wll.ceshitablayout.AsrDemoActivity;
 import com.example.wll.ceshitablayout.BannerActivity;
+import com.example.wll.ceshitablayout.Main3Activity;
 import com.example.wll.ceshitablayout.PrintMainActivity;
 import com.example.wll.ceshitablayout.R;
 import com.example.wll.ceshitablayout.baiDuMap.MapShowActivity;
@@ -185,7 +186,7 @@ public class HomeFragment extends Fragment {
     }
 
 
-    @OnClick({R.id.search_saomiao, R.id.tool_print, R.id.tool_updata, R.id.tool_yuyin, R.id.btn_commontabactivity, R.id.btn_segmenttabactivity, R.id.btn_slidingtabactivity, R.id.btn_bnner})
+    @OnClick({R.id.btn_jishiqi, R.id.search_saomiao, R.id.tool_print, R.id.tool_updata, R.id.tool_yuyin, R.id.btn_commontabactivity, R.id.btn_segmenttabactivity, R.id.btn_slidingtabactivity, R.id.btn_bnner})
     public void onViewClicked(View view) {
         switch (view.getId()) {
             case R.id.search_saomiao:
@@ -228,6 +229,11 @@ public class HomeFragment extends Fragment {
                 Intent intent5 = new Intent();
                 intent5.setClass(getActivity(), BannerActivity.class);
                 startActivity(intent5);
+                break;
+            case R.id.btn_jishiqi:
+                Intent intent7 = new Intent();
+                intent7.setClass(getActivity(), Main3Activity.class);
+                startActivity(intent7);
                 break;
         }
     }
