@@ -11,8 +11,8 @@
         android:text="测试版本" />
 
     <Button
-        android:id="@+id/btn_dayin"
+        android:id="@+id/btn_line_chart"
         android:layout_width="match_parent"
         android:layout_height="50dp"
-        android:text="打印" />
+        android:text="折线图" />
 </LinearLayout>

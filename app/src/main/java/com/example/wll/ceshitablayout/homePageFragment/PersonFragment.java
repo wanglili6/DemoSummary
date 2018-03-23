@@ -1,5 +1,6 @@
 package com.example.wll.ceshitablayout.homePageFragment;
 
+import android.content.Intent;
 import android.os.Bundle;
 import android.support.annotation.Nullable;
 import android.support.v4.app.Fragment;
@@ -8,10 +9,12 @@ import android.view.View;
 import android.view.ViewGroup;
 import android.widget.Button;
 
+import com.example.wll.ceshitablayout.LinechartActivity;
 import com.example.wll.ceshitablayout.R;
 
 import butterknife.BindView;
 import butterknife.ButterKnife;
+import butterknife.OnClick;
 import butterknife.Unbinder;
 
 /**
@@ -21,7 +24,7 @@ import butterknife.Unbinder;
 public class PersonFragment extends Fragment {
     @BindView(R.id.btn_ceshi)
     Button btnCeshi;
-    @BindView(R.id.btn_dayin)
+    @BindView(R.id.btn_line_chart)
     Button btnDayin;
     Unbinder unbinder;
 
@@ -45,5 +48,18 @@ public class PersonFragment extends Fragment {
     public void onDestroyView() {
         super.onDestroyView();
         unbinder.unbind();
+    }
+
+    @OnClick({R.id.btn_ceshi, R.id.btn_line_chart})
+    public void onViewClicked(View view) {
+        switch (view.getId()) {
+            case R.id.btn_ceshi:
+                break;
+            case R.id.btn_line_chart:
+                Intent intent = new Intent();
+                intent.setClass(getActivity(), LinechartActivity.class);
+                startActivity(intent);
+                break;
+        }
     }
 }

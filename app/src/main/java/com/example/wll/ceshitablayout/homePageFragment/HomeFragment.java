@@ -1,5 +1,6 @@
 package com.example.wll.ceshitablayout.homePageFragment;
 
+import android.content.ActivityNotFoundException;
 import android.content.Context;
 import android.content.Intent;
 import android.os.Bundle;
@@ -8,7 +9,6 @@ import android.support.v4.app.Fragment;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
-import android.widget.Button;
 import android.widget.ImageView;
 import android.widget.TextView;
 import android.widget.Toast;
@@ -16,7 +16,6 @@ import android.widget.Toast;
 import com.apkfuns.logutils.LogUtils;
 import com.bumptech.glide.Glide;
 import com.example.wll.ceshitablayout.AsrDemoActivity;
-import com.example.wll.ceshitablayout.BannerActivity;
 import com.example.wll.ceshitablayout.Main3Activity;
 import com.example.wll.ceshitablayout.PrintMainActivity;
 import com.example.wll.ceshitablayout.R;
@@ -46,21 +45,7 @@ import butterknife.Unbinder;
  */
 
 public class HomeFragment extends Fragment {
-    @BindView(R.id.btn_ceshi)
-    Button btnCeshi;
-    @BindView(R.id.btn_dayin)
-    Button btnDayin;
-    Unbinder unbinder;
-    @BindView(R.id.btn_map)
-    Button btnMap;
-    @BindView(R.id.btn_map_guiji)
-    Button btnMapGuiji;
-    @BindView(R.id.btn_commontabactivity)
-    Button btnCommontabactivity;
-    @BindView(R.id.btn_segmenttabactivity)
-    Button btnSegmenttabactivity;
-    @BindView(R.id.btn_slidingtabactivity)
-    Button btnSlidingtabactivity;
+
     @BindView(R.id.banner)
     Banner banner;
     @BindView(R.id.search_saomiao)
@@ -79,17 +64,39 @@ public class HomeFragment extends Fragment {
     TextView toolYuyin;
     @BindView(R.id.tv_tool_yuyin)
     TextView tvToolYuyin;
-    @BindView(R.id.btn_bnner)
-    Button btnBnner;
+    @BindView(R.id.map_dingwei)
+    TextView mapDingwei;
+    @BindView(R.id.tv_map_dingwei)
+    TextView tvMapDingwei;
+    @BindView(R.id.map_guiji)
+    TextView mapGuiji;
+    @BindView(R.id.tv_map_guiji)
+    TextView tvMapGuiji;
+    @BindView(R.id.btn_jishiqi)
+    TextView btnJishiqi;
+    @BindView(R.id.tv_btn_jishiqi)
+    TextView tvBtnJishiqi;
+    @BindView(R.id.btn_commontabactivity)
+    TextView btnCommontabactivity;
+    @BindView(R.id.tv_btn_commontabactivity)
+    TextView tvBtnCommontabactivity;
+    @BindView(R.id.btn_segmenttabactivity)
+    TextView btnSegmenttabactivity;
+    @BindView(R.id.tv_btn_segmenttabactivity)
+    TextView tvBtnSegmenttabactivity;
+    @BindView(R.id.btn_slidingtabactivity)
+    TextView btnSlidingtabactivity;
+    @BindView(R.id.tv_btn_slidingtabactivity)
+    TextView tvBtnSlidingtabactivity;
     private String TAG = "HomeFragment的log";
     List<Integer> imagesList = new ArrayList<>();
+    Unbinder unbinder;
 
     @Nullable
     @Override
     public View onCreateView(LayoutInflater inflater, @Nullable ViewGroup container, @Nullable Bundle savedInstanceState) {
         View inflate = inflater.inflate(R.layout.home_fragment, container, false);
         unbinder = ButterKnife.bind(this, inflate);
-        initData();
         imagesList.clear();
         imagesList.add(R.mipmap.img_1);
         imagesList.add(R.mipmap.img_2);
@@ -125,27 +132,6 @@ public class HomeFragment extends Fragment {
         return inflate;
     }
 
-    /**
-     * 初始化数据
-     */
-    private void initData() {
-
-
-        btnMap.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                Intent intent = new Intent(getContext(), MapShowActivity.class);
-                startActivity(intent);
-            }
-        });
-        btnMapGuiji.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                Intent intent = new Intent(getContext(), MapTraceActivity.class);
-                startActivity(intent);
-            }
-        });
-    }
 
     @Override
     public void onActivityResult(int requestCode, int resultCode, Intent data) {
@@ -186,14 +172,13 @@ public class HomeFragment extends Fragment {
     }
 
 
-    @OnClick({R.id.btn_jishiqi, R.id.search_saomiao, R.id.tool_print, R.id.tool_updata, R.id.tool_yuyin, R.id.btn_commontabactivity, R.id.btn_segmenttabactivity, R.id.btn_slidingtabactivity, R.id.btn_bnner})
+    @OnClick({R.id.btn_jishiqi, R.id.search_saomiao, R.id.tool_print, R.id.tool_updata, R.id.tool_yuyin, R.id.btn_commontabactivity, R.id.btn_segmenttabactivity, R.id.btn_slidingtabactivity, R.id.map_dingwei, R.id.map_guiji})
     public void onViewClicked(View view) {
         switch (view.getId()) {
             case R.id.search_saomiao:
                 /**
                  * 打开默认二维码扫描界面
                  */
-
                 Intent intent = new Intent(getContext(), CaptureActivity.class);
                 startActivityForResult(intent, 1);
                 break;
@@ -204,6 +189,16 @@ public class HomeFragment extends Fragment {
             case R.id.tool_updata:
                 //上传附件
                 selectFile();
+                break;
+            case R.id.map_dingwei:
+                //实时定位
+                Intent intentMapShow = new Intent(getContext(), MapShowActivity.class);
+                startActivity(intentMapShow);
+                break;
+            case R.id.map_guiji:
+                //查询轨迹
+                Intent intentMapTrace = new Intent(getContext(), MapTraceActivity.class);
+                startActivity(intentMapTrace);
                 break;
             case R.id.tool_yuyin:
                 Intent intent6 = new Intent();
@@ -225,11 +220,6 @@ public class HomeFragment extends Fragment {
                 intent4.setClass(getActivity(), SlidingTabActivity.class);
                 startActivity(intent4);
                 break;
-            case R.id.btn_bnner:
-                Intent intent5 = new Intent();
-                intent5.setClass(getActivity(), BannerActivity.class);
-                startActivity(intent5);
-                break;
             case R.id.btn_jishiqi:
                 Intent intent7 = new Intent();
                 intent7.setClass(getActivity(), Main3Activity.class);
@@ -248,7 +238,7 @@ public class HomeFragment extends Fragment {
 
         try {
             startActivityForResult(Intent.createChooser(intent, "选择文件上传"), 345);
-        } catch (android.content.ActivityNotFoundException ex) {
+        } catch (ActivityNotFoundException ex) {
             Toast.makeText(getContext(), "请安装一个文件管理器.", Toast.LENGTH_SHORT).show();
 
         }

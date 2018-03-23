@@ -23,7 +23,11 @@ android {
             jniLibs.srcDir 'libs'
         }
     }
-
+    allprojects {
+        repositories {
+            maven { url "https://jitpack.io" }
+        }
+    }
     packagingOptions {
         exclude 'META-INF/DEPENDENCIES.txt'
         exclude 'META-INF/LICENSE.txt'
@@ -67,6 +71,8 @@ dependencies {
     compile 'com.youth.banner:banner:1.4.10'
     compile 'com.github.bumptech.glide:glide:3.5.2'
     compile 'com.android.support:support-v4:25.0.0'
+    compile 'com.android.support.constraint:constraint-layout:1.0.2'
     testCompile 'junit:junit:4.12'
     apt 'com.jakewharton:butterknife-compiler:8.0.1'
+    compile 'com.github.PhilJay:MPAndroidChart:v3.0.3'
 }
