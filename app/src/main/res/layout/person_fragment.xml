@@ -15,4 +15,21 @@
         android:layout_width="match_parent"
         android:layout_height="50dp"
         android:text="折线图" />
+
+    <Button
+        android:id="@+id/btn_combined_chart"
+        android:layout_width="match_parent"
+        android:layout_height="50dp"
+        android:text="折线图和柱状图组合" />
+    <Button
+        android:id="@+id/btn_bar_chart"
+        android:layout_width="match_parent"
+        android:layout_height="50dp"
+        android:text="柱状图" />
+
+    <Button
+        android:id="@+id/btn_hbar_chart"
+        android:layout_width="match_parent"
+        android:layout_height="50dp"
+        android:text="横着的柱状图" />
 </LinearLayout>

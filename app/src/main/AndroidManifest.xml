@@ -131,7 +131,11 @@
         <activity android:name=".AsrDemoActivity" />
         <activity android:name=".Main3Activity" />
         <activity android:name=".myView.MyViewActivity" />
-        <activity android:name=".LinechartActivity"></activity>
+        <activity android:name=".mPAndroidChart.LinechartActivity" />
+        <activity android:name=".mPAndroidChart.CombinedChartActivity" />
+        <activity android:name=".mPAndroidChart.BarChartActivity" />
+        <activity android:name=".mPAndroidChart.HorizitolBarChartActivity" />
+        <activity android:name=".mPAndroidChart.PieChartActivity"></activity>
     </application>
 
 </manifest>

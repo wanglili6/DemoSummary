@@ -5,7 +5,7 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:orientation="vertical"
-    tools:context="com.example.wll.ceshitablayout.LinechartActivity">
+    tools:context="com.example.wll.ceshitablayout.mPAndroidChart.LinechartActivity">
 
     <include layout="@layout/base_title" />
 
@@ -18,10 +18,30 @@
             android:layout_height="match_parent"
             android:orientation="vertical">
 
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_margin="10dp"
+                android:text="单个折线图"
+                android:textSize="14sp" />
+
             <com.github.mikephil.charting.charts.LineChart
                 android:id="@+id/line_chart"
                 android:layout_width="match_parent"
-                android:layout_height="220dp">
+                android:layout_height="220dp" />
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_margin="10dp"
+                android:text="多个折线图"
+                android:textSize="14sp" />
+
+            <com.github.mikephil.charting.charts.LineChart
+                android:id="@+id/line_chart_2"
+                android:layout_width="match_parent"
+                android:layout_height="220dp"
+                android:layout_marginTop="10dp">
 
             </com.github.mikephil.charting.charts.LineChart>
         </LinearLayout>

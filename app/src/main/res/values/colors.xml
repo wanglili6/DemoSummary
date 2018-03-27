@@ -8,6 +8,7 @@
     <color name="color_pass">#0c5bba</color>
     <color name="register_pass">#c0026102</color>
     <color name="register">#f102a302</color>
+    <color name="yellow">#f1f7e650</color>
     <color name="white">#ffffff</color>
     <color name="white_01">#f1e4e7e4</color>
 </resources>
