@@ -352,7 +352,9 @@ public class FlexibleCalendarView extends LinearLayout implements
             cal.set(selectedDateItem.getYear(), selectedDateItem.getMonth(), selectedDateItem.getDay());
             cal.add(Calendar.DATE, -1);
 
-            if (selectedDateItem.getMonth() != cal.get(Calendar.MONTH)) {
+            String month = selectedDateItem.getMonth() + "";
+            String calmonth = cal.get(Calendar.MONTH) + "";
+            if (!month.equals(calmonth)) {
                 //update selected date item
                 selectedDateItem.setDay(cal.get(Calendar.DAY_OF_MONTH));
                 selectedDateItem.setMonth(cal.get(Calendar.MONTH));
@@ -385,8 +387,9 @@ public class FlexibleCalendarView extends LinearLayout implements
             Calendar cal = Calendar.getInstance();
             cal.set(selectedDateItem.getYear(), selectedDateItem.getMonth(), selectedDateItem.getDay());
             cal.add(Calendar.DATE, 1);
-
-            if (selectedDateItem.getMonth() != cal.get(Calendar.MONTH)) {
+            String month = selectedDateItem.getMonth() + "";
+            String calmonth = cal.get(Calendar.MONTH) + "";
+            if (!month.equals(calmonth)) {
                 moveToNextMonth();
             } else {
                 selectedDateItem.setDay(cal.get(Calendar.DAY_OF_MONTH));

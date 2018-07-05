@@ -38,6 +38,7 @@ public class LineChartManager {
     private YAxis leftAxis;
     private YAxis rightAxis;
     private XAxis xAxis;
+    private boolean mAnimation = true;
     private Context mContext;
 
     public LineChartManager(LineChart mLineChart, Context mContext) {
@@ -72,7 +73,9 @@ public class LineChartManager {
         //设置从X轴出来的动画时间
         //mLineChart.animateX(1500);
         //设置XY轴动画
-        mLineChart.animateXY(1500, 1500, Easing.EasingOption.EaseInSine, Easing.EasingOption.EaseInSine);
+        if (mAnimation) {
+            mLineChart.animateXY(1500, 1500, Easing.EasingOption.EaseInSine, Easing.EasingOption.EaseInSine);
+        }
         CustomMarkerView marker = new CustomMarkerView(mContext, R.layout.marck_view);
         mLineChart.setMarker(marker);
     }
@@ -183,6 +186,7 @@ public class LineChartManager {
             set.setDrawIcons(false);
             //设置Y值使用左边Y轴的坐标值
             set.setAxisDependency(YAxis.AxisDependency.LEFT);
+            set.setMode(LineDataSet.Mode.CUBIC_BEZIER);
             //设置线的颜色
             set.setColors(color);
             //设置数据点圆形的颜色
@@ -291,5 +295,8 @@ public class LineChartManager {
         mLineChart.setMarker(marker);
     }
 
+    public void setAnimation(boolean animation) {
+        mAnimation = animation;
+    }
 
 }

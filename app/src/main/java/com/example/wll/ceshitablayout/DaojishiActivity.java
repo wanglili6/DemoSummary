@@ -10,6 +10,7 @@ import android.util.Log;
 
 
 import com.apkfuns.logutils.LogUtils;
+import com.example.wll.ceshitablayout.bean.DateBean;
 
 import java.text.DateFormat;
 import java.text.ParseException;
@@ -17,7 +18,7 @@ import java.text.SimpleDateFormat;
 import java.util.ArrayList;
 import java.util.Date;
 
-public class Main3Activity extends AppCompatActivity {
+public class DaojishiActivity extends AppCompatActivity {
 
     private RecyclerView recyclerView;
     ArrayList<DateBean> list = new ArrayList<>();
@@ -69,10 +70,10 @@ public class Main3Activity extends AppCompatActivity {
         list.add(new DateBean("电话", R.mipmap.ic_launcher, 1521304200, "1天1时8分19s"));
         recyclerView = (RecyclerView) findViewById(R.id.rRecyclerView);
 
-        LinearLayoutManager mrg = new LinearLayoutManager(Main3Activity.this);
+        LinearLayoutManager mrg = new LinearLayoutManager(DaojishiActivity.this);
         mrg.setOrientation(LinearLayoutManager.VERTICAL);
         recyclerView.setLayoutManager(mrg);
-        adapter = new MyAdapter(list, Main3Activity.this);
+        adapter = new MyAdapter(list, DaojishiActivity.this);
         recyclerView.setAdapter(adapter);
         thread = new Thread(new ThreadShow());
         thread.start();

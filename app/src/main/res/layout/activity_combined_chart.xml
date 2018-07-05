@@ -25,6 +25,7 @@
                 android:id="@+id/chart2"
                 android:layout_width="match_parent"
                 android:layout_height="360dp" />
+
         </LinearLayout>
     </ScrollView>
 </LinearLayout>

@@ -16,7 +16,7 @@ import android.widget.Toast;
 import com.apkfuns.logutils.LogUtils;
 import com.bumptech.glide.Glide;
 import com.example.wll.ceshitablayout.AsrDemoActivity;
-import com.example.wll.ceshitablayout.Main3Activity;
+import com.example.wll.ceshitablayout.DaojishiActivity;
 import com.example.wll.ceshitablayout.PrintMainActivity;
 import com.example.wll.ceshitablayout.R;
 import com.example.wll.ceshitablayout.baiDuMap.MapShowActivity;
@@ -222,7 +222,7 @@ public class HomeFragment extends Fragment {
                 break;
             case R.id.btn_jishiqi:
                 Intent intent7 = new Intent();
-                intent7.setClass(getActivity(), Main3Activity.class);
+                intent7.setClass(getActivity(), DaojishiActivity.class);
                 startActivity(intent7);
                 break;
         }

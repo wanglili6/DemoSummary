@@ -6,7 +6,7 @@
         android:entries="@array/language_entries"
         android:entryValues="@array/language_values"
         android:summary="支持：普通话，粤语，英语 "
-        android:defaultValue="mandarin"  />
+         />
     <EditTextPreference
         android:key="understander_vadbos_preference"   
 		android:title="前端点超时" 

@@ -58,6 +58,9 @@ import butterknife.BindView;
 import butterknife.ButterKnife;
 import butterknife.OnClick;
 
+/**
+ * 讯飞语音
+ */
 public class AsrDemoActivity extends AppCompatActivity {
 
     @BindView(R.id.imageView1)

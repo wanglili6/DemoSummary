@@ -44,6 +44,7 @@ public class CombinedChartActivity extends AppCompatActivity {
     @BindView(R.id.chart2)
     CombinedChart chart2;
 
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);

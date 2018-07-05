@@ -66,8 +66,8 @@ public class LinechartActivity extends AppCompatActivity {
     @BindView(R.id.line_chart_2)
     LineChart lineChart2;
     ArrayList<String> xValueList = new ArrayList<>();
-    ArrayList<String> nameList = new ArrayList<>();
     ArrayList<Integer> yValueList = new ArrayList<>();
+    ArrayList<String> nameList = new ArrayList<>();
     ArrayList<Integer> colorls = new ArrayList<>();
 
 

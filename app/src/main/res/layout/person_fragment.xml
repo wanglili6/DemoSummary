@@ -32,4 +32,15 @@
         android:layout_width="match_parent"
         android:layout_height="50dp"
         android:text="横着的柱状图" />
+
+    <Button
+        android:id="@+id/btn_pie_chart"
+        android:layout_width="match_parent"
+        android:layout_height="50dp"
+        android:text="饼状图" />
+    <Button
+        android:id="@+id/btn_auto_chart"
+        android:layout_width="match_parent"
+        android:layout_height="50dp"
+        android:text="自动刷新" />
 </LinearLayout>

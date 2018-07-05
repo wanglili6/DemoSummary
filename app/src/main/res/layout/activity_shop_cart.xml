@@ -1,0 +1,38 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    tools:context="com.example.wll.ceshitablayout.animation.ShopCartActivity">
+
+    <LinearLayout
+
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:orientation="vertical">
+
+        <include layout="@layout/base_title" />
+
+        <RelativeLayout
+            android:id="@+id/ll_contants"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content">
+            <android.support.v7.widget.RecyclerView
+                android:id="@+id/recycle_view"
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:layout_weight="100">
+
+            </android.support.v7.widget.RecyclerView>
+            <ImageView
+                android:layout_alignParentBottom="true"
+                android:id="@+id/img_shop_cart"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_alignParentRight="true"
+                android:layout_marginRight="10dp"
+                android:background="@mipmap/touxiang" />
+        </RelativeLayout>
+    </LinearLayout>
+</LinearLayout>

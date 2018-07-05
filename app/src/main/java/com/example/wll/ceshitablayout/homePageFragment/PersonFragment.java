@@ -9,11 +9,13 @@ import android.view.View;
 import android.view.ViewGroup;
 import android.widget.Button;
 
+import com.example.wll.ceshitablayout.mPAndroidChart.AutoRefreshActivity;
 import com.example.wll.ceshitablayout.mPAndroidChart.BarChartActivity;
 import com.example.wll.ceshitablayout.mPAndroidChart.CombinedChartActivity;
 import com.example.wll.ceshitablayout.mPAndroidChart.HorizitolBarChartActivity;
 import com.example.wll.ceshitablayout.mPAndroidChart.LinechartActivity;
 import com.example.wll.ceshitablayout.R;
+import com.example.wll.ceshitablayout.mPAndroidChart.PieChartActivity;
 import com.example.wll.ceshitablayout.mannerg.HoriztolBarChartManager;
 
 import butterknife.BindView;
@@ -54,7 +56,7 @@ public class PersonFragment extends Fragment {
         unbinder.unbind();
     }
 
-    @OnClick({R.id.btn_ceshi, R.id.btn_line_chart, R.id.btn_combined_chart, R.id.btn_bar_chart, R.id.btn_hbar_chart})
+    @OnClick({R.id.btn_ceshi, R.id.btn_line_chart, R.id.btn_auto_chart, R.id.btn_combined_chart, R.id.btn_bar_chart, R.id.btn_hbar_chart, R.id.btn_pie_chart})
     public void onViewClicked(View view) {
         switch (view.getId()) {
             case R.id.btn_ceshi:
@@ -78,6 +80,17 @@ public class PersonFragment extends Fragment {
                 Intent intent3 = new Intent();
                 intent3.setClass(getActivity(), HorizitolBarChartActivity.class);
                 startActivity(intent3);
+                break;
+
+            case R.id.btn_pie_chart:
+                Intent intent4 = new Intent();
+                intent4.setClass(getActivity(), PieChartActivity.class);
+                startActivity(intent4);
+                break;
+            case R.id.btn_auto_chart:
+                Intent intent5 = new Intent();
+                intent5.setClass(getActivity(), AutoRefreshActivity.class);
+                startActivity(intent5);
                 break;
         }
     }

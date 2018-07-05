@@ -2,7 +2,6 @@
 <PreferenceScreen xmlns:android="http://schemas.android.com/apk/res/android" >
 
 	<ListPreference
-		android:defaultValue="mandarin"
 		android:entries="@array/language_entries"
 		android:entryValues="@array/language_values"
 		android:key="iat_language_preference"

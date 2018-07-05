@@ -90,6 +90,7 @@ class FlexibleCalendarGridAdapter extends BaseAdapter {
         int cellType = BaseCellView.OUTSIDE_MONTH;
         //day at the current row and col
         int day = monthDisplayHelper.getDayAt(row, col);
+        String days = day + "";
         if (isWithinCurrentMonth) {
             //set to REGULAR if is within current month
             cellType = BaseCellView.REGULAR;
@@ -108,9 +109,10 @@ class FlexibleCalendarGridAdapter extends BaseAdapter {
                     cellType = BaseCellView.SELECTED;
                 }
             }
+            String day_ofs = calendar.get(Calendar.DAY_OF_MONTH) + "";
             if (calendar.get(Calendar.YEAR) == year
                     && calendar.get(Calendar.MONTH) == month
-                    && calendar.get(Calendar.DAY_OF_MONTH) == day) {
+                    && day_ofs.equals(days)) {
                 if (cellType == BaseCellView.SELECTED) {
                     //today and selected
                     cellType = BaseCellView.SELECTED_TODAY;

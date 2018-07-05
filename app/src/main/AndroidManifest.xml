@@ -50,7 +50,7 @@
     <!-- //允许sd卡写权限，需写入地图数据，禁用后无法显示地图 -->
     <uses-permission android:name="android.permission.WRITE_SETTINGS" />
     <!-- //获取统计数据 -->
-    <uses-permission android:name="android.permission.GET_TASKS" />
+    <!-- <uses-permission android:name="android.permission.GET_TASKS" /> -->
     <!-- //鉴权所需该权限获取进程列表 -->
     <uses-permission android:name="android.permission.CAMERA" />
     <!-- 使用步行AR导航，配置Camera权限 -->
@@ -75,6 +75,10 @@
     <!-- SD卡读取权限，用户写入离线定位数据 -->
     <uses-permission android:name="android.permission.MOUNT_UNMOUNT_FILESYSTEMS" />
     <uses-permission android:name="android.permission.READ_EXTERNAL_STORAGE" />
+    <uses-permission android:name="android.permission.ACCESS_NETWORK_STATE" />
+    <uses-permission android:name="android.permission.ACCESS_WIFI_STATE" />
+    <uses-permission android:name="android.permission.READ_PHONE_STATE" />
+    <uses-permission android:name="android.permission.WRITE_EXTERNAL_STORAGE" />
 
     <application
         android:name=".constant.MyApplication"
@@ -129,13 +133,29 @@
         <activity android:name=".tabLayout.SegmentTabActivity" />
         <activity android:name=".BannerActivity" />
         <activity android:name=".AsrDemoActivity" />
-        <activity android:name=".Main3Activity" />
+        <activity android:name=".DaojishiActivity" />
         <activity android:name=".myView.MyViewActivity" />
         <activity android:name=".mPAndroidChart.LinechartActivity" />
         <activity android:name=".mPAndroidChart.CombinedChartActivity" />
         <activity android:name=".mPAndroidChart.BarChartActivity" />
         <activity android:name=".mPAndroidChart.HorizitolBarChartActivity" />
-        <activity android:name=".mPAndroidChart.PieChartActivity"></activity>
+        <activity android:name=".mPAndroidChart.PieChartActivity" />
+        <activity
+            android:name="com.alipay.sdk.app.H5PayActivity"
+            android:configChanges="orientation|keyboardHidden|navigation|screenSize"
+            android:exported="false"
+            android:screenOrientation="behind"
+            android:windowSoftInputMode="adjustResize|stateHidden" />
+        <activity
+            android:name="com.alipay.sdk.app.H5AuthActivity"
+            android:configChanges="orientation|keyboardHidden|navigation"
+            android:exported="false"
+            android:screenOrientation="behind"
+            android:windowSoftInputMode="adjustResize|stateHidden" />
+        <activity android:name=".pay.PayDemoActivity" />
+        <activity android:name=".pay.H5PayDemoActivity" />
+        <activity android:name=".animation.ShopCartActivity" />
+        <activity android:name=".mPAndroidChart.AutoRefreshActivity"></activity>
     </application>
 
 </manifest>

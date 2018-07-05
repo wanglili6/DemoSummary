@@ -21,4 +21,10 @@
         android:layout_width="match_parent"
         android:layout_height="50dp"
         android:text="自定义饼状图" />
+
+    <Button
+        android:id="@+id/shop_cart"
+        android:layout_width="match_parent"
+        android:layout_height="50dp"
+        android:text="购物车动画" />
 </LinearLayout>

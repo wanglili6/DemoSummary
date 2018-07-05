@@ -1,9 +1,30 @@
 <?xml version="1.0" encoding="utf-8"?>
-<android.support.constraint.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
-    xmlns:app="http://schemas.android.com/apk/res-auto"
-    xmlns:tools="http://schemas.android.com/tools"
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    tools:context="com.example.wll.ceshitablayout.mPAndroidChart.PieChartActivity">
+    android:orientation="vertical">
 
-</android.support.constraint.ConstraintLayout>
+    <include layout="@layout/base_title" />
+
+    <ScrollView
+
+        android:layout_width="match_parent"
+        android:layout_height="match_parent">
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:orientation="vertical">
+
+            <com.github.mikephil.charting.charts.PieChart
+                android:id="@+id/chart1"
+                android:layout_width="match_parent"
+                android:layout_height="360dp" />
+
+            <com.github.mikephil.charting.charts.PieChart
+                android:id="@+id/chart2"
+                android:layout_width="match_parent"
+                android:layout_height="360dp" />
+        </LinearLayout>
+    </ScrollView>
+</LinearLayout>

@@ -12,6 +12,7 @@ import android.widget.Button;
 import com.apkfuns.logutils.LogUtils;
 import com.example.wll.ceshitablayout.ModeActivity;
 import com.example.wll.ceshitablayout.R;
+import com.example.wll.ceshitablayout.animation.ShopCartActivity;
 import com.example.wll.ceshitablayout.myView.MyViewActivity;
 
 import butterknife.BindView;
@@ -67,7 +68,7 @@ public class NewsFragment extends Fragment {
         unbinder.unbind();
     }
 
-    @OnClick({R.id.btn_ceshi, R.id.btn_dayin, R.id.zidingyi_view})
+    @OnClick({R.id.btn_ceshi, R.id.btn_dayin, R.id.zidingyi_view,R.id.shop_cart})
     public void onViewClicked(View view) {
         switch (view.getId()) {
             case R.id.btn_ceshi:
@@ -81,6 +82,11 @@ public class NewsFragment extends Fragment {
                 Intent intentView = new Intent();
                 intentView.setClass(getContext(), MyViewActivity.class);
                 startActivity(intentView);
+                break;
+            case R.id.shop_cart:
+                Intent intentshop = new Intent();
+                intentshop.setClass(getContext(), ShopCartActivity.class);
+                startActivity(intentshop);
                 break;
         }
     }

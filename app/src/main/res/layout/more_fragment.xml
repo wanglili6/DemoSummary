@@ -12,6 +12,16 @@
         android:background="@drawable/ripple_bg"
         android:text="上传附件"
         android:textColor="#fff" />
+
+    <Button
+        android:id="@+id/btn_play"
+        android:layout_width="match_parent"
+        android:layout_height="50dp"
+        android:layout_margin="10dp"
+        android:background="@drawable/ripple_bg"
+        android:text="支付宝支付"
+        android:textColor="#fff" />
+
     <Button
         android:id="@+id/btn_yuyin"
         android:layout_width="match_parent"

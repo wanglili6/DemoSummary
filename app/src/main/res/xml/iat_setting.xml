@@ -7,7 +7,7 @@
         android:entries="@array/language_entries"
         android:entryValues="@array/language_values"
         android:summary="支持：普通话，粤语，英语 "
-        android:defaultValue="mandarin"  />
+ />
     
     <EditTextPreference
         android:key="iat_vadbos_preference"   

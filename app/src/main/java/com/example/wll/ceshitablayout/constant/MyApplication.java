@@ -3,6 +3,12 @@ package com.example.wll.ceshitablayout.constant;
 import android.app.Activity;
 import android.app.Application;
 import android.content.Context;
+import android.content.Intent;
+import android.content.pm.ShortcutInfo;
+import android.content.pm.ShortcutManager;
+import android.graphics.drawable.Icon;
+import android.net.Uri;
+import android.os.Build;
 import android.support.multidex.MultiDexApplication;
 import android.util.DisplayMetrics;
 
@@ -20,6 +26,7 @@ import com.baidu.trace.Trace;
 import com.baidu.trace.model.OnTraceListener;
 import com.baidu.trace.model.PushMessage;
 import com.example.wll.ceshitablayout.MainActivity;
+import com.example.wll.ceshitablayout.R;
 import com.example.wll.ceshitablayout.utils.*;
 import com.iflytek.cloud.GrammarListener;
 import com.iflytek.cloud.SpeechConstant;
@@ -32,6 +39,7 @@ import com.uuzuche.lib_zxing.activity.ZXingLibrary;
 import com.zhy.http.okhttp.OkHttpUtils;
 
 import java.util.ArrayList;
+import java.util.Arrays;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
@@ -68,12 +76,10 @@ public class MyApplication extends MultiDexApplication {
 
         OkHttpUtils.initClient(okHttpClient);
 
-        //初始化zxinger二维码
-        ZXingLibrary.initDisplayOpinion(this);
 
         LogUtils.getLogConfig()
                 .configAllowLog(true)
-                .configTagPrefix("LogUtilsDemo")
+                .configTagPrefix("打印log")
                 .configFormatTag("%d{HH:mm:ss:SSS} %t %c{-5}")
                 .configShowBorders(true)
 //                .configMethodOffset(1)
@@ -83,11 +89,37 @@ public class MyApplication extends MultiDexApplication {
                 .configLog2FileNameFormat("Hi-%d{yyyyMMdd}-1.txt")
                 .configLog2FileLevel(LogLevel.TYPE_VERBOSE)
                 .configLogFileEngine(new LogFileEngineFactory());
-        SDKInitializer.initialize(getApplicationContext());
         context();
+        //初始化zxinger二维码
+        ZXingLibrary.initDisplayOpinion(this);
+        SDKInitializer.initialize(getApplicationContext());
         initLocation();
         SpeechUtility.createUtility(getApplicationContext(), SpeechConstant.APPID + "=5a90d3bb");
+        //设置3D  Touch 必须7.1之后才行
+        if (Build.VERSION.SDK_INT >= 25) {
 
+            ShortcutManager shortcutManager = getSystemService(ShortcutManager.class);
+            ShortcutInfo shortcut = new ShortcutInfo.Builder(this, "id1")
+                    .setShortLabel("Web site")
+                    .setLongLabel("Open the web site")
+                    .setRank(0)
+                    .setIcon(Icon.createWithResource(getApplicationContext(), R.mipmap.ic_launcher))
+                    .setIntent(new Intent(Intent.ACTION_VIEW, Uri.parse("https://www.mysite.example.com/")))
+                    .build();
+            Intent intent = new Intent(this, MainActivity.class);
+            intent.setAction(Intent.ACTION_VIEW);
+            intent.putExtra("msg", "我和" + "的对话");
+            ShortcutInfo shortcut1 = new ShortcutInfo.Builder(this, "id2")
+                    .setShortLabel("aaaa")
+                    .setLongLabel("aaa")
+                    .setRank(1)
+                    .setIcon(Icon.createWithResource(getApplicationContext(), R.mipmap.ic_launcher))
+                    .setIntent(intent)
+                    .build();
+            shortcutManager.setDynamicShortcuts(Arrays.asList(shortcut1, shortcut));
+
+
+        }
     }
 
     /**

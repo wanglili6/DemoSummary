@@ -7,7 +7,7 @@
         android:summary=""
         android:entries="@array/ise_language_entries"
         android:entryValues="@array/ise_language_values"
-        android:defaultValue="zh_cn"/>
+        />
     
     <ListPreference 
         android:key="category"
@@ -15,7 +15,7 @@
         android:summary=""
         android:entries="@array/category_entries"
         android:entryValues="@array/category_values"
-        android:defaultValue="read_sentence"/>
+        />
     
     <ListPreference 
         android:key="result_level"
@@ -23,7 +23,7 @@
         android:summary=""
         android:entries="@array/result_level_entries"
         android:entryValues="@array/result_level_entries"
-        android:defaultValue="complete"/>
+       />
     
     <EditTextPreference 
         android:key="vad_bos"

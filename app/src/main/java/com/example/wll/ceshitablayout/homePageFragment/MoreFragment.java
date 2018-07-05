@@ -1,10 +1,8 @@
 package com.example.wll.ceshitablayout.homePageFragment;
 
 import android.content.Intent;
-import android.database.Cursor;
 import android.net.Uri;
 import android.os.Bundle;
-import android.provider.MediaStore;
 import android.support.annotation.Nullable;
 import android.support.v4.app.Fragment;
 import android.view.LayoutInflater;
@@ -19,17 +17,9 @@ import com.example.wll.ceshitablayout.LoginActivity;
 import com.example.wll.ceshitablayout.R;
 import com.example.wll.ceshitablayout.constant.MyApplication;
 import com.example.wll.ceshitablayout.constant.UserMsg;
-import com.example.wll.ceshitablayout.tabLayout.SegmentTabActivity;
+import com.example.wll.ceshitablayout.pay.PayDemoActivity;
 import com.example.wll.ceshitablayout.utils.FileUtils;
 import com.example.wll.ceshitablayout.utils.PreferencesUtils;
-import com.iflytek.cloud.GrammarListener;
-import com.iflytek.cloud.SpeechConstant;
-import com.iflytek.cloud.SpeechError;
-import com.iflytek.cloud.SpeechRecognizer;
-
-import org.apache.poi.ss.formula.functions.IfFunc;
-
-import java.io.File;
 
 import butterknife.BindView;
 import butterknife.ButterKnife;
@@ -65,7 +55,7 @@ public class MoreFragment extends Fragment {
         unbinder.unbind();
     }
 
-    @OnClick({R.id.btn_upfile, R.id.btn_dayin, R.id.btn_yuyin})
+    @OnClick({R.id.btn_upfile, R.id.btn_play, R.id.btn_dayin, R.id.btn_yuyin})
     public void onViewClicked(View view) {
         switch (view.getId()) {
             case R.id.btn_yuyin:
@@ -76,6 +66,10 @@ public class MoreFragment extends Fragment {
             case R.id.btn_upfile:
                 //上传附件
                 selectFile();
+                break;
+            case R.id.btn_play:
+                //支付宝支付
+                startActivity(new Intent(getContext(), PayDemoActivity.class));
                 break;
             case R.id.btn_dayin:
                 //退出

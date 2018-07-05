@@ -1,4 +1,4 @@
-package com.example.wll.ceshitablayout;
+package com.example.wll.ceshitablayout.bean;
 
 /**
  * Created by newnet on 2018/3/16.

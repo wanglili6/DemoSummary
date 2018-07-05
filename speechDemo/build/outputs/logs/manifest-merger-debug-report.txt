@@ -17,7 +17,7 @@ ADDED from D:\wll\ASWork\CeshiTablayout\CeshiTablayout\speechDemo\src\main\Andro
 		ADDED from D:\wll\ASWork\CeshiTablayout\CeshiTablayout\speechDemo\src\main\AndroidManifest.xml:2:11-69
 application
 ADDED from D:\wll\ASWork\CeshiTablayout\CeshiTablayout\speechDemo\src\main\AndroidManifest.xml:7:5-91:19
-MERGED from [com.android.support:support-v4:23.4.0] E:\android\android-sdk-windows\.android\build-cache\23caae519be370be4ce67a4d9a0b75587918202c\output\AndroidManifest.xml:22:5-20
+MERGED from [com.android.support:support-v4:23.4.0] E:\android\myEclicpse\sdk_myEclipse\.android\build-cache\07d6a3b740632687a8bde33a28c5a655998f38f5\output\AndroidManifest.xml:22:5-20
 	android:label
 		ADDED from D:\wll\ASWork\CeshiTablayout\CeshiTablayout\speechDemo\src\main\AndroidManifest.xml:10:9-31
 	android:icon
@@ -156,7 +156,7 @@ ADDED from D:\wll\ASWork\CeshiTablayout\CeshiTablayout\speechDemo\src\main\Andro
 		ADDED from D:\wll\ASWork\CeshiTablayout\CeshiTablayout\speechDemo\src\main\AndroidManifest.xml:87:13-43
 uses-sdk
 ADDED from D:\wll\ASWork\CeshiTablayout\CeshiTablayout\speechDemo\src\main\AndroidManifest.xml:93:5-43
-MERGED from [com.android.support:support-v4:23.4.0] E:\android\android-sdk-windows\.android\build-cache\23caae519be370be4ce67a4d9a0b75587918202c\output\AndroidManifest.xml:20:5-43
+MERGED from [com.android.support:support-v4:23.4.0] E:\android\myEclicpse\sdk_myEclipse\.android\build-cache\07d6a3b740632687a8bde33a28c5a655998f38f5\output\AndroidManifest.xml:20:5-43
 	android:targetSdkVersion
 		INJECTED from D:\wll\ASWork\CeshiTablayout\CeshiTablayout\speechDemo\src\main\AndroidManifest.xml
 		INJECTED from D:\wll\ASWork\CeshiTablayout\CeshiTablayout\speechDemo\src\main\AndroidManifest.xml
