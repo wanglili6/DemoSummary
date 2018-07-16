@@ -2,6 +2,7 @@ package com.example.wll.ceshitablayout.mannerg;
 
 import android.content.Context;
 import android.graphics.Color;
+import android.graphics.Paint;
 
 import com.example.wll.ceshitablayout.R;
 import com.example.wll.ceshitablayout.view.CustomMarkerView;
@@ -14,15 +15,20 @@ import com.github.mikephil.charting.components.YAxis;
 import com.github.mikephil.charting.data.BarData;
 import com.github.mikephil.charting.data.BarDataSet;
 import com.github.mikephil.charting.data.BarEntry;
+import com.github.mikephil.charting.data.CandleData;
+import com.github.mikephil.charting.data.CandleDataSet;
+import com.github.mikephil.charting.data.CandleEntry;
 import com.github.mikephil.charting.data.CombinedData;
 import com.github.mikephil.charting.data.Entry;
 import com.github.mikephil.charting.data.LineData;
 import com.github.mikephil.charting.data.LineDataSet;
 import com.github.mikephil.charting.formatter.IAxisValueFormatter;
 import com.github.mikephil.charting.interfaces.datasets.IBarDataSet;
+import com.github.mikephil.charting.utils.ColorTemplate;
 
 import java.util.ArrayList;
 import java.util.List;
+import java.util.Random;
 
 /**
  * Created by wll on 2018/3/26.
@@ -244,6 +250,78 @@ public class CombinedChartManager {
         return barData;
     }
 
+    private CandleData getCandleBarData(ArrayList<String> xvale, List<Float> barChartY, String barName) {
+        List<CandleEntry> yValues = new ArrayList<>();
+        ArrayList<CandleEntry> yVals1 = new ArrayList<CandleEntry>();
+
+        for (int i = 0; i < barChartY.size(); i++) {
+            //float mult = (mSeekBarY.get + 1);
+            float val = (float) (Math.random() * 40) + 20;
+
+            float high = (float) (Math.random() * 9) + 8f;
+            float low = (float) (Math.random() * 9) + 8f;
+
+            float open = (float) (Math.random() * 6) + 1f;
+            float close = (float) (Math.random() * 6) + 1f;
+
+            boolean even = i % 2 == 0;
+
+            yVals1.add(new CandleEntry(i, val + high, val - low, even ? val + open : val - open,
+                    even ? val - close : val + close));
+        }
+
+        CandleDataSet candledataset = new CandleDataSet(yValues, barName);
+        candledataset.setAxisDependency(YAxis.AxisDependency.LEFT);
+
+        candledataset.setBarSpace(1f);
+        candledataset.setDecreasingColor(Color.BLUE);
+        candledataset.setShadowWidth(12f);
+        candledataset.setShowCandleBar(true);
+
+        candledataset.setAxisDependency(YAxis.AxisDependency.LEFT);
+        //candledataset.setShadowColor(Color.BLACK);
+        candledataset.setShadowColorSameAsCandle(true);
+        candledataset.setShadowWidth(0.7f);
+        candledataset.setDecreasingColor(Color.GREEN);
+        candledataset.setDecreasingPaintStyle(Paint.Style.FILL);
+        candledataset.setIncreasingColor(Color.RED);
+        candledataset.setIncreasingPaintStyle(Paint.Style.FILL);
+
+
+        candledataset.setColors(ColorTemplate.LIBERTY_COLORS);
+
+
+        CandleData candleData = new CandleData();
+        candleData.addDataSet(candledataset);
+//        CandleDataSet set = new CandleDataSet(yValues, barName);
+//        set.setAxisDependency(YAxis.AxisDependency.LEFT);
+//        set.setShadowWidth(0.7f);
+//        set.setDecreasingColor(Color.RED);
+//        set.setDecreasingPaintStyle(Paint.Style.FILL);
+//        set.setIncreasingColor(Color.GREEN);
+//        set.setIncreasingPaintStyle(Paint.Style.STROKE);
+//        set.setNeutralColor(Color.RED);
+//        set.setShadowColorSameAsCandle(true);
+//        set.setHighlightLineWidth(0.5f);
+//        set.setHighLightColor(Color.WHITE);
+//        set.setDrawValues(false);
+//        CandleData candleData = new CandleData();
+//        candleData.addDataSet(set);
+
+
+//        BarDataSet barDataSet = new BarDataSet(yValues, barName);
+//        barDataSet.setColor(barColor);
+//        barDataSet.setValueTextSize(10f);
+//        barDataSet.setValueTextColor(barColor);
+//        barDataSet.setAxisDependency(YAxis.AxisDependency.LEFT);
+//        barData.addDataSet(barDataSet);
+
+        //以下是为了解决 柱状图 左右两边只显示了一半的问题 根据实际情况 而定
+        xAxis.setAxisMinimum(-0.5f);
+        xAxis.setAxisMaximum((float) (barChartY.size() - 0.5));
+        return candleData;
+    }
+
     /**
      * 得到柱状图(多条)
      *
@@ -304,7 +382,8 @@ public class CombinedChartManager {
 
         CombinedData combinedData = new CombinedData();
 
-        combinedData.setData(getBarData(barChartY, barName, barColor));
+//        combinedData.setData(getBarData(barChartY, barName, barColor));
+        combinedData.setData(getCandleBarData((ArrayList<String>) xAxisValues, barChartY, barName));
         combinedData.setData(getLineData(lineChartY, lineName, lineColor));
         mCombinedChart.setData(combinedData);
         //设置一页最大显示个数为6，超出部分就滑动

@@ -55,7 +55,7 @@ public class CombinedChartActivity extends AppCompatActivity {
         //x轴数据
         List<String> xData = new ArrayList<>();
         for (int i = 0; i <= 20; i++) {
-            xData.add(String.valueOf(i));
+            xData.add(2018+i+"");
         }
         //y轴数据集合
         List<List<Float>> yBarDatas = new ArrayList<>();

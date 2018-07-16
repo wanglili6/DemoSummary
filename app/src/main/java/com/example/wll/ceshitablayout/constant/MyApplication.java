@@ -1,7 +1,6 @@
 package com.example.wll.ceshitablayout.constant;
 
 import android.app.Activity;
-import android.app.Application;
 import android.content.Context;
 import android.content.Intent;
 import android.content.pm.ShortcutInfo;
@@ -21,20 +20,11 @@ import com.baidu.location.LocationClient;
 import com.baidu.location.LocationClientOption;
 import com.baidu.location.Poi;
 import com.baidu.mapapi.SDKInitializer;
-import com.baidu.trace.LBSTraceClient;
-import com.baidu.trace.Trace;
-import com.baidu.trace.model.OnTraceListener;
-import com.baidu.trace.model.PushMessage;
 import com.example.wll.ceshitablayout.MainActivity;
 import com.example.wll.ceshitablayout.R;
-import com.example.wll.ceshitablayout.utils.*;
-import com.iflytek.cloud.GrammarListener;
+import com.example.wll.ceshitablayout.utils.PreferencesUtils;
 import com.iflytek.cloud.SpeechConstant;
-import com.iflytek.cloud.SpeechError;
-import com.iflytek.cloud.SpeechRecognizer;
 import com.iflytek.cloud.SpeechUtility;
-import com.iflytek.cloud.util.ResourceUtil;
-import com.iflytek.msc.MSC;
 import com.uuzuche.lib_zxing.activity.ZXingLibrary;
 import com.zhy.http.okhttp.OkHttpUtils;
 
@@ -69,8 +59,8 @@ public class MyApplication extends MultiDexApplication {
         //初始化OKhttpUtils
         OkHttpClient okHttpClient = new OkHttpClient.Builder()
                 //                .addInterceptor(new LoggerInterceptor("TAG"))
-                .connectTimeout(10000L, TimeUnit.MILLISECONDS)
-                .readTimeout(10000L, TimeUnit.MILLISECONDS)
+                .connectTimeout(25000L, TimeUnit.MILLISECONDS)
+                .readTimeout(25000L, TimeUnit.MILLISECONDS)
                 //其他配置
                 .build();
 

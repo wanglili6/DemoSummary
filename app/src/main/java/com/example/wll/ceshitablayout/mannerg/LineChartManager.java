@@ -107,7 +107,7 @@ public class LineChartManager {
         //设置自定义X轴值
         xAxis.setValueFormatter(xValueFormatter);
         //一个界面显示6个Lable，那么这里要设置11个
-        xAxis.setLabelCount(10);
+        xAxis.setLabelCount(6);
         //设置最小间隔，防止当放大时出现重复标签
         xAxis.setGranularity(1f);
         //设置为true当一个页面显示条目过多，X轴值隔一个显示一个

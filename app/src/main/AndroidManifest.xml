@@ -155,7 +155,8 @@
         <activity android:name=".pay.PayDemoActivity" />
         <activity android:name=".pay.H5PayDemoActivity" />
         <activity android:name=".animation.ShopCartActivity" />
-        <activity android:name=".mPAndroidChart.AutoRefreshActivity"></activity>
+        <activity android:name=".mPAndroidChart.AutoRefreshActivity" />
+        <activity android:name=".webSocket.WebSocketActivity"></activity>
     </application>
 
 </manifest>
