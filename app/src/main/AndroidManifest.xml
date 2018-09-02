@@ -118,7 +118,7 @@
 
         <meta-data
             android:name="com.baidu.lbsapi.API_KEY"
-            android:value="nMLls8v8gCNnnGG0YNFEuaLpGLvslZfq" />
+            android:value="PWUsdMnWByxUqw0DxXpTOTZnW1QdDiZN" />
 
         <service
             android:name="com.baidu.trace.LBSTraceService"
@@ -156,7 +156,8 @@
         <activity android:name=".pay.H5PayDemoActivity" />
         <activity android:name=".animation.ShopCartActivity" />
         <activity android:name=".mPAndroidChart.AutoRefreshActivity" />
-        <activity android:name=".webSocket.WebSocketActivity"></activity>
+        <activity android:name=".webSocket.WebSocketActivity" />
+        <activity android:name=".myView.ClinpImageActivity"></activity>
     </application>
 
 </manifest>

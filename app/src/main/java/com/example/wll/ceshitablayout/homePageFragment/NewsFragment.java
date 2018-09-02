@@ -4,6 +4,7 @@ import android.content.Intent;
 import android.os.Bundle;
 import android.support.annotation.Nullable;
 import android.support.v4.app.Fragment;
+import android.telecom.InCallService;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -13,6 +14,7 @@ import com.apkfuns.logutils.LogUtils;
 import com.example.wll.ceshitablayout.ModeActivity;
 import com.example.wll.ceshitablayout.R;
 import com.example.wll.ceshitablayout.animation.ShopCartActivity;
+import com.example.wll.ceshitablayout.myView.ClinpImageActivity;
 import com.example.wll.ceshitablayout.myView.MyViewActivity;
 
 import butterknife.BindView;
@@ -68,7 +70,7 @@ public class NewsFragment extends Fragment {
         unbinder.unbind();
     }
 
-    @OnClick({R.id.btn_ceshi, R.id.btn_dayin, R.id.zidingyi_view,R.id.shop_cart})
+    @OnClick({R.id.btn_ceshi, R.id.btn_dayin, R.id.zidingyi_view,R.id.shop_cart,R.id.cinp_img})
     public void onViewClicked(View view) {
         switch (view.getId()) {
             case R.id.btn_ceshi:
@@ -87,6 +89,9 @@ public class NewsFragment extends Fragment {
                 Intent intentshop = new Intent();
                 intentshop.setClass(getContext(), ShopCartActivity.class);
                 startActivity(intentshop);
+                break;
+            case R.id.cinp_img:
+                startActivity(new Intent(getActivity(), ClinpImageActivity.class));
                 break;
         }
     }

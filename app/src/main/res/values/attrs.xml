@@ -13,7 +13,19 @@
         <attr name="border_color" format="color" />
     </declare-styleable>
     <declare-styleable name="SignView">
-        <attr name="lineColor" format="color"/>
-        <attr name="lineWidth" format="dimension"/>
+        <attr name="lineColor" format="color" />
+        <attr name="lineWidth" format="dimension" />
+    </declare-styleable>
+
+    <!--自定义圆角图片的自定义属性-->
+    <declare-styleable name="RoundImageView">
+        边框的宽度
+        <attr name="round_border_width" format="dimension" />
+        <!--边框的颜色-->
+        <attr name="round_border_color" format="color" />
+        <!--x的曲圆率-->
+        <attr name="corner_x" format="dimension" />
+        <!--y的曲圆率-->
+        <attr name="corner_y" format="dimension" />
     </declare-styleable>
 </resources>

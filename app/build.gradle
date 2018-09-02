@@ -26,6 +26,13 @@ android {
             jniLibs.srcDir 'libs'
         }
     }
+    aaptOptions {
+
+        cruncherEnabled = false
+
+        useNewCruncher = false
+
+    }
     allprojects {
         repositories {
             maven { url "https://jitpack.io" }
