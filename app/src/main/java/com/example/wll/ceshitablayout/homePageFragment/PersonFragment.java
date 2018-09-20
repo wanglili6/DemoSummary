@@ -9,6 +9,7 @@ import android.view.View;
 import android.view.ViewGroup;
 import android.widget.Button;
 
+import com.example.wll.ceshitablayout.banner.MZBannerActivity;
 import com.example.wll.ceshitablayout.mPAndroidChart.AutoRefreshActivity;
 import com.example.wll.ceshitablayout.mPAndroidChart.BarChartActivity;
 import com.example.wll.ceshitablayout.mPAndroidChart.CombinedChartActivity;
@@ -56,7 +57,7 @@ public class PersonFragment extends Fragment {
         unbinder.unbind();
     }
 
-    @OnClick({R.id.btn_ceshi, R.id.btn_line_chart, R.id.btn_auto_chart, R.id.btn_combined_chart, R.id.btn_bar_chart, R.id.btn_hbar_chart, R.id.btn_pie_chart})
+    @OnClick({R.id.btn_ceshi, R.id.btn_line_chart, R.id.btn_auto_chart, R.id.btn_mz_banner,R.id.btn_combined_chart, R.id.btn_bar_chart, R.id.btn_hbar_chart, R.id.btn_pie_chart})
     public void onViewClicked(View view) {
         switch (view.getId()) {
             case R.id.btn_ceshi:
@@ -91,6 +92,11 @@ public class PersonFragment extends Fragment {
                 Intent intent5 = new Intent();
                 intent5.setClass(getActivity(), AutoRefreshActivity.class);
                 startActivity(intent5);
+                break;
+            case R.id.btn_mz_banner:
+                Intent intent6 = new Intent();
+                intent6.setClass(getActivity(), MZBannerActivity.class);
+                startActivity(intent6);
                 break;
         }
     }

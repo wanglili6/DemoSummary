@@ -157,7 +157,8 @@
         <activity android:name=".animation.ShopCartActivity" />
         <activity android:name=".mPAndroidChart.AutoRefreshActivity" />
         <activity android:name=".webSocket.WebSocketActivity" />
-        <activity android:name=".myView.ClinpImageActivity"></activity>
+        <activity android:name=".myView.ClinpImageActivity" />
+        <activity android:name=".banner.MZBannerActivity"></activity>
     </application>
 
 </manifest>
